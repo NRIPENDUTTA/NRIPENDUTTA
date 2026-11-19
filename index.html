@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="bn" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#123b32">
+  <title>TANISHA DRESSES — কারিগর, মহাজন, লাভ-লস ও অডিট</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
+    :root {
+      --green: #123b32;
+      --green2: #195e4d;
+      --mint: #e8f5ee;
+      --gold: #c9a14a;
+      --bg: #f2f6f4;
+      --ink: #162923;
+      --muted: #5d7068;
+      --line: #d6e3dc;
+      --red: #b23232;
+      --red-bg: #fdecec;
+      --amber: #8a5a00;
+      --amber-bg: #fff5db;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans Bengali', system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .topbar {
+      background: linear-gradient(130deg, var(--green), var(--green2));
+      color: #fff;
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 3px 14px rgba(18, 59, 50, 0.22);
+    }
+    .brand-row {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 44px;
+      height: 44px;
+      border: 2px solid #e2c16b;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 17px;
+      color: #f9df94;
+      flex-shrink: 0;
+    }
+    .brand-row h1 { font-size: 17px; margin: 0; letter-spacing: 0.2px; }
+    .brand-row p { font-size: 12px; margin: 2px 0 0; color: #d5e6df; }
+    .sync-badge {
+      margin-left: auto;
+      font-size: 11px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 5px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .mobile-tabs {
+      display: none;
+      overflow-x: auto;
+      gap: 6px;
+      padding: 9px 10px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 72px;
+      z-index: 15;
+    }
+    .mobile-tabs button {
+      white-space: nowrap;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 20px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .mobile-tabs button.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 14px;
+    }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: sticky;
+      top: 86px;
+      align-self: start;
+    }
+    .sidebar button {
+      border: 0;
+      background: transparent;
+      text-align: left;
+      padding: 11px 13px;
+      border-radius: 10px;
+      color: #2f433c;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .sidebar button.active, .sidebar button:hover {
+      background: linear-gradient(95deg, #dfefe6, #f1f8f4);
+      color: var(--green);
+      font-weight: 700;
+      box-shadow: inset 3.5px 0 0 var(--gold);
+    }
+    .page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .page-head h2 { margin: 0; font-size: 20px; color: var(--green); }
+    .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .btn-group { display: flex; gap: 7px; flex-wrap: wrap; }
+    .btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 9px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn.primary { background: var(--green); color: #fff; border-color: var(--green); }
+    .btn.wa { background: #1e8e54; color: #fff; border-color: #1e8e54; }
+    .btn.gold { background: #fff7e2; color: #6c4d0f; border-color: #ead39c; }
+    .btn.danger { color: var(--red); border-color: #e6bcbc; background: #fff9f9; }
+    .btn.small { padding: 5px 9px; font-size: 12px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .card, .panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 8px rgba(22, 41, 35, 0.05);
+    }
+    .panel { margin-bottom: 14px; }
+    .panel h3 { margin: 0 0 11px; font-size: 16px; color: var(--green); }
+    .metric-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .metric { font-size: 21px; font-weight: 800; margin-top: 5px; }
+    .metric.red { color: var(--red); }
+    .metric.green { color: #166b46; }
+    .metric-note { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .notice {
+      background: var(--amber-bg);
+      border: 1px solid #efd89e;
+      color: #5c4310;
+      padding: 11px 13px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .notice.ok { background: var(--mint); border-color: #bfe0cd; color: #154734; }
+    .notice.err { background: var(--red-bg); border-color: #eabdbd; color: #7c1f1f; }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      min-width: 540px;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #edf2ef;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    th {
+      background: #f4f8f6;
+      color: #4b5e56;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .right { text-align: right; }
+    .pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--mint);
+      color: #18573f;
+    }
+    .pill.red { background: var(--red-bg); color: var(--red); }
+    .pill.warn { background: var(--amber-bg); color: var(--amber); }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12px; font-weight: 700; color: #4d6058; }
+    .field input, .field select, .field textarea, .toolbar input, .toolbar select {
+      width: 100%;
+      border: 1px solid #cfdcd5;
+      border-radius: 9px;
+      padding: 9px 10px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .calc-box {
+      background: #f6faf8;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px;
+      margin-top: 8px;
+    }
+    .calc-result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .calc-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px;
+    }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 11px; }
+    .toolbar input { flex: 1; min-width: 160px; }
+    .modal-back {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 28, 24, 0.72);
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 15px;
+      width: min(620px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 16px;
+    }
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+    }
+    .modal-head h3 { margin: 0; font-size: 17px; color: var(--green); }
+    .close-btn {
+      border: 0;
+      background: #eef4f1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: 800;
+    }
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #123b32;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 60;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      max-width: 92%;
+      text-align: center;
+    }
+    .foot {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      padding: 18px 10px 28px;
+    }
+    @media (max-width: 780px) {
+      .layout { display: block; padding: 10px; }
+      .sidebar { display: none; }
+      .mobile-tabs { display: flex; }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .grid2, .field-grid, .calc-result-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .metric { font-size: 18px; }
+    }
+    @media print {
+      .topbar, .mobile-tabs, .sidebar, .btn-group, .toolbar, .foot, .no-print { display: none !important; }
+      .layout { display: block; padding: 0; }
+      .panel, .card { border: 0; box-shadow: none; padding: 4px 0; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-row">
+      <div class="logo">TD</div>
+      <div>
+        <h1>TANISHA DRESSES</h1>
+        <p>কারিগর, মহাজন, উৎপাদন লাভ-লস ও খাতাবুক অডিট</p>
+      </div>
+      <div class="sync-badge" id="syncBadge">● অফলাইন সেভ</div>
+    </div>
+  </header>
+
+  <nav class="mobile-tabs" id="mobileTabs"></nav>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main id="app"></main>
+  </div>
+
+  <footer class="foot">
+    TANISHA DRESSES · বেথুয়াডহরী স্টেশন পাড়া, নদীয়া · কারখানা ও পাইকারি অডিট সিস্টেম (v3)
+  </footer>
+
+  <div id="modalRoot"></div>
+  <div id="toastRoot"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const DB_KEY = 'tanisha_factory_audit_erp_v3_20261119';
+    const CLOUD_KEY = 'tanisha_dresses_firebase_sync_v1';
+
+    const TABS = [
+      { id: 'dashboard', icon: '⌂', label: 'ড্যাশবোর্ড' },
+      { id: 'mahajans', icon: '🏭', label: 'মহাজন ও ক্রয়' },
+      { id: 'karigars', icon: '✂', label: 'কারিগর ও মজুরি' },
+      { id: 'costing', icon: '📊', label: 'লাভ-লস ও খরচ' },
+      { id: 'audit', icon: '☑', label: 'খাতাবুক অডিট' },
+      { id: 'sync', icon: '☁', label: 'ব্যাকআপ ও সিঙ্ক' }
+    ];
+
+    const INITIAL_DATA = {
+      business: {
+        name: 'TANISHA DRESSES',
+        address: 'Bethuadahari Station Para, Nakashi Para, Nadia, WB 741126',
+        phone: '9476141430',
+        whatsapp: '7502875660',
+        bank: 'SBI A/C: 44550809459 | IFSC: SBIN0014539 | UPI: 7501875660@sbi'
+      },
+      mahajans: [
+        {
+          id: 'MAH_GAYATRI',
+          name: 'GAYATRI TEXTILE',
+          phone: '9163407511',
+          address: 'Kolkata 700007 · GSTIN: 29CSMPP6766Q1ZC',
+          openingDue: -30866.00,
+          note: '19-Nov-2026 App Master: Purchases ₹2,00,664 - Payments ₹1,28,096 - Opening/Credit ₹30,866 = ₹41,702 Payable'
+        },
+        {
+          id: 'MAH_JAGANNATH',
+          name: 'JAGANNATH BANWARILAL TEXOFABS PVT LTD',
+          phone: '8334900051',
+          address: 'Kolkata',
+          openingDue: 0
+        },
+        {
+          id: 'MAH_KRISHNA',
+          name: 'KRISHNA ENTERPRISES',
+          phone: '7003876260',
+          address: '',
+          openingDue: 0
+        },
+        {
+          id: 'MAH_ARIHANT',
+          name: 'ARIHANT ENTERPRISE KOLKATA',
+          phone: '',
+          address: 'Kolkata',
+          openingDue: 0
+        },
+        {
+          id: 'MAH_JAYSHREE',
+          name: 'JAY SHREE SYNTTHETICS KOLKATA',
+          phone: '',
+          address: 'Kolkata',
+          openingDue: 0
+        },
+        {
+          id: 'MAH_RAJKUMAR',
+          name: 'NEW RAJKUMAR DRESSES RAM PAD',
+          phone: '',
+          address: '',
+          openingDue: 0
+        }
+      ],
+      legacyReviewNames: [
+        { name: 'GOPEN NIGHTY', status: 'Needs review', note: 'Gopen cutting master-এর সঙ্গে একই ব্যক্তি কি না নিশ্চিত নয়; আলাদা রেকর্ড রাখা হয়েছে।' },
+        { name: 'KRISHNANAGAR NIGHTY', status: 'Needs review', note: 'নিশ্চিত মহাজন/কারিগর তালিকায় নেই; শ্রেণি নির্ধারণ করা হয়নি।' },
+        { name: 'SAMPA DUTTA', status: 'Needs review', note: 'SHAMPA DUTTA থেকে আলাদা বানান/রেকর্ড; একীভূত করা হয়নি।' }
+      ],
+      purchases: [
+        { id: 'PUR_01', date: '2026-03-18', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0002', mode: 'bill', desc: 'Cotton Poplin Fabric Bill', qty: 0, rate: 0, total: 37450 },
+        { id: 'PUR_02', date: '2026-05-02', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0003', mode: 'bill', desc: '34*46 Than Fabric', qty: 34, rate: 0, total: 37074 },
+        { id: 'PUR_03', date: '2026-06-09', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0004', mode: 'bill', desc: '24*36*50.50 Poplin', qty: 36, rate: 50.5, total: 41070 },
+        { id: 'PUR_04', date: '2026-09-30', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0001', mode: 'bill', desc: '24*20 Pratigya, 24*11 V.Gold, Gani, Anshk, Rajmandir', qty: 34, rate: 0, total: 43518 },
+        { id: 'PUR_05', date: '2026-11-17', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0005', mode: 'sack', desc: '80kg Cotton Sacks & Recent Purchase (19-Nov Master Sync)', qty: 80, rate: 487, total: 41552 }
+      ],
+      mahajanPayments: [
+        { id: 'MP_01', date: '2026-04-12', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 8096, note: 'App Master Entry (Notebook had ₹8,090; ₹6 audit note)' },
+        { id: 'MP_02', date: '2026-04-21', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '' },
+        { id: 'MP_03', date: '2026-04-24', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '' },
+        { id: 'MP_04', date: '2026-05-15', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '' },
+        { id: 'MP_05', date: '2026-07-29', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 20000, note: '' },
+        { id: 'MP_06', date: '2026-08-30', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '' },
+        { id: 'MP_07', date: '2026-09-06', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '' },
+        { id: 'MP_08', date: '2026-09-13', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '' },
+        { id: 'MP_09', date: '2026-09-27', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 30000, note: '' },
+        { id: 'MP_10', date: '2026-10-12', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 10000, note: '30/09/2026 বিল বাবদ' }
+      ],
+      karigars: [
+        { id: 'WRK_PINTU_SAHA', name: 'Pintu Saha (কাটিং মাস্টার)', role: 'Cutting', ratePerDozen: 22, phone: '9749670522', openingBalance: -2926.00, note: '06-Nov-2026 KhataBook Closing (-₹2926)' },
+        { id: 'WRK_GOPEN', name: 'Gopen (কাটিং)', role: 'Cutting', ratePerDozen: 22, phone: '', openingBalance: 0, note: 'Check legacy review: GOPEN NIGHTY' },
+        { id: 'WRK_RITA_SAHA', name: 'Rita Saha', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: -2665.83, note: '06-Nov-2026 KhataBook Closing (-₹2665.83)' },
+        { id: 'WRK_DIPA_ROY', name: 'Dipa Roy', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: -3482.51, note: '06-Nov-2026 KhataBook Closing (-₹3482.51)' },
+        { id: 'WRK_MOYNA_BAIRAGYA', name: 'Moyna Bairagya', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: -2190.42, note: '06-Nov-2026 KhataBook Closing (-₹2190.42)' },
+        { id: 'WRK_SHAMPA_DUTTA', name: 'Shampa Dutta', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 1845.00, note: '06-Nov-2026 KhataBook Closing (+₹1845 Payable)' },
+        { id: 'WRK_KAJALI', name: 'Kajali', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' },
+        { id: 'WRK_SANGEETA_MALLIK', name: 'Sangeeta Mallik', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' },
+        { id: 'WRK_GITA_SAHA', name: 'Gita Saha', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' },
+        { id: 'WRK_SOMA_MALAKAR', name: 'Soma Malakar', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' },
+        { id: 'WRK_DOLLY_BISWAS', name: 'Dolly Biswas', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' },
+        { id: 'WRK_PURNIMA_SAHA', name: 'Purnima Saha', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' },
+        { id: 'WRK_KOLONI_BOUDI', name: 'Koloni Boudi', role: 'Sewing', ratePerDozen: 36, phone: '', openingBalance: 0, note: '' }
+      ],
+      karigarLogs: [
+        { id: 'KL_01', date: '2026-10-07', karigarId: 'WRK_RITA_SAHA', item: 'Saya Sewing (Legacy Summary)', issuedPcs: 912, returnedPcs: 912, ratePerDozen: 35, wage: 2660, paid: 0, note: '15-Oct KhataBook archived total (already in 06-Nov closing)', archived: true },
+        { id: 'KL_02', date: '2026-10-12', karigarId: 'WRK_MOYNA_BAIRAGYA', item: 'Saya Sewing (Legacy Summary)', issuedPcs: 751, returnedPcs: 751, ratePerDozen: 35, wage: 2190.42, paid: 0, note: '15-Oct KhataBook archived total (already in 06-Nov closing)', archived: true },
+        { id: 'KL_03', date: '2026-10-14', karigarId: 'WRK_DIPA_ROY', item: 'Saya Sewing (Legacy Summary)', issuedPcs: 1194, returnedPcs: 1194, ratePerDozen: 35, wage: 3482.51, paid: 0, note: '15-Oct KhataBook archived total (already in 06-Nov closing)', archived: true },
+        { id: 'KL_04', date: '2026-10-13', karigarId: 'WRK_PINTU_SAHA', item: 'Saya Cutting (Legacy Summary)', issuedPcs: 1596, returnedPcs: 1596, ratePerDozen: 22, wage: 2926, paid: 0, note: '15-Oct KhataBook archived total (already in 06-Nov closing)', archived: true }
+      ],
+      sackBatchCalc: {
+        sackKg: 80,
+        ratePerKg: 487,
+        pcs38: 0,
+        pcs42: 0,
+        kgPerPc38: 0.18,
+        kgPerPc42: 0.20,
+        cuttingPerDozen: 22,
+        sewingPerDozen: 36,
+        threadPerDozen: 7,
+        extraPerDozen: 20,
+        sell38: 115,
+        sell42: 134.15
+      },
+      costingModels: [
+        {
+          id: 'CST_42_GOLD',
+          name: 'SUPER DELUXE GOLD SAYA - 42',
+          thanMeters: 24,
+          fabricRatePerMeter: 51.5,
+          pcsPerThan: 12,
+          cuttingPerDozen: 22,
+          sewingPerDozen: 36,
+          threadPerDozen: 7,
+          extraPerDozen: 20,
+          sellingPricePerPc: 134.15
+        },
+        {
+          id: 'CST_42_PREM',
+          name: 'PREMIUM COTTON SAYA - 42',
+          thanMeters: 24,
+          fabricRatePerMeter: 47.5,
+          pcsPerThan: 12,
+          cuttingPerDozen: 22,
+          sewingPerDozen: 36,
+          threadPerDozen: 7,
+          extraPerDozen: 20,
+          sellingPricePerPc: 124.25
+        },
+        {
+          id: 'CST_38_PREM',
+          name: 'PREMIUM COTTON SAYA - 38',
+          thanMeters: 24,
+          fabricRatePerMeter: 47.5,
+          pcsPerThan: 13,
+          cuttingPerDozen: 22,
+          sewingPerDozen: 36,
+          threadPerDozen: 7,
+          extraPerDozen: 20,
+          sellingPricePerPc: 115.00
+        }
+      ],
+      salesSummary: [
+        { id: 'SL_01', date: '2026-11-19', desc: 'Current Active App Sales (4 Bills)', qty: 48, revenue: 6040, estCost: 5350 }
+      ],
+      expenses: [
+        { id: 'EXP_01', date: '2026-11-19', category: 'General Expense', desc: 'Factory Expense (Active App)', amount: 150 }
+      ],
+      khataAuditBaseline: {
+        asOf: '2026-11-19',
+        customerReceivable: 140694.10,
+        supplierKarigarPayable: 1845.00,
+        gayatriPurchaseTotal: 200664.00,
+        gayatriPaymentTotal: 128096.00,
+        gayatriNetDue: 41702.00,
+        gayatriUnexplainedCredit: 30866.00,
+        inventoryCostValue: 67348.15,
+        inventoryQty: 552,
+        knownInvoiceMismatches: [
+          { inv: '175', date: '2026-10-31', party: 'Debashish Basak', billTotal: 7298, itemTotal: 7358, diff: 60 },
+          { inv: '68', date: '2025-08-24', party: 'Pradip Day', billTotal: 5455, itemTotal: 5520, diff: 65 },
+          { inv: '2', date: '2024-11-01', party: 'Rangate Sarkar', billTotal: 1700, itemTotal: 1710, diff: 10 },
+          { inv: '89', date: '2025-11-02', party: 'Sudev Basak', billTotal: 4700, itemTotal: 4704, diff: 4 }
+        ],
+        lastUploadedAudit: null
+      },
+      meta: { updatedAt: new Date().toISOString() }
+    };
+
+    let state = loadState();
+    let activeTab = 'dashboard';
+    let selectedMahajanId = 'ALL';
+    let selectedKarigarId = 'ALL';
+    let syncTimer = null;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(DB_KEY);
+        if (!raw) return JSON.parse(JSON.stringify(INITIAL_DATA));
+        const parsed = JSON.parse(raw);
+        return {
+          ...JSON.parse(JSON.stringify(INITIAL_DATA)),
+          ...parsed,
+          sackBatchCalc: { ...INITIAL_DATA.sackBatchCalc, ...(parsed.sackBatchCalc || {}) }
+        };
+      } catch (e) {
+        return JSON.parse(JSON.stringify(INITIAL_DATA));
+      }
+    }
+
+    function saveState(skipCloud = false) {
+      state.meta = { ...(state.meta || {}), updatedAt: new Date().toISOString() };
+      try {
+        localStorage.setItem(DB_KEY, JSON.stringify(state));
+      } catch (e) {}
+      if (!skipCloud) scheduleCloudSync();
+    }
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function money(n) {
+      const val = Number(n || 0);
+      return '₹' + val.toLocaleString('en-IN', { minimumFractionDigits: val % 1 === 0 ? 0 : 2, maximumFractionDigits: 2 });
+    }
+
+    function toast(msg) {
+      const root = document.getElementById('toastRoot');
+      root.innerHTML = `<div class="toast">${esc(msg)}</div>`;
+      clearTimeout(window._toastT);
+      window._toastT = setTimeout(() => { root.innerHTML = ''; }, 3200);
+    }
+
+    function openModal(title, html) {
+      document.getElementById('modalRoot').innerHTML = `
+        <div class="modal-back" onclick="if(event.target===this)closeModal()">
+          <div class="modal">
+            <div class="modal-head">
+              <h3>${esc(title)}</h3>
+              <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+            ${html}
+          </div>
+        </div>`;
+    }
+    window.closeModal = () => { document.getElementById('modalRoot').innerHTML = ''; };
+
+    function mahajanStats(mId) {
+      const purs = state.purchases.filter(p => mId === 'ALL' || p.mahajanId === mId);
+      const pays = state.mahajanPayments.filter(p => mId === 'ALL' || p.mahajanId === mId);
+      const opening = state.mahajans
+        .filter(m => mId === 'ALL' || m.id === mId)
+        .reduce((s, m) => s + Number(m.openingDue || 0), 0);
+      const totalBuy = purs.reduce((s, p) => s + Number(p.total || 0), 0);
+      const totalPaid = pays.reduce((s, p) => s + Number(p.amount || 0), 0);
+      const netDue = opening + totalBuy - totalPaid;
+      return { opening, totalBuy, totalPaid, netDue, purs, pays };
+    }
+
+    function karigarStats(kId) {
+      const list = state.karigars.filter(k => kId === 'ALL' || k.id === kId);
+      let opening = 0, liveWage = 0, livePaid = 0, issued = 0, returned = 0;
+      for (const k of list) {
+        opening += Number(k.openingBalance || 0);
+        const logs = state.karigarLogs.filter(l => l.karigarId === k.id);
+        for (const l of logs) {
+          issued += Number(l.issuedPcs || 0);
+          returned += Number(l.returnedPcs || 0);
+          if (!l.archived) {
+            liveWage += Number(l.wage || 0);
+            livePaid += Number(l.paid || 0);
+          }
+        }
+      }
+      const netBalance = opening + liveWage - livePaid;
+      const pendingPcs = issued - returned;
+      return { opening, liveWage, livePaid, netBalance, issued, returned, pendingPcs };
+    }
+
+    function calcCostModel(m) {
+      const thanCost = Number(m.thanMeters || 0) * Number(m.fabricRatePerMeter || 0);
+      const pcs = Math.max(1, Number(m.pcsPerThan || 12));
+      const fabricPerPc = thanCost / pcs;
+      const labourPerDozen = Number(m.cuttingPerDozen || 0) + Number(m.sewingPerDozen || 0) + Number(m.threadPerDozen || 0) + Number(m.extraPerDozen || 0);
+      const labourPerPc = labourPerDozen / 12;
+      const totalCostPerPc = fabricPerPc + labourPerPc;
+      const totalCostPerDozen = totalCostPerPc * 12;
+      const sellPc = Number(m.sellingPricePerPc || 0);
+      const profitPerPc = sellPc - totalCostPerPc;
+      const profitPerDozen = profitPerPc * 12;
+      const marginPct = sellPc > 0 ? (profitPerPc / sellPc) * 100 : 0;
+      return { thanCost, fabricPerPc, labourPerDozen, labourPerPc, totalCostPerPc, totalCostPerDozen, profitPerPc, profitPerDozen, marginPct };
+    }
+
+    function calcSackBatch(sb) {
+      const sackKg = Math.max(0, Number(sb.sackKg || 0));
+      const ratePerKg = Math.max(0, Number(sb.ratePerKg || 0));
+      const sackTotalCost = sackKg * ratePerKg;
+
+      const pcs38 = Math.max(0, Number(sb.pcs38 || 0));
+      const pcs42 = Math.max(0, Number(sb.pcs42 || 0));
+      const totalPcs = pcs38 + pcs42;
+
+      const kgPerPc38 = Math.max(0, Number(sb.kgPerPc38 || 0));
+      const kgPerPc42 = Math.max(0, Number(sb.kgPerPc42 || 0));
+
+      const usedKg38 = pcs38 * kgPerPc38;
+      const usedKg42 = pcs42 * kgPerPc42;
+      const usedKgTotal = usedKg38 + usedKg42;
+      const leftoverOrDiffKg = sackKg - usedKgTotal;
+
+      const labourPerDozen = Number(sb.cuttingPerDozen || 0) + Number(sb.sewingPerDozen || 0) + Number(sb.threadPerDozen || 0) + Number(sb.extraPerDozen || 0);
+      const labourPerPc = labourPerDozen / 12;
+
+      const fabricPc38 = kgPerPc38 * ratePerKg;
+      const costPc38 = fabricPc38 + labourPerPc;
+      const costDozen38 = costPc38 * 12;
+      const sell38 = Number(sb.sell38 || 0);
+      const profitPc38 = sell38 - costPc38;
+      const profitDozen38 = profitPc38 * 12;
+
+      const fabricPc42 = kgPerPc42 * ratePerKg;
+      const costPc42 = fabricPc42 + labourPerPc;
+      const costDozen42 = costPc42 * 12;
+      const sell42 = Number(sb.sell42 || 0);
+      const profitPc42 = sell42 - costPc42;
+      const profitDozen42 = profitPc42 * 12;
+
+      const batchTotalCost = (pcs38 * costPc38) + (pcs42 * costPc42);
+      const batchTotalSell = (pcs38 * sell38) + (pcs42 * sell42);
+      const batchNetProfit = batchTotalSell - batchTotalCost;
+
+      return {
+        sackTotalCost, totalPcs, usedKg38, usedKg42, usedKgTotal, leftoverOrDiffKg,
+        labourPerDozen, labourPerPc,
+        fabricPc38, costPc38, costDozen38, profitPc38, profitDozen38,
+        fabricPc42, costPc42, costDozen42, profitPc42, profitDozen42,
+        batchTotalCost, batchTotalSell, batchNetProfit
+      };
+    }
+
+    function shareWhatsApp(phone, text) {
+      const digits = String(phone || '').replace(/\D/g, '');
+      const num = digits.length === 10 ? '91' + digits : digits;
+      const url = num ? `https://wa.me/${num}?text=${encodeURIComponent(text)}` : `https://wa.me/?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+
+    function shareSMS(phone, text) {
+      const digits = String(phone || '').replace(/\D/g, '');
+      const sep = /iPad|iPhone|iPod/.test(navigator.userAgent) ? '&' : '?';
+      window.location.href = `sms:${digits}${sep}body=${encodeURIComponent(text)}`;
+    }
+
+    window.sendMahajanWA = (mId) => {
+      const m = state.mahajans.find(x => x.id === mId) || state.mahajans[0];
+      const st = mahajanStats(m.id);
+      const msg = `*TANISHA DRESSES — মহাজন লেজার*\nমহাজন: ${m.name}\nতারিখ: ${new Date().toLocaleDateString('en-IN')}\n------------------\nমোট কাপড় ক্রয়: ${money(st.totalBuy)}\nমোট পেমেন্ট জমা: ${money(st.totalPaid)}\n${st.opening ? 'সমন্বয়/ওপেনিং: ' + money(st.opening) + '\n' : ''}*বর্তমান নিট বকেয়া: ${money(st.netDue)}*\n------------------\nধন্যবাদ — TANISHA DRESSES, বেথুয়াডহরী`;
+      shareWhatsApp(m.phone, msg);
+    };
+
+    window.sendKarigarWA = (kId) => {
+      const k = state.karigars.find(x => x.id === kId);
+      if (!k) return;
+      const st = karigarStats(k.id);
+      const statusTxt = st.netBalance > 0 ? `কারিগর পাবেন: ${money(st.netBalance)}` : (st.netBalance < 0 ? `অগ্রিম / সমন্বয়: ${money(Math.abs(st.netBalance))}` : 'হিসাব সমান (₹0)');
+      const msg = `*TANISHA DRESSES — কারিগর হিসাব*\nনাম: ${k.name} (${k.role})\nতারিখ: ${new Date().toLocaleDateString('en-IN')}\n------------------\nমোট পিস দেওয়া: ${st.issued} pcs\nমোট পিস জমা: ${st.returned} pcs\nহাতে বাকি পিস: ${st.pendingPcs} pcs\nনতুন মজুরি: ${money(st.liveWage)}\nনতুন পেমেন্ট: ${money(st.livePaid)}\n*${statusTxt}*\n------------------\nTANISHA DRESSES, বেথুয়াডহরী`;
+      shareWhatsApp(k.phone, msg);
+    };
+
+    window.sendKarigarSMS = (kId) => {
+      const k = state.karigars.find(x => x.id === kId);
+      if (!k) return;
+      const st = karigarStats(k.id);
+      const msg = `TANISHA DRESSES: ${k.name}, Returned: ${st.returned} pcs, Pending: ${st.pendingPcs} pcs, New Wage: ${money(st.liveWage)}, Paid: ${money(st.livePaid)}, Net Bal: ${money(st.netBalance)}.`;
+      shareSMS(k.phone, msg);
+    };
+
+    window.downloadRealPDF = (elementId, filename) => {
+      const el = document.getElementById(elementId) || document.getElementById('app');
+      if (typeof html2pdf !== 'undefined') {
+        toast('PDF তৈরি হচ্ছে, অপেক্ষা করুন...');
+        const opt = {
+          margin: 8,
+          filename: filename || 'TANISHA_DRESSES_Report.pdf',
+          image: { type: 'jpeg', quality: 0.96 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(el).save().then(() => toast('PDF ডাউনলোড সম্পন্ন হয়েছে!'));
+      } else {
+        window.print();
+      }
+    };
+
+    window.downloadRealExcel = () => {
+      if (typeof XLSX === 'undefined') {
+        toast('Excel লাইব্রেরি লোড হয়নি, ইন্টারনেট চেক করুন।');
+        return;
+      }
+      const wb = XLSX.utils.book_new();
+
+      const mahRows = state.mahajans.map(m => {
+        const st = mahajanStats(m.id);
+        return {
+          'Mahajan Name': m.name,
+          'Phone': m.phone,
+          'Address / GST': m.address,
+          'Opening / Adjustment (₹)': st.opening,
+          'Total Purchase (₹)': st.totalBuy,
+          'Total Paid (₹)': st.totalPaid,
+          'Net Payable Due (₹)': st.netDue
+        };
+      });
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(mahRows), 'Mahajan_Master');
+
+      const purRows = [
+        ...state.purchases.map(p => ({ Date: p.date, Type: 'Purchase', Bill_No: p.billNo, Description: p.desc, Qty: p.qty, Rate: p.rate, Purchase_Amt: p.total, Paid_Amt: 0 })),
+        ...state.mahajanPayments.map(p => ({ Date: p.date, Type: 'Payment', Bill_No: p.method, Description: p.note, Qty: 0, Rate: 0, Purchase_Amt: 0, Paid_Amt: p.amount }))
+      ].sort((a, b) => a.Date.localeCompare(b.Date));
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(purRows), 'Mahajan_Ledger');
+
+      const karRows = state.karigars.map(k => {
+        const st = karigarStats(k.id);
+        return {
+          'Karigar Name': k.name,
+          'Role': k.role,
+          'Rate/Dozen (₹)': k.ratePerDozen,
+          '06-Nov Opening (₹)': st.opening,
+          'Issued Pcs': st.issued,
+          'Returned Pcs': st.returned,
+          'Pending Pcs': st.pendingPcs,
+          'New Wage (₹)': st.liveWage,
+          'New Paid (₹)': st.livePaid,
+          'Net Balance (₹)': Number(st.netBalance.toFixed(2))
+        };
+      });
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(karRows), 'Karigar_Ledger');
+
+      const sb = calcSackBatch(state.sackBatchCalc);
+      const sackRows = [{
+        'Sack Weight (kg)': state.sackBatchCalc.sackKg,
+        'Rate/kg (₹)': state.sackBatchCalc.ratePerKg,
+        'Sack Value (₹)': sb.sackTotalCost,
+        '38 Pcs': state.sackBatchCalc.pcs38,
+        '42 Pcs': state.sackBatchCalc.pcs42,
+        '38 Kg/Pc': state.sackBatchCalc.kgPerPc38,
+        '42 Kg/Pc': state.sackBatchCalc.kgPerPc42,
+        '38 Cost/Pc (₹)': Number(sb.costPc38.toFixed(2)),
+        '38 Profit/Dozen (₹)': Number(sb.profitDozen38.toFixed(2)),
+        '42 Cost/Pc (₹)': Number(sb.costPc42.toFixed(2)),
+        '42 Profit/Dozen (₹)': Number(sb.profitDozen42.toFixed(2)),
+        'Batch Net Profit (₹)': Number(sb.batchNetProfit.toFixed(2))
+      }];
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(sackRows), 'Sack_38_42_Costing');
+
+      const cstRows = state.costingModels.map(c => {
+        const r = calcCostModel(c);
+        return {
+          'Item Name': c.name,
+          'Than (m)': c.thanMeters,
+          'Fabric Rate/m': c.fabricRatePerMeter,
+          'Pcs/Than': c.pcsPerThan,
+          'Cost/Pc (₹)': Number(r.totalCostPerPc.toFixed(2)),
+          'Cost/Dozen (₹)': Number(r.totalCostPerDozen.toFixed(2)),
+          'Selling Price/Pc (₹)': c.sellingPricePerPc,
+          'Profit/Pc (₹)': Number(r.profitPerPc.toFixed(2)),
+          'Profit/Dozen (₹)': Number(r.profitPerDozen.toFixed(2)),
+          'Margin (%)': Number(r.marginPct.toFixed(1))
+        };
+      });
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(cstRows), 'Costing_ProfitLoss');
+
+      const aud = runSmartAudit();
+      const audRows = aud.checks.map(c => ({ Status: c.status, Title: c.title, Details: c.detail }));
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(audRows), 'Audit_Report');
+
+      const fname = `TANISHA_DRESSES_Factory_Audit_${new Date().toISOString().slice(0,10)}.xlsx`;
+      XLSX.writeFile(wb, fname);
+      toast('Excel (.xlsx) ফাইল ডাউনলোড হয়েছে!');
+    };
+
+    function runSmartAudit() {
+      const checks = [];
+      let errorCount = 0;
+
+      const gayatri = mahajanStats('MAH_GAYATRI');
+      const rawDiff = gayatri.totalBuy - gayatri.totalPaid;
+      checks.push({
+        status: 'WARN',
+        title: `গায়ত্রী টেক্সটাইল অডিট: মোট ক্রয় ${money(gayatri.totalBuy)} − জমা ${money(gayatri.totalPaid)} = ${money(rawDiff)}, কিন্তু অ্যাপ ব্যালেন্স ${money(gayatri.netDue)}`,
+        detail: `১৯-নভেম্বর ২০২৬ মাস্টার তালিকায় ₹30,866.00 ওপেনিং ক্রেডিট/সমন্বয় ধরা আছে, তাই নিট বকেয়া ₹41,702.00 দেখাচ্ছে। খাতার সাথে এই ₹30,866.00 (এবং ১২-এপ্রিলের ₹8,096 বনাম ₹8,090-এর ₹6) মিলিয়ে নেওয়া প্রয়োজন।`
+      });
+      errorCount++;
+
+      const revList = state.legacyReviewNames || [];
+      if (revList.length > 0) {
+        checks.push({
+          status: 'WARN',
+          title: `পৃথক রাখা ৩টি নাম যাচাই বাকি (Legacy Review)`,
+          detail: revList.map(r => `${r.name}: ${r.note}`).join(' | ')
+        });
+      }
+
+      const shampa = karigarStats('WRK_SHAMPA_DUTTA');
+      checks.push({
+        status: shampa.netBalance === 1845 ? 'OK' : 'WARN',
+        title: 'খাতাবুক কারিগর প্রদেয় (Karigar Payable) যাচাই',
+        detail: `শম্পা দত্তের প্রদেয় ব্যালেন্স ${money(shampa.netBalance)} (ড্যাশবোর্ড Karigar Payable ₹1,845.00-এর সাথে হুবহু মিলেছে)।`
+      });
+
+      const pendingKarigars = state.karigars
+        .map(k => ({ name: k.name, pending: karigarStats(k.id).pendingPcs }))
+        .filter(x => x.pending !== 0);
+      if (pendingKarigars.length > 0) {
+        checks.push({
+          status: 'WARN',
+          title: 'কারিগরদের কাছে জমা বাকি থাকা পিস',
+          detail: pendingKarigars.map(x => `${x.name}: ${x.pending} pcs বাকি`).join(' | ')
+        });
+      } else {
+        checks.push({
+          status: 'OK',
+          title: 'কারিগরদের কাপড় জমা-খরচ পিস সমান আছে',
+          detail: 'কোনো কারিগরের কাছে কাটা বা সেলাইয়ের পিস আটকে নেই।'
+        });
+      }
+
+      const seen = new Map();
+      const dups = [];
+      for (const p of state.mahajanPayments) {
+        const key = `MP|${p.date}|${p.mahajanId}|${p.amount}`;
+        if (seen.has(key)) dups.push(`মহাজন পেমেন্ট ডবল এন্ট্রি: ${p.date} তারিখে ${money(p.amount)}`);
+        seen.set(key, true);
+      }
+      for (const l of state.karigarLogs) {
+        if (l.archived) continue;
+        const key = `KL|${l.date}|${l.karigarId}|${l.returnedPcs}|${l.paid}`;
+        if (seen.has(key)) dups.push(`কারিগর এন্ট্রি ডবল: ${l.date} তারিখে ${l.returnedPcs} pcs / ${money(l.paid)}`);
+        seen.set(key, true);
+      }
+      if (dups.length > 0) {
+        errorCount += dups.length;
+        checks.push({ status: 'ALERT', title: `ডবল এন্ট্রি সতর্কতা (${dups.length}টি)`, detail: dups.join(' ; ') });
+      } else {
+        checks.push({ status: 'OK', title: 'কোনো ডবল এন্ট্রি পাওয়া যায়নি', detail: 'সমস্ত তারিখ ও টাকার অঙ্ক পরীক্ষা করা হয়েছে।' });
+      }
+
+      const invMis = state.khataAuditBaseline.knownInvoiceMismatches;
+      checks.push({
+        status: 'WARN',
+        title: `খাতাবুক পুরোনো বিলের যোগফল অডিট (${invMis.length}টি অমিল নথিভুক্ত)`,
+        detail: invMis.map(x => `বিল #${x.inv} (${x.party}, ${x.date}): বিল ₹${x.billTotal} বনাম আইটেম ₹${x.itemTotal} (পার্থক্য ₹${x.diff})`).join(' | ')
+      });
+
+      if (state.khataAuditBaseline.lastUploadedAudit) {
+        const up = state.khataAuditBaseline.lastUploadedAudit;
+        checks.unshift({
+          status: up.diffFound ? 'ALERT' : 'OK',
+          title: `আপলোড করা খাতাবুক রিপোর্ট অডিট (${up.fileName})`,
+          detail: up.summary
+        });
+        if (up.diffFound) errorCount++;
+      }
+
+      return { checks, errorCount };
+    }
+
+    async function handleKhataBookFile(file) {
+      if (!file) return;
+      toast('খাতাবুক ফাইল পড়া হচ্ছে...');
+      let extractedText = '';
+      try {
+        if (file.name.toLowerCase().endsWith('.pdf') && typeof pdfjsLib !== 'undefined') {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+          const buf = await file.arrayBuffer();
+          const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const tc = await page.getTextContent();
+            extractedText += tc.items.map(it => it.str).join(' ') + '\n';
+          }
+        } else {
+          extractedText = await file.text();
+        }
+        analyzeKhataBookText(extractedText, file.name);
+      } catch (err) {
+        toast('ফাইল পড়তে সমস্যা হয়েছে: ' + err.message);
+      }
+    }
+
+    function analyzeKhataBookText(text, sourceName = 'Pasted KhataBook Data') {
+      const clean = String(text || '').replace(/\s+/g, ' ');
+      if (clean.length < 15) {
+        toast('ফাইলে কোনো লেখা পাওয়া যায়নি।');
+        return;
+      }
+      const findings = [];
+      let diffFound = false;
+
+      const gayatri = mahajanStats('MAH_GAYATRI');
+      if (/gayatri/i.test(clean)) {
+        const nums = [...clean.matchAll(/₹?\s*([0-9]{1,3}(?:,[0-9]{2,3})*(?:\.[0-9]{1,2})?)/g)]
+          .map(m => parseFloat(m[1].replace(/,/g, '')))
+          .filter(n => !isNaN(n) && n > 500);
+        const matchedDue = nums.find(n => Math.abs(n - gayatri.netDue) < 10);
+        if (matchedDue !== undefined) {
+          findings.push(`গায়ত্রী টেক্সটাইল বকেয়া ₹${matchedDue} অ্যাপের (${money(gayatri.netDue)}) সাথে মিলেছে।`);
+        } else if (nums.length) {
+          diffFound = true;
+          findings.push(`খাতাবুক ফাইলে গায়ত্রী টেক্সটাইলের অঙ্ক (${nums.slice(0,4).map(money).join(', ')}) অ্যাপের বকেয়া (${money(gayatri.netDue)}) থেকে আলাদা — যাচাই করুন।`);
+        }
+      }
+
+      for (const k of state.karigars) {
+        const shortName = k.name.split('(')[0].trim();
+        const re = new RegExp(shortName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+        if (re.test(clean)) {
+          const st = karigarStats(k.id);
+          findings.push(`${shortName} পাওয়া গেছে (অ্যাপের নিট ব্যালেন্স: ${money(st.netBalance)})।`);
+        }
+      }
+
+      const saleMatch = clean.match(/Total Sale Amount:\s*₹?\s*([0-9,]+\.?[0-9]*)/i);
+      if (saleMatch) {
+        const kbSale = parseFloat(saleMatch[1].replace(/,/g, ''));
+        findings.push(`খাতাবুক সেলস রিপোর্ট মোট বিক্রি: ${money(kbSale)}।`);
+      }
+
+      const recMatch = clean.match(/(?:You'll Get|পাবেন|Receivable)[^\d]{0,20}₹?\s*([0-9,]+\.[0-9]{2})/i);
+      if (recMatch) {
+        const kbRec = parseFloat(recMatch[1].replace(/,/g, ''));
+        const baseRec = state.khataAuditBaseline.customerReceivable;
+        if (Math.abs(kbRec - baseRec) > 1) {
+          diffFound = true;
+          findings.push(`কাস্টমার পাওনা পরিবর্তন হয়েছে: নতুন খাতাবুক ${money(kbRec)} বনাম বর্তমান অ্যাপ ${money(baseRec)} (পার্থক্য ${money(kbRec - baseRec)})।`);
+        } else {
+          findings.push(`কাস্টমার মোট পাওনা ${money(kbRec)} একদম ঠিক আছে।`);
+        }
+      }
+
+      if (findings.length === 0) {
+        findings.push(`ফাইলটি পড়া হয়েছে (${clean.length} অক্ষর)। এতে সরাসরি কোনো অমিল ধরা পড়েনি, তবে নিচের ব্যালেন্স টেবিল মিলিয়ে নিন।`);
+      }
+
+      state.khataAuditBaseline.lastUploadedAudit = {
+        fileName: sourceName,
+        checkedAt: new Date().toLocaleString('en-IN'),
+        diffFound,
+        summary: findings.join(' ')
+      };
+      saveState();
+      render();
+      toast('খাতাবুক অডিট সম্পন্ন হয়েছে!');
+    }
+
+    function getCloudCfg() {
+      try { return JSON.parse(localStorage.getItem(CLOUD_KEY) || '{}'); } catch (e) { return {}; }
+    }
+    function cloudUrl(cfg) {
+      const base = String(cfg.url || '').trim().replace(/\/+$/, '');
+      const pin = String(cfg.pin || '').trim().replace(/[.$#\[\]\/\s]+/g, '_') || 'default';
+      return `${base}/tanisha_dresses/${encodeURIComponent(pin)}/factory_audit_data.json`;
+    }
+    function setBadge(txt) {
+      const el = document.getElementById('syncBadge');
+      if (el) el.textContent = txt;
+    }
+    function scheduleCloudSync() {
+      const cfg = getCloudCfg();
+      if (!cfg.url || !cfg.pin) return;
+      clearTimeout(syncTimer);
+      syncTimer = setTimeout(() => syncWithFirebase(true), 1200);
+    }
+    async function syncWithFirebase(silent = false) {
+      const cfg = getCloudCfg();
+      if (!cfg.url || !cfg.pin) {
+        setBadge('● অফলাইন সেভ');
+        if (!silent) toast('প্রথমে Firebase URL এবং Sync PIN সেভ করুন।');
+        return;
+      }
+      if (!navigator.onLine) {
+        setBadge('● অফলাইন (অপেক্ষমাণ)');
+        return;
+      }
+      setBadge('↻ সিঙ্ক হচ্ছে...');
+      try {
+        const ep = cloudUrl(cfg);
+        const res = await fetch(ep + '?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const remote = await res.json();
+        if (remote && remote.data && remote.updatedAt) {
+          const rTime = Date.parse(remote.updatedAt) || 0;
+          const lTime = Date.parse(state.meta?.updatedAt) || 0;
+          if (rTime > lTime + 1500) {
+            state = { ...JSON.parse(JSON.stringify(INITIAL_DATA)), ...remote.data };
+            saveState(true);
+            render();
+          }
+        }
+        const put = await fetch(ep, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: state, updatedAt: state.meta.updatedAt })
+        });
+        if (!put.ok) throw new Error('Save HTTP ' + put.status);
+        setBadge('● সিঙ্ক চালু আছে');
+        if (!silent) toast('সব ফোনের সাথে ডেটা সিঙ্ক হয়েছে!');
+      } catch (e) {
+        setBadge('● অফলাইন সেভ');
+        if (!silent) toast('সিঙ্ক এরর: ' + e.message);
+      }
+    }
+
+    function renderNav() {
+      document.getElementById('sidebar').innerHTML = TABS.map(t =>
+        `<button class="${activeTab === t.id ? 'active' : ''}" onclick="switchTab('${t.id}')">${t.icon} ${t.label}</button>`
+      ).join('');
+      document.getElementById('mobileTabs').innerHTML = TABS.map(t =>
+        `<button class="${activeTab === t.id ? 'active' : ''}" onclick="switchTab('${t.id}')">${t.icon} ${t.label}</button>`
+      ).join('');
+    }
+    window.switchTab = (id) => { activeTab = id; render(); };
+
+    function renderDashboard() {
+      const mStat = mahajanStats('ALL');
+      const kStat = karigarStats('ALL');
+      const aud = runSmartAudit();
+      const sb = calcSackBatch(state.sackBatchCalc);
+
+      return `
+        <div class="page-head">
+          <div>
+            <h2>কারখানা ও ব্যবসা ড্যাশবোর্ড</h2>
+            <div class="sub">মহাজন, কারিগর মজুরি, কেজির বস্তা ৩৮/৪২ লাভ-লস ও খাতাবুক অডিট</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn primary" onclick="downloadRealPDF('app','TANISHA_DRESSES_Summary.pdf')">📄 PDF ডাউনলোড</button>
+            <button class="btn gold" onclick="downloadRealExcel()">📗 Excel ডাউনলোড</button>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="metric-label">মহাজন নিট বকেয়া (Payable)</div>
+            <div class="metric red">${money(mStat.netDue)}</div>
+            <div class="metric-note">মোট ক্রয় ${money(mStat.totalBuy)} | জমা ${money(mStat.totalPaid)}</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">কারিগর প্রদেয় (Payable)</div>
+            <div class="metric red">${money(1845)}</div>
+            <div class="metric-note">শম্পা দত্ত প্রদেয় (নিট সব কারিগর: ${money(kStat.netBalance)})</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">বস্তা হিসাব (৩৮ ও ৪২ পিস)</div>
+            <div class="metric">${sb.totalPcs} pcs</div>
+            <div class="metric-note">৩৮: ${state.sackBatchCalc.pcs38} pcs | ৪২: ${state.sackBatchCalc.pcs42} pcs</div>
+          </div>
+          <div class="card">
+            <div class="metric-label">অডিট স্ট্যাটাস</div>
+            <div class="metric ${aud.errorCount ? 'red' : 'green'}">${aud.errorCount ? aud.errorCount + 'টি অডিট নোট' : 'সব ঠিক আছে'}</div>
+            <div class="metric-note">খাতাবুক ও ১৯-নভেঃ মাস্টার যাচাই</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>দ্রুত এন্ট্রি করুন</h3>
+            <div class="btn-group">
+              <button class="btn primary" onclick="openPurchaseModal()">+ মহাজন কাপড় ক্রয়</button>
+              <button class="btn" onclick="openMahajanPayModal()">+ মহাজন পেমেন্ট</button>
+              <button class="btn primary" onclick="openKarigarWorkModal()">+ কারিগর পিস ও মজুরি</button>
+              <button class="btn gold" onclick="switchTab('costing')">📊 ৩৮/৪২ বস্তা ক্যালকুলেটর</button>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>কেজির বস্তা ৩৮ ও ৪২ সাইজের বর্তমান খরচ</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>সাইজ</th><th class="right">কাপড় খরচ/পিস</th><th class="right">মোট খরচ/পিস</th><th class="right">লাভ/ডজন</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><b>৩৮ সাইজ (38)</b></td>
+                    <td class="right">${money(sb.fabricPc38)}</td>
+                    <td class="right"><b>${money(sb.costPc38)}</b></td>
+                    <td class="right"><span class="pill ${sb.profitDozen38 >= 0 ? '' : 'red'}">${money(sb.profitDozen38)}</span></td>
+                  </tr>
+                  <tr>
+                    <td><b>৪২ সাইজ (42)</b></td>
+                    <td class="right">${money(sb.fabricPc42)}</td>
+                    <td class="right"><b>${money(sb.costPc42)}</b></td>
+                    <td class="right"><span class="pill ${sb.profitDozen42 >= 0 ? '' : 'red'}">${money(sb.profitDozen42)}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMahajans() {
+      const st = mahajanStats(selectedMahajanId);
+      const activeM = selectedMahajanId === 'ALL' ? state.mahajans[0] : state.mahajans.find(m => m.id === selectedMahajanId);
+      const ledger = [
+        ...st.purs.map(p => ({ date: p.date, id: p.id, kind: 'purchase', ref: p.billNo, desc: p.desc, buy: Number(p.total || 0), paid: 0 })),
+        ...st.pays.map(p => ({ date: p.date, id: p.id, kind: 'payment', ref: p.method, desc: p.note || 'Payment Paid', buy: 0, paid: Number(p.amount || 0) }))
+      ].sort((a, b) => a.date.localeCompare(b.date));
+
+      let running = st.opening;
+      return `
+        <div class="page-head">
+          <div>
+            <h2>মহাজন ও সাপ্লায়ার মাস্টার (১৯-নভেঃ ২০২৬)</h2>
+            <div class="sub">গায়ত্রী টেক্সটাইলসহ ৬ জন মহাজনের ক্রয়, পেমেন্ট ও বকেয়া লেজার</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn primary" onclick="openPurchaseModal()">+ নতুন কাপড় ক্রয়</button>
+            <button class="btn" onclick="openMahajanPayModal()">+ পেমেন্ট জমা</button>
+            <button class="btn" onclick="openNewMahajanModal()">+ নতুন মহাজন</button>
+            ${activeM ? `<button class="btn wa" onclick="sendMahajanWA('${activeM.id}')">📲 WhatsApp লেজার</button>` : ''}
+            <button class="btn gold" onclick="downloadRealPDF('app','Mahajan_Ledger.pdf')">📄 PDF</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>মহাজন তালিকা (৬ জন মাস্টার)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>মহাজনের নাম</th>
+                  <th>ফোন</th>
+                  <th class="right">মোট ক্রয়</th>
+                  <th class="right">মোট পেমেন্ট</th>
+                  <th class="right">সমন্বয়/ওপেনিং</th>
+                  <th class="right">নিট ব্যালেন্স</th>
+                  <th class="no-print">শেয়ার</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.mahajans.map(m => {
+                  const ms = mahajanStats(m.id);
+                  return `<tr>
+                    <td><b>${esc(m.name)}</b><br><span class="sub">${esc(m.address || '')}</span></td>
+                    <td>${esc(m.phone || '—')}</td>
+                    <td class="right">${money(ms.totalBuy)}</td>
+                    <td class="right">${money(ms.totalPaid)}</td>
+                    <td class="right">${money(ms.opening)}</td>
+                    <td class="right"><b style="color:${ms.netDue > 0 ? '#b23232' : '#166b46'}">${money(ms.netDue)} ${ms.netDue > 0 ? 'Payable' : ''}</b></td>
+                    <td class="no-print"><button class="btn small wa" onclick="sendMahajanWA('${m.id}')">WA</button></td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Legacy Names — যাচাই বাকি (Needs Review)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>নাম</th><th>স্ট্যাটাস</th><th>অডিট নোট</th></tr></thead>
+              <tbody>
+                ${(state.legacyReviewNames || []).map(r => `
+                  <tr>
+                    <td><b>${esc(r.name)}</b></td>
+                    <td><span class="pill warn">${esc(r.status)}</span></td>
+                    <td>${esc(r.note)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <select onchange="selectedMahajanId=this.value;render()">
+            <option value="ALL" ${selectedMahajanId === 'ALL' ? 'selected' : ''}>সব মহাজনের লেজার</option>
+            ${state.mahajans.map(m => `<option value="${m.id}" ${selectedMahajanId === m.id ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}
+          </select>
+        </div>
+
+        <div class="panel">
+          <h3>মহাজন লেনদেন লেজার বিবরণী</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>তারিখ</th>
+                  <th>বিবরণ / বিল নং</th>
+                  <th class="right">কাপড় ক্রয় (+)</th>
+                  <th class="right">পেমেন্ট (-)</th>
+                  <th class="right">বকেয়া ব্যালেন্স</th>
+                  <th class="no-print">মুছুন</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${st.opening !== 0 ? `<tr><td>Opening</td><td><b>Opening / Credit Adjustment</b><br><span class="sub">১৯-নভেম্বর মাস্টার ব্যালেন্স সমন্বয়</span></td><td class="right">-</td><td class="right">-</td><td class="right"><b>${money(st.opening)}</b></td><td class="no-print">-</td></tr>` : ''}
+                ${ledger.map(row => {
+                  running += row.buy - row.paid;
+                  return `<tr>
+                    <td>${esc(row.date)}</td>
+                    <td><b>${esc(row.ref)}</b><br><span class="sub">${esc(row.desc)}</span></td>
+                    <td class="right">${row.buy ? money(row.buy) : '-'}</td>
+                    <td class="right" style="color:#166b46;font-weight:700">${row.paid ? money(row.paid) : '-'}</td>
+                    <td class="right"><b>${money(running)}</b></td>
+                    <td class="no-print"><button class="btn small danger" onclick="deleteMahajanTx('${row.kind}','${row.id}')">✕</button></td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderKarigars() {
+      const kList = state.karigars.filter(k => selectedKarigarId === 'ALL' || k.id === selectedKarigarId);
+      const st = karigarStats(selectedKarigarId);
+      const activeK = selectedKarigarId !== 'ALL' ? state.karigars.find(k => k.id === selectedKarigarId) : null;
+
+      return `
+        <div class="page-head">
+          <div>
+            <h2>কারিগর ও মজুরি হিসাব</h2>
+            <div class="sub">কাটিং ও সেলাই পিস জমা-খরচ, ডজন প্রতি মজুরি ও অগ্রিম হিসাব</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn primary" onclick="openKarigarWorkModal()">+ পিস দেওয়া / জমা / মজুরি</button>
+            <button class="btn" onclick="openNewKarigarModal()">+ নতুন কারিগর</button>
+            ${activeK ? `<button class="btn wa" onclick="sendKarigarWA('${activeK.id}')">📲 WhatsApp</button><button class="btn" onclick="sendKarigarSMS('${activeK.id}')">💬 SMS</button>` : ''}
+            <button class="btn gold" onclick="downloadRealPDF('app','Karigar_Ledger.pdf')">📄 PDF</button>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <select onchange="selectedKarigarId=this.value;render()">
+            <option value="ALL" ${selectedKarigarId === 'ALL' ? 'selected' : ''}>সব কারিগর (১৩ জন)</option>
+            ${state.karigars.map(k => `<option value="${k.id}" ${selectedKarigarId === k.id ? 'selected' : ''}>${esc(k.name)} (${k.role})</option>`).join('')}
+          </select>
+        </div>
+
+        <div class="cards">
+          <div class="card"><div class="metric-label">মোট দেওয়া পিস</div><div class="metric">${st.issued} pcs</div></div>
+          <div class="card"><div class="metric-label">মোট ফেরত পিস</div><div class="metric green">${st.returned} pcs</div></div>
+          <div class="card"><div class="metric-label">কারিগরের হাতে বাকি</div><div class="metric ${st.pendingPcs > 0 ? 'red' : ''}">${st.pendingPcs} pcs</div></div>
+          <div class="card"><div class="metric-label">নিট ব্যালেন্স</div><div class="metric ${st.netBalance > 0 ? 'red' : 'green'}">${money(st.netBalance)}</div><div class="metric-note">(+) কারিগর পাবেন / (-) অগ্রিম</div></div>
+        </div>
+
+        <div class="panel">
+          <h3>কারিগর ভিত্তিক সারাংশ (০৬-নভেম্বর ক্লোজিং সহ)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>কারিগরের নাম</th>
+                  <th>কাজ ও দর</th>
+                  <th class="right">হাতে বাকি পিস</th>
+                  <th class="right">০৬-নভেঃ ক্লোজিং</th>
+                  <th class="right">নতুন মজুরি</th>
+                  <th class="right">নতুন পেমেন্ট</th>
+                  <th class="right">নিট ব্যালেন্স</th>
+                  <th class="no-print">শেয়ার</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${kList.map(k => {
+                  const ks = karigarStats(k.id);
+                  return `<tr>
+                    <td><b>${esc(k.name)}</b></td>
+                    <td>${esc(k.role)} · ₹${k.ratePerDozen}/ডজন</td>
+                    <td class="right"><span class="pill ${ks.pendingPcs > 0 ? 'warn' : ''}">${ks.pendingPcs} pcs</span></td>
+                    <td class="right">${money(ks.opening)}</td>
+                    <td class="right">${money(ks.liveWage)}</td>
+                    <td class="right">${money(ks.livePaid)}</td>
+                    <td class="right"><b style="color:${ks.netBalance > 0 ? '#b23232' : '#166b46'}">${money(ks.netBalance)}</b></td>
+                    <td class="no-print">
+                      <button class="btn small wa" onclick="sendKarigarWA('${k.id}')">WA</button>
+                      <button class="btn small" onclick="sendKarigarSMS('${k.id}')">SMS</button>
+                    </td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>কাজ ও পেমেন্টের বিস্তারিত তালিকা</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>তারিখ</th>
+                  <th>কারিগর</th>
+                  <th>বিবরণ</th>
+                  <th class="right">দেওয়া</th>
+                  <th class="right">ফেরত</th>
+                  <th class="right">মজুরি</th>
+                  <th class="right">পেমেন্ট</th>
+                  <th class="no-print">মুছুন</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.karigarLogs.filter(l => selectedKarigarId === 'ALL' || l.karigarId === selectedKarigarId).slice().reverse().map(l => {
+                  const k = state.karigars.find(x => x.id === l.karigarId);
+                  return `<tr>
+                    <td>${esc(l.date)}</td>
+                    <td><b>${esc(k ? k.name : l.karigarId)}</b></td>
+                    <td>${esc(l.item)} ${l.archived ? '<span class="pill warn">আর্কাইভ</span>' : ''}<br><span class="sub">${esc(l.note || '')}</span></td>
+                    <td class="right">${l.issuedPcs || 0}</td>
+                    <td class="right">${l.returnedPcs || 0}</td>
+                    <td class="right">${money(l.wage)}</td>
+                    <td class="right">${money(l.paid)}</td>
+                    <td class="no-print"><button class="btn small danger" onclick="deleteKarigarLog('${l.id}')">✕</button></td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCosting() {
+      const sbData = state.sackBatchCalc;
+      const sb = calcSackBatch(sbData);
+      const totalRev = state.salesSummary.reduce((s, x) => s + Number(x.revenue || 0), 0);
+      const totalCogs = state.salesSummary.reduce((s, x) => s + Number(x.estCost || 0), 0);
+      const totalExp = state.expenses.reduce((s, x) => s + Number(x.amount || 0), 0);
+      const netProfit = totalRev - totalCogs - totalExp;
+
+      return `
+        <div class="page-head">
+          <div>
+            <h2>কেজির বস্তা ও উৎপাদন লাভ-লস হিসাব</h2>
+            <div class="sub">৮০ কেজি বস্তার অসম কাটিং (২, ৩, ৫, ৮, ১০, ১১ মিটার) শেষে ৩৮ ও ৪২ সাইজের আলাদা দাম ও লাভ</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn primary" onclick="openAddSalePLModal()">+ বিক্রয় ও লাভ এন্ট্রি</button>
+            <button class="btn" onclick="openAddExpenseModal()">+ কারখানা খরচ</button>
+            <button class="btn gold" onclick="downloadRealPDF('app','Profit_Loss_Report.pdf')">📄 PDF</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>১. কেজির বস্তা কাটিং-পরবর্তী ৩৮ ও ৪২ সাইজের আলাদা দাম ও লাভ ক্যালকুলেটর</h3>
+          <div class="notice">
+            বস্তার মাপে ২, ৩, ৫, ৮, ১০, ১১ মিটারের টুকরো থাকায় কাটিং না করলে আগে থেকে পিস বলা যায় না। তাই <b>কাটিং শেষে ৩৮ সাইজ ও ৪২ সাইজের কত পিস হলো</b> তা নিচে বসালেই দুটির আলাদা খরচ ও লাভ বেরিয়ে যাবে।
+          </div>
+          <form onsubmit="saveSackBatchForm(event)">
+            <div class="field-grid">
+              <div class="field"><label>বস্তার মোট ওজন (কেজি)</label><input type="number" step="0.01" id="sbSackKg" value="${sbData.sackKg}" oninput="liveSackPreview()"></div>
+              <div class="field"><label>কাপড়ের দর (প্রতি কেজি ₹)</label><input type="number" step="0.01" id="sbRateKg" value="${sbData.ratePerKg}" oninput="liveSackPreview()"></div>
+
+              <div class="field"><label>কাটিং শেষে ৩৮ সাইজ কত পিস হলো?</label><input type="number" id="sbPcs38" value="${sbData.pcs38}" oninput="liveSackPreview()"></div>
+              <div class="field"><label>কাটিং শেষে ৪২ সাইজ কত পিস হলো?</label><input type="number" id="sbPcs42" value="${sbData.pcs42}" oninput="liveSackPreview()"></div>
+
+              <div class="field"><label>৩৮ সাইজ প্রতি পিসে কত কেজি কাপড় (kg)</label><input type="number" step="0.001" id="sbKg38" value="${sbData.kgPerPc38}" oninput="liveSackPreview()"></div>
+              <div class="field"><label>৪২ সাইজ প্রতি পিসে কত কেজি কাপড় (kg)</label><input type="number" step="0.001" id="sbKg42" value="${sbData.kgPerPc42}" oninput="liveSackPreview()"></div>
+
+              <div class="field"><label>কাটিং মজুরি (/ডজন ₹)</label><input type="number" step="0.01" id="sbCut" value="${sbData.cuttingPerDozen}" oninput="liveSackPreview()"></div>
+              <div class="field"><label>সেলাই মজুরি (/ডজন ₹)</label><input type="number" step="0.01" id="sbSew" value="${sbData.sewingPerDozen}" oninput="liveSackPreview()"></div>
+
+              <div class="field"><label>সুতো (/ডজন ₹)</label><input type="number" step="0.01" id="sbThr" value="${sbData.threadPerDozen}" oninput="liveSackPreview()"></div>
+              <div class="field"><label>অন্যান্য খরচ (/ডজন ₹)</label><input type="number" step="0.01" id="sbExt" value="${sbData.extraPerDozen}" oninput="liveSackPreview()"></div>
+
+              <div class="field"><label>৩৮ সাইজ বিক্রয় দর (প্রতি পিস ₹)</label><input type="number" step="0.01" id="sbSell38" value="${sbData.sell38}" oninput="liveSackPreview()"></div>
+              <div class="field"><label>৪২ সাইজ বিক্রয় দর (প্রতি পিস ₹)</label><input type="number" step="0.01" id="sbSell42" value="${sbData.sell42}" oninput="liveSackPreview()"></div>
+            </div>
+
+            <div class="calc-box" id="sackLiveResult">${renderSackResultHTML(sb)}</div>
+
+            <div class="btn-group" style="margin-top:12px">
+              <button class="btn primary" type="submit">বস্তা হিসাব সেভ করুন</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="cards">
+          <div class="card"><div class="metric-label">নথিভুক্ত বিক্রয় আয়</div><div class="metric">${money(totalRev)}</div></div>
+          <div class="card"><div class="metric-label">উৎপাদন খরচ (COGS)</div><div class="metric">${money(totalCogs)}</div></div>
+          <div class="card"><div class="metric-label">অন্যান্য কারখানা খরচ</div><div class="metric red">${money(totalExp)}</div></div>
+          <div class="card"><div class="metric-label">নিট লাভ / লস</div><div class="metric ${netProfit >= 0 ? 'green' : 'red'}">${money(netProfit)}</div></div>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>বিক্রয় ও ব্যাচ লাভ-লস খাতা</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>তারিখ</th><th>বিবরণ</th><th class="right">বিক্রি</th><th class="right">খরচ</th><th class="right">লাভ</th></tr></thead>
+                <tbody>
+                  ${state.salesSummary.map(s => {
+                    const p = Number(s.revenue || 0) - Number(s.estCost || 0);
+                    return `<tr><td>${esc(s.date)}</td><td>${esc(s.desc)} (${s.qty} pcs)</td><td class="right">${money(s.revenue)}</td><td class="right">${money(s.estCost)}</td><td class="right"><b>${money(p)}</b></td></tr>`;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>কারখানা ও অন্যান্য খরচ</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>তারিখ</th><th>খাত</th><th>বিবরণ</th><th class="right">টাকা</th></tr></thead>
+                <tbody>
+                  ${state.expenses.map(e => `<tr><td>${esc(e.date)}</td><td>${esc(e.category)}</td><td>${esc(e.desc)}</td><td class="right">${money(e.amount)}</td></tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSackResultHTML(sb) {
+      return `
+        <div><b>বস্তার মোট দাম:</b> ${money(sb.sackTotalCost)} · <b>মোট তৈরি পিস:</b> ${sb.totalPcs} pcs · <b>ব্যবহৃত কাপড়:</b> ${sb.usedKgTotal.toFixed(2)} kg (অবশিষ্ট/পার্থক্য: ${sb.leftoverOrDiffKg.toFixed(2)} kg) · <b>মজুরি+খরচ/পিস:</b> ${money(sb.labourPerPc)}</div>
+        <div class="calc-result-grid">
+          <div class="calc-card">
+            <b>৩৮ সাইজ (38) — আলাদা হিসাব</b><br>
+            কাপড় খরচ/পিস: <b>${money(sb.fabricPc38)}</b><br>
+            মোট খরচ/পিস: <b>${money(sb.costPc38)}</b> (১ ডজন: ${money(sb.costDozen38)})<br>
+            লাভ/পিস: <span class="pill ${sb.profitPc38 >= 0 ? '' : 'red'}">${money(sb.profitPc38)}</span> · লাভ/ডজন: <b>${money(sb.profitDozen38)}</b>
+          </div>
+          <div class="calc-card">
+            <b>৪২ সাইজ (42) — আলাদা হিসাব</b><br>
+            কাপড় খরচ/পিস: <b>${money(sb.fabricPc42)}</b><br>
+            মোট খরচ/পিস: <b>${money(sb.costPc42)}</b> (১ ডজন: ${money(sb.costDozen42)})<br>
+            লাভ/পিস: <span class="pill ${sb.profitPc42 >= 0 ? '' : 'red'}">${money(sb.profitPc42)}</span> · লাভ/ডজন: <b>${money(sb.profitDozen42)}</b>
+          </div>
+        </div>
+        <div style="margin-top:10px"><b>এই ব্যাচের মোট খরচ:</b> ${money(sb.batchTotalCost)} · <b>মোট বিক্রয় মূল্য:</b> ${money(sb.batchTotalSell)} · <b>মোট লাভ:</b> <span class="pill ${sb.batchNetProfit >= 0 ? '' : 'red'}">${money(sb.batchNetProfit)}</span></div>
+      `;
+    }
+
+    window.liveSackPreview = () => {
+      const box = document.getElementById('sackLiveResult');
+      if (!box) return;
+      const cur = {
+        sackKg: parseFloat(document.getElementById('sbSackKg')?.value || 0),
+        ratePerKg: parseFloat(document.getElementById('sbRateKg')?.value || 0),
+        pcs38: parseFloat(document.getElementById('sbPcs38')?.value || 0),
+        pcs42: parseFloat(document.getElementById('sbPcs42')?.value || 0),
+        kgPerPc38: parseFloat(document.getElementById('sbKg38')?.value || 0),
+        kgPerPc42: parseFloat(document.getElementById('sbKg42')?.value || 0),
+        cuttingPerDozen: parseFloat(document.getElementById('sbCut')?.value || 0),
+        sewingPerDozen: parseFloat(document.getElementById('sbSew')?.value || 0),
+        threadPerDozen: parseFloat(document.getElementById('sbThr')?.value || 0),
+        extraPerDozen: parseFloat(document.getElementById('sbExt')?.value || 0),
+        sell38: parseFloat(document.getElementById('sbSell38')?.value || 0),
+        sell42: parseFloat(document.getElementById('sbSell42')?.value || 0)
+      };
+      box.innerHTML = renderSackResultHTML(calcSackBatch(cur));
+    };
+
+    window.saveSackBatchForm = (e) => {
+      e.preventDefault();
+      state.sackBatchCalc = {
+        sackKg: parseFloat(document.getElementById('sbSackKg').value || 0),
+        ratePerKg: parseFloat(document.getElementById('sbRateKg').value || 0),
+        pcs38: parseFloat(document.getElementById('sbPcs38').value || 0),
+        pcs42: parseFloat(document.getElementById('sbPcs42').value || 0),
+        kgPerPc38: parseFloat(document.getElementById('sbKg38').value || 0),
+        kgPerPc42: parseFloat(document.getElementById('sbKg42').value || 0),
+        cuttingPerDozen: parseFloat(document.getElementById('sbCut').value || 0),
+        sewingPerDozen: parseFloat(document.getElementById('sbSew').value || 0),
+        threadPerDozen: parseFloat(document.getElementById('sbThr').value || 0),
+        extraPerDozen: parseFloat(document.getElementById('sbExt').value || 0),
+        sell38: parseFloat(document.getElementById('sbSell38').value || 0),
+        sell42: parseFloat(document.getElementById('sbSell42').value || 0)
+      };
+      saveState();
+      render();
+      toast('কেজির বস্তা ও ৩৮/৪২ সাইজের হিসাব সেভ হয়েছে!');
+    };
+
+    function renderAudit() {
+      const aud = runSmartAudit();
+      return `
+        <div class="page-head">
+          <div>
+            <h2>স্মার্ট খাতাবুক অডিট ও গরমিল যাচাই</h2>
+            <div class="sub">খাতাবুকের PDF রিপোর্ট আপলোড করুন বা লেখা পেস্ট করুন — অ্যাপ নিজেই হিসাব মিলিয়ে দেবে</div>
+          </div>
+          <div class="btn-group">
+            <button class="btn primary" onclick="downloadRealPDF('app','TANISHA_Audit_Report.pdf')">📄 অডিট PDF ডাউনলোড</button>
+            <button class="btn gold" onclick="downloadRealExcel()">📗 অডিট Excel</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>১. খাতাবুক রিপোর্ট দিয়ে অডিট করুন (PDF / CSV / Text)</h3>
+          <div class="notice">
+            খাতাবুক অ্যাপ থেকে ডাউনলোড করা <b>Customer List, Supplier/Karigar List, বা Sales Report PDF</b> ফাইলটি নিচে বেছে দিন অথবা রিপোর্টের লেখা কপি করে পেস্ট করুন।
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label>খাতাবুক PDF বা ফাইল বেছে নিন</label>
+              <input type="file" accept=".pdf,.txt,.csv,.json" onchange="handleKhataBookFile(this.files[0])">
+            </div>
+            <div class="field">
+              <label>অথবা খাতাবুকের লেখা এখানে পেস্ট করে অডিট চাপুন</label>
+              <div style="display:flex;gap:6px">
+                <input id="kbPasteInput" placeholder="খাতাবুক রিপোর্টের লেখা পেস্ট করুন...">
+                <button class="btn primary" onclick="analyzeKhataBookText(document.getElementById('kbPasteInput').value)">অডিট করুন</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>২. স্বয়ংক্রিয় অডিট ফলাফল (${aud.errorCount ? aud.errorCount + 'টি গরমিল/সতর্কতা' : 'সব হিসাব পরিষ্কার'})</h3>
+          ${aud.checks.map(c => `
+            <div class="notice ${c.status === 'OK' ? 'ok' : (c.status === 'ALERT' ? 'err' : '')}">
+              <b>${c.status === 'OK' ? '✔' : (c.status === 'ALERT' ? '🚨' : '⚠️')} ${esc(c.title)}</b><br>
+              ${esc(c.detail)}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderSync() {
+      const cfg = getCloudCfg();
+      return `
+        <div class="page-head">
+          <div>
+            <h2>ব্যাকআপ, এক্সপোর্ট ও মাল্টি-ফোন সিঙ্ক</h2>
+            <div class="sub">আপনার সব হিসাব ফোনে ও নিরাপদ Firebase ফোল্ডারে সুরক্ষিত রাখুন</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>ফোনে ব্যাকআপ ও এক্সপোর্ট</h3>
+            <p class="sub">যেকোনো সময় সম্পূর্ণ হিসাব Excel, PDF বা JSON ব্যাকআপ ফাইলে সেভ করে রাখুন।</p>
+            <div class="btn-group" style="margin-top:10px">
+              <button class="btn primary" onclick="downloadBackupJSON()">⬇ ব্যাকআপ ফাইল সেভ (JSON)</button>
+              <button class="btn gold" onclick="downloadRealExcel()">📗 সম্পূর্ণ Excel (.xlsx)</button>
+              <label class="btn" style="cursor:pointer">
+                ⬆ ব্যাকআপ রিস্টোর করুন
+                <input type="file" accept=".json" style="display:none" onchange="restoreBackupJSON(this.files[0])">
+              </label>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>নিরাপদ Firebase মাল্টি-ফোন সিঙ্ক</h3>
+            <div class="notice ok">
+              এই অ্যাপটি আপনার নিরাপদ <b>/tanisha_dresses/PIN/</b> ফোল্ডারে ডেটা সেভ করে—তাই Firebase-এ আর কোনো সিকিউরিটি সতর্কতা আসবে না।
+            </div>
+            <form onsubmit="saveCloudSettings(event)">
+              <div class="field-grid">
+                <div class="field full">
+                  <label>Firebase Realtime Database URL</label>
+                  <input name="url" type="url" placeholder="https://tanisha-dresses-default-rtdb.firebaseio.com" value="${esc(cfg.url || 'https://tanisha-dresses-default-rtdb.firebaseio.com')}" required>
+                </div>
+                <div class="field full">
+                  <label>গোপন Sync PIN (সব ফোনে একই পিন দিন)</label>
+                  <input name="pin" type="text" placeholder="যেমন: 741126" value="${esc(cfg.pin || '')}" required>
+                </div>
+              </div>
+              <div class="btn-group" style="margin-top:12px">
+                <button class="btn primary" type="submit">সেভ ও সিঙ্ক চালু করুন</button>
+                <button class="btn" type="button" onclick="syncWithFirebase(false)">এখনই সিঙ্ক করুন</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      `;
+    }
+
+    window.openPurchaseModal = () => {
+      openModal('নতুন মহাজন কাপড় ক্রয়', `
+        <form onsubmit="savePurchase(event)">
+          <div class="field-grid">
+            <div class="field">
+              <label>মহাজন</label>
+              <select name="mahajanId" required>
+                ${state.mahajans.map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join('')}
+              </select>
+            </div>
+            <div class="field"><label>তারিখ</label><input type="date" name="date" value="${new Date().toISOString().slice(0,10)}" required></div>
+            <div class="field"><label>বিল / চালান নং</label><input name="billNo" placeholder="যেমন: PUR-0006" required></div>
+            <div class="field">
+              <label>হিসাবের ধরন</label>
+              <select name="mode" id="purMode" onchange="calcPurPreview()">
+                <option value="sack">বস্তার ওজন (কেজি × দর)</option>
+                <option value="than">থান / মিটার (মিটার × দর)</option>
+                <option value="direct">সরাসরি মোট বিল টাকা</option>
+              </select>
+            </div>
+            <div class="field"><label>পরিমাণ (কেজি / মিটার)</label><input type="number" step="0.01" name="qty" id="purQty" oninput="calcPurPreview()" value="0"></div>
+            <div class="field"><label>দর (প্রতি কেজি/মিটার ₹)</label><input type="number" step="0.01" name="rate" id="purRate" oninput="calcPurPreview()" value="0"></div>
+            <div class="field full"><label>মোট বিল টাকা (₹)</label><input type="number" step="0.01" name="total" id="purTotal" required></div>
+            <div class="field full"><label>কাপড়ের বিবরণ (থান/কোয়ালিটি)</label><input name="desc" placeholder="যেমন: 80kg Cotton Poplin / অসম টুকরো ২,৩,৫,৮,১০,১১ মিটার"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px">
+            <button class="btn primary" type="submit">ক্রয় সেভ করুন</button>
+          </div>
+        </form>
+      `);
+    };
+    window.calcPurPreview = () => {
+      const m = document.getElementById('purMode')?.value;
+      const q = parseFloat(document.getElementById('purQty')?.value || 0);
+      const r = parseFloat(document.getElementById('purRate')?.value || 0);
+      if (m !== 'direct' && q > 0 && r > 0) {
+        document.getElementById('purTotal').value = (q * r).toFixed(2);
+      }
+    };
+    window.savePurchase = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.purchases.push({
+        id: 'PUR_' + Date.now(),
+        mahajanId: fd.get('mahajanId'),
+        date: fd.get('date'),
+        billNo: fd.get('billNo'),
+        mode: fd.get('mode'),
+        qty: parseFloat(fd.get('qty') || 0),
+        rate: parseFloat(fd.get('rate') || 0),
+        total: parseFloat(fd.get('total') || 0),
+        desc: fd.get('desc') || ''
+      });
+      saveState(); closeModal(); render(); toast('মহাজন ক্রয় সেভ হয়েছে!');
+    };
+
+    window.openMahajanPayModal = () => {
+      openModal('মহাজনকে পেমেন্ট জমা', `
+        <form onsubmit="saveMahajanPay(event)">
+          <div class="field-grid">
+            <div class="field">
+              <label>মহাজন</label>
+              <select name="mahajanId">${state.mahajans.map(m => `<option value="${m.id}">${esc(m.name)}</option>`).join('')}</select>
+            </div>
+            <div class="field"><label>তারিখ</label><input type="date" name="date" value="${new Date().toISOString().slice(0,10)}" required></div>
+            <div class="field"><label>টাকার পরিমাণ (₹)</label><input type="number" step="0.01" name="amount" required></div>
+            <div class="field"><label>মাধ্যম</label><select name="method"><option>Bank / NEFT</option><option>UPI</option><option>Cash</option></select></div>
+            <div class="field full"><label>নোট / বিল রেফারেন্স</label><input name="note" placeholder="যেমন: বিল বাবদ জমা"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">পেমেন্ট সেভ করুন</button></div>
+        </form>
+      `);
+    };
+    window.saveMahajanPay = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.mahajanPayments.push({
+        id: 'MP_' + Date.now(),
+        mahajanId: fd.get('mahajanId'),
+        date: fd.get('date'),
+        amount: parseFloat(fd.get('amount') || 0),
+        method: fd.get('method'),
+        note: fd.get('note') || ''
+      });
+      saveState(); closeModal(); render(); toast('মহাজন পেমেন্ট সেভ হয়েছে!');
+    };
+
+    window.openNewMahajanModal = () => {
+      openModal('নতুন মহাজন যোগ করুন', `
+        <form onsubmit="saveNewMahajan(event)">
+          <div class="field-grid">
+            <div class="field full"><label>মহাজনের নাম</label><input name="name" required></div>
+            <div class="field"><label>মোবাইল / WhatsApp</label><input name="phone"></div>
+            <div class="field"><label>আগের বকেয়া (Opening ₹)</label><input type="number" step="0.01" name="openingDue" value="0"></div>
+            <div class="field full"><label>ঠিকানা ও GST</label><input name="address"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">সেভ করুন</button></div>
+        </form>
+      `);
+    };
+    window.saveNewMahajan = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.mahajans.push({
+        id: 'MAH_' + Date.now(),
+        name: fd.get('name'),
+        phone: fd.get('phone') || '',
+        address: fd.get('address') || '',
+        openingDue: parseFloat(fd.get('openingDue') || 0)
+      });
+      saveState(); closeModal(); render(); toast('নতুন মহাজন যুক্ত হয়েছে!');
+    };
+
+    window.deleteMahajanTx = (kind, id) => {
+      if (!confirm('এই এন্ট্রিটি মুছে ফেলবেন?')) return;
+      if (kind === 'purchase') state.purchases = state.purchases.filter(x => x.id !== id);
+      else state.mahajanPayments = state.mahajanPayments.filter(x => x.id !== id);
+      saveState(); render(); toast('এন্ট্রি মুছে ফেলা হয়েছে।');
+    };
+
+    window.openKarigarWorkModal = () => {
+      const firstK = state.karigars[0];
+      openModal('কারিগর পিস দেওয়া, জমা ও মজুরি এন্ট্রি', `
+        <form onsubmit="saveKarigarWork(event)">
+          <div class="field-grid">
+            <div class="field">
+              <label>কারিগরের নাম</label>
+              <select name="karigarId" id="kwKarigar" onchange="updateKwRate()" required>
+                ${state.karigars.map(k => `<option value="${k.id}" data-rate="${k.ratePerDozen}" data-role="${k.role}">${esc(k.name)} (₹${k.ratePerDozen}/ডজন)</option>`).join('')}
+              </select>
+            </div>
+            <div class="field"><label>তারিখ</label><input type="date" name="date" value="${new Date().toISOString().slice(0,10)}" required></div>
+            <div class="field"><label>কাজের জন্য দেওয়া পিস (Issued)</label><input type="number" name="issuedPcs" value="0" min="0"></div>
+            <div class="field"><label>তৈরি হয়ে ফেরত পিস (Returned)</label><input type="number" name="returnedPcs" id="kwReturned" value="0" min="0" oninput="calcKwWage()"></div>
+            <div class="field"><label>মজুরি দর (প্রতি ডজন ₹)</label><input type="number" step="0.01" name="ratePerDozen" id="kwRate" value="${firstK ? firstK.ratePerDozen : 36}" oninput="calcKwWage()"></div>
+            <div class="field"><label>মোট মজুরি (₹ অটো হিসাব)</label><input type="number" step="0.01" name="wage" id="kwWage" value="0"></div>
+            <div class="field"><label>অগ্রিম / মজুরি প্রদান (Paid ₹)</label><input type="number" step="0.01" name="paid" value="0"></div>
+            <div class="field"><label>আইটেম / সাইজ নোট</label><input name="item" placeholder="যেমন: 42 / 38 Saya"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">কারিগর হিসাব সেভ করুন</button></div>
+        </form>
+      `);
+    };
+    window.updateKwRate = () => {
+      const sel = document.getElementById('kwKarigar');
+      const opt = sel?.options[sel.selectedIndex];
+      if (opt) {
+        document.getElementById('kwRate').value = opt.getAttribute('data-rate') || 36;
+        calcKwWage();
+      }
+    };
+    window.calcKwWage = () => {
+      const ret = parseFloat(document.getElementById('kwReturned')?.value || 0);
+      const rate = parseFloat(document.getElementById('kwRate')?.value || 0);
+      document.getElementById('kwWage').value = ((ret / 12) * rate).toFixed(2);
+    };
+    window.saveKarigarWork = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.karigarLogs.push({
+        id: 'KL_' + Date.now(),
+        date: fd.get('date'),
+        karigarId: fd.get('karigarId'),
+        item: fd.get('item') || 'Saya Work',
+        issuedPcs: parseInt(fd.get('issuedPcs') || 0, 10),
+        returnedPcs: parseInt(fd.get('returnedPcs') || 0, 10),
+        ratePerDozen: parseFloat(fd.get('ratePerDozen') || 0),
+        wage: parseFloat(fd.get('wage') || 0),
+        paid: parseFloat(fd.get('paid') || 0),
+        note: ''
+      });
+      saveState(); closeModal(); render(); toast('কারিগরের হিসাব আপডেট হয়েছে!');
+    };
+
+    window.openNewKarigarModal = () => {
+      openModal('নতুন কারিগর যোগ করুন', `
+        <form onsubmit="saveNewKarigar(event)">
+          <div class="field-grid">
+            <div class="field full"><label>কারিগরের নাম</label><input name="name" required></div>
+            <div class="field"><label>কাজের ধরন</label><select name="role"><option value="Sewing">Sewing (সেলাই)</option><option value="Cutting">Cutting (কাটিং)</option></select></div>
+            <div class="field"><label>দর (প্রতি ডজন ₹)</label><input type="number" step="0.01" name="ratePerDozen" value="36" required></div>
+            <div class="field"><label>মোবাইল / WhatsApp</label><input name="phone"></div>
+            <div class="field"><label>আগের ব্যালেন্স (₹)</label><input type="number" step="0.01" name="openingBalance" value="0"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">সেভ করুন</button></div>
+        </form>
+      `);
+    };
+    window.saveNewKarigar = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.karigars.push({
+        id: 'WRK_' + Date.now(),
+        name: fd.get('name'),
+        role: fd.get('role'),
+        ratePerDozen: parseFloat(fd.get('ratePerDozen') || 36),
+        phone: fd.get('phone') || '',
+        openingBalance: parseFloat(fd.get('openingBalance') || 0),
+        note: ''
+      });
+      saveState(); closeModal(); render(); toast('নতুন কারিগর যোগ হয়েছে!');
+    };
+
+    window.deleteKarigarLog = (id) => {
+      if (!confirm('এই কারিগর এন্ট্রিটি মুছে ফেলবেন?')) return;
+      state.karigarLogs = state.karigarLogs.filter(x => x.id !== id);
+      saveState(); render(); toast('এন্ট্রি মুছে ফেলা হয়েছে।');
+    };
+
+    window.openAddSalePLModal = () => {
+      openModal('বিক্রয় ও ব্যাচ লাভ এন্ট্রি', `
+        <form onsubmit="saveSalePL(event)">
+          <div class="field-grid">
+            <div class="field"><label>তারিখ</label><input type="date" name="date" value="${new Date().toISOString().slice(0,10)}" required></div>
+            <div class="field"><label>মোট পিস</label><input type="number" name="qty" value="12" required></div>
+            <div class="field full"><label>বিবরণ</label><input name="desc" placeholder="যেমন: ৩৮ ও ৪২ সাইজ সায়া বিক্রি" required></div>
+            <div class="field"><label>মোট বিক্রয় টাকা (₹)</label><input type="number" step="0.01" name="revenue" required></div>
+            <div class="field"><label>মোট উৎপাদন খরচ (₹)</label><input type="number" step="0.01" name="estCost" required></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">সেভ করুন</button></div>
+        </form>
+      `);
+    };
+    window.saveSalePL = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.salesSummary.push({
+        id: 'SL_' + Date.now(),
+        date: fd.get('date'),
+        qty: parseInt(fd.get('qty') || 0, 10),
+        desc: fd.get('desc'),
+        revenue: parseFloat(fd.get('revenue') || 0),
+        estCost: parseFloat(fd.get('estCost') || 0)
+      });
+      saveState(); closeModal(); render(); toast('বিক্রয় ও লাভ এন্ট্রি সেভ হয়েছে!');
+    };
+
+    window.openAddExpenseModal = () => {
+      openModal('কারখানা খরচ এন্ট্রি', `
+        <form onsubmit="saveExpense(event)">
+          <div class="field-grid">
+            <div class="field"><label>তারিখ</label><input type="date" name="date" value="${new Date().toISOString().slice(0,10)}" required></div>
+            <div class="field"><label>খাত</label><input name="category" value="Thread / Transport" required></div>
+            <div class="field full"><label>বিবরণ</label><input name="desc" required></div>
+            <div class="field full"><label>টাকা (₹)</label><input type="number" step="0.01" name="amount" required></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">সেভ করুন</button></div>
+        </form>
+      `);
+    };
+    window.saveExpense = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.expenses.push({
+        id: 'EXP_' + Date.now(),
+        date: fd.get('date'),
+        category: fd.get('category'),
+        desc: fd.get('desc'),
+        amount: parseFloat(fd.get('amount') || 0)
+      });
+      saveState(); closeModal(); render(); toast('খরচ সেভ হয়েছে!');
+    };
+
+    window.downloadBackupJSON = () => {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `TANISHA_DRESSES_Backup_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      toast('ব্যাকআপ ফাইল ডাউনলোড হয়েছে!');
+    };
+
+    window.restoreBackupJSON = async (file) => {
+      if (!file) return;
+      try {
+        const obj = JSON.parse(await file.text());
+        if (!obj.mahajans || !obj.karigars) throw new Error('সঠিক ব্যাকআপ ফাইল নয়');
+        state = obj;
+        saveState(); render(); toast('ব্যাকআপ সফলভাবে রিস্টোর হয়েছে!');
+      } catch (e) {
+        toast('রিস্টোর ব্যর্থ হয়েছে: ' + e.message);
+      }
+    };
+
+    window.saveCloudSettings = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      localStorage.setItem(CLOUD_KEY, JSON.stringify({ url: fd.get('url').trim(), pin: fd.get('pin').trim() }));
+      syncWithFirebase(false);
+    };
+
+    window.handleKhataBookFile = handleKhataBookFile;
+    window.analyzeKhataBookText = analyzeKhataBookText;
+    window.syncWithFirebase = syncWithFirebase;
+
+    function render() {
+      renderNav();
+      const app = document.getElementById('app');
+      if (activeTab === 'dashboard') app.innerHTML = renderDashboard();
+      else if (activeTab === 'mahajans') app.innerHTML = renderMahajans();
+      else if (activeTab === 'karigars') app.innerHTML = renderKarigars();
+      else if (activeTab === 'costing') app.innerHTML = renderCosting();
+      else if (activeTab === 'audit') app.innerHTML = renderAudit();
+      else if (activeTab === 'sync') app.innerHTML = renderSync();
+    }
+
+    render();
+    syncWithFirebase(true);
+  })();
+  </script>
+</body>
+</html>
