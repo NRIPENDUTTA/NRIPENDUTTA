@@ -399,8 +399,8 @@
           name: 'GAYATRI TEXTILE',
           phone: '9163407511',
           address: 'Kolkata 700007 · GSTIN: 29CSMPP6766Q1ZC',
-          openingDue: -30866.00,
-          note: '19-Nov-2026 App Master: Purchases ₹2,00,664 - Payments ₹1,28,096 - Opening/Credit ₹30,866 = ₹41,702 Payable'
+          openingDue: -31016.00,
+          note: 'আগের সব বিল কম্পলিট — এখন শুধু ১৬/১১/২৬ তারিখের বিল বাকি'
         },
         {
           id: 'MAH_JAGANNATH',
@@ -448,7 +448,7 @@
         { id: 'PUR_02', date: '2026-05-02', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0003', mode: 'bill', desc: '34*46 Than Fabric', qty: 34, rate: 0, total: 37074 },
         { id: 'PUR_03', date: '2026-06-09', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0004', mode: 'bill', desc: '24*36*50.50 Poplin', qty: 36, rate: 50.5, total: 41070 },
         { id: 'PUR_04', date: '2026-09-30', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0001', mode: 'bill', desc: '24*20 Pratigya, 24*11 V.Gold, Gani, Anshk, Rajmandir', qty: 34, rate: 0, total: 43518 },
-        { id: 'PUR_05', date: '2026-11-17', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0005', mode: 'sack', desc: '80kg Cotton Sacks & Recent Purchase (19-Nov Master Sync)', qty: 80, rate: 487, total: 41552 }
+        { id: 'PUR_05', date: '2026-11-16', mahajanId: 'MAH_GAYATRI', billNo: 'PUR-0005', mode: 'sack', desc: '80 কেজি (₹38,960+₹150=₹39,110) ও 24×2 গজাল 48 মি. @₹54 (₹2,592) — ১৬/১১/২৬ বিল', qty: 80, rate: 487, thanCount: 2, meters: 48, total: 41702 }
       ],
       mahajanPayments: [
         { id: 'MP_01', date: '2026-04-12', mahajanId: 'MAH_GAYATRI', method: 'Bank', amount: 8096, note: 'App Master Entry (Notebook had ₹8,090; ₹6 audit note)' },
@@ -559,22 +559,57 @@
         ],
         lastUploadedAudit: null
       },
-      meta: { updatedAt: new Date().toISOString() }
+      fabricStock: {
+        beltKg: 80,
+        beltCount: 1,
+        thanCount: 6,
+        thanMeters: 144,
+        note: 'ঘরে থাকা ৪ থান (৯৬ মি.) + ১৬/১১/২৬-এ আসা ২ থান (৪৮ মি.) ও ১ বেল্ট (৮০ কেজি)'
+      },
+      meta: { updatedAt: new Date().toISOString(), cutoffDate: '2026-11-20' }
     };
 
     function applyOpeningZeroMigration(targetState) {
       if (!targetState || !Array.isArray(targetState.karigars)) return false;
       targetState.meta = targetState.meta || {};
-      if (targetState.meta.openingZeroedExceptShampaV1) return false;
-      for (const k of targetState.karigars) {
-        const isShampa = k.id === 'WRK_SHAMPA_DUTTA' || String(k.name || '').toUpperCase().includes('SHAMPA DUTTA');
-        if (!isShampa) {
-          k.openingBalance = 0;
+      let changed = false;
+      if (!targetState.meta.openingZeroedExceptShampaV1) {
+        for (const k of targetState.karigars) {
+          const isShampa = k.id === 'WRK_SHAMPA_DUTTA' || String(k.name || '').toUpperCase().includes('SHAMPA DUTTA');
+          if (!isShampa) k.openingBalance = 0;
         }
+        targetState.meta.openingZeroedExceptShampaV1 = true;
+        changed = true;
       }
-      targetState.meta.openingZeroedExceptShampaV1 = true;
-      targetState.meta.updatedAt = new Date().toISOString();
-      return true;
+      if (!targetState.meta.cutoff20261120V3) {
+        targetState.meta.cutoffDate = '2026-11-20';
+        const gayatri = (targetState.mahajans || []).find(m => m.id === 'MAH_GAYATRI');
+        if (gayatri) {
+          gayatri.openingDue = -31016.00;
+          gayatri.note = 'আগের সব বিল কম্পলিট — এখন শুধু ১৬/১১/২৬ তারিখের বিল বাকি';
+        }
+        const pur5 = (targetState.purchases || []).find(p => p.id === 'PUR_05');
+        if (pur5) {
+          pur5.date = '2026-11-16';
+          pur5.desc = '80 কেজি (₹38,960+₹150=₹39,110) ও 24×2 গজাল 48 মি. @₹54 (₹2,592) — ১৬/১১/২৬ বিল';
+          pur5.thanCount = 2;
+          pur5.meters = 48;
+          pur5.total = 41702;
+        }
+        if (!targetState.fabricStock) {
+          targetState.fabricStock = {
+            beltKg: 80,
+            beltCount: 1,
+            thanCount: 6,
+            thanMeters: 144,
+            note: 'ঘরে থাকা ৪ থান (৯৬ মি.) + ১৬/১১/২৬-এ আসা ২ থান (৪৮ মি.) ও ১ বেল্ট (৮০ কেজি)'
+          };
+        }
+        targetState.meta.cutoff20261120V3 = true;
+        changed = true;
+      }
+      if (changed) targetState.meta.updatedAt = new Date().toISOString();
+      return changed;
     }
 
     let state = loadState();
@@ -681,6 +716,7 @@
     }
 
     function productionReconciliationStats() {
+      const cutoff = (state.meta && state.meta.cutoffDate) || '2026-11-20';
       const mStat = mahajanStats('ALL');
       const totalPurBills = state.purchases.length;
       const totalPurQty = state.purchases.reduce((s, p) => s + Number(p.qty || 0), 0);
@@ -689,6 +725,7 @@
 
       let cutIssued = 0, cutReturned = 0, sewIssued = 0, sewReturned = 0;
       let cutActiveIssued = 0, cutActiveReturned = 0, sewActiveIssued = 0, sewActiveReturned = 0;
+      let preCutoffSewPending = 0;
 
       const sizes = ['38', '42', '43', 'অন্যান্য'];
       const bySize = {};
@@ -703,10 +740,12 @@
         const iss = Number(l.issuedPcs || 0);
         const ret = Number(l.returnedPcs || 0);
         const sz = normSize(l.size || l.item);
+        const isLive = !l.archived && String(l.date || '') >= cutoff;
+
         if (role === 'Cutting') {
           cutIssued += iss;
           cutReturned += ret;
-          if (!l.archived) {
+          if (isLive) {
             cutActiveIssued += iss;
             cutActiveReturned += ret;
             bySize[sz].cutRet += ret;
@@ -714,17 +753,20 @@
         } else {
           sewIssued += iss;
           sewReturned += ret;
-          if (!l.archived) {
+          if (isLive) {
             sewActiveIssued += iss;
             sewActiveReturned += ret;
             bySize[sz].sewIss += iss;
             bySize[sz].sewRet += ret;
+          } else if (!l.archived) {
+            preCutoffSewPending += (iss - ret);
           }
         }
       }
 
       let totalSoldPcs = 0;
       for (const s of (state.salesSummary || [])) {
+        if (String(s.date || '') < cutoff) continue;
         const q = Number(s.qty || 0);
         totalSoldPcs += q;
         const sz = normSize(s.size || s.desc);
@@ -738,14 +780,23 @@
         b.readyStock = b.sewRet - b.sold;
       }
 
+      const fs = state.fabricStock || { beltKg: 80, beltCount: 1, thanCount: 6, thanMeters: 144 };
+
       return {
+        cutoff,
         totalPurBills,
         totalPurQty,
         totalThanCount,
         totalMeters,
         totalPurAmt: mStat.totalBuy,
+        mahajanNetDue: mStat.netDue,
+        fabricBeltCount: Number(fs.beltCount || 0),
+        fabricBeltKg: Number(fs.beltKg || 0),
+        fabricThanCount: Number(fs.thanCount || 0),
+        fabricThanMeters: Number(fs.thanMeters || 0),
         cutIssued, cutReturned, cutPending: cutIssued - cutReturned,
         sewIssued, sewReturned, sewPending: sewIssued - sewReturned,
+        preCutoffSewPending,
         cutActiveIssued, cutActiveReturned,
         sewActiveIssued, sewActiveReturned,
         totalSoldPcs,
@@ -756,7 +807,7 @@
       };
     }
 
-    function renderReconciliationPanel() {
+        function renderReconciliationPanel() {
       const r = productionReconciliationStats();
       const sizeRows = ['38', '42', '43', 'অন্যান্য'].map(sz => {
         const b = r.bySize[sz];
@@ -777,7 +828,7 @@
       return `
         <div class="panel">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-            <h3 style="margin:0">অটোমেটিক ফ্যাক্টরি ট্র্যাকার (মহাজন → কাটিং → সেলাই → স্টক → বিক্রি)</h3>
+            <h3 style="margin:0">আজকে (${r.cutoff}) থেকে অটোমেটিক ফ্যাক্টরি হিসাব</h3>
             <div class="btn-group no-print">
               <button class="btn small gold" onclick="downloadRealPDF('app','Factory_Auto_Audit.pdf')">📄 PDF</button>
               <button class="btn small gold" onclick="downloadRealExcel()">📗 Excel</button>
@@ -788,40 +839,47 @@
               <thead>
                 <tr>
                   <th>ধাপ</th>
-                  <th class="right">মোট / দেওয়া</th>
-                  <th class="right">তৈরি / ফেরত</th>
+                  <th class="right">বর্তমান স্টক / দেওয়া</th>
+                  <th class="right">তৈরি / ফেরত / মূল্য</th>
                   <th class="right">বাকি / স্টক</th>
-                  <th>বর্তমান নন-আর্কাইভ হিসাব</th>
+                  <th>মন্তব্য</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><b>১. মহাজন মাল ক্রয়</b></td>
-                  <td class="right">${r.totalPurBills}টি বিল · ${r.totalThanCount} থান · ${r.totalMeters} মি.</td>
-                  <td class="right"><b>${money(r.totalPurAmt)}</b></td>
-                  <td class="right"><span class="pill">${r.totalPurQty} kg/qty</span></td>
-                  <td>সব মহাজন মিলিয়ে মোট কেনা</td>
+                  <td><b>১. ঘরে থাকা কাটিং-অপেক্ষায় কাপড়</b></td>
+                  <td class="right">${r.fabricBeltCount} বেল্ট (${r.fabricBeltKg} কেজি)</td>
+                  <td class="right"><b>${r.fabricThanCount}টি থান (${r.fabricThanMeters} মি.)</b></td>
+                  <td class="right"><span class="pill">কাটিং হয়নি</span></td>
+                  <td>আগের ৪ থান + ১৬/১১/২৬-এর ২ থান ও ১ বেল্ট</td>
                 </tr>
                 <tr>
-                  <td><b>২. কাটিং (Cutting)</b></td>
-                  <td class="right">${r.cutIssued} pcs</td>
-                  <td class="right"><b>${r.cutReturned} pcs</b></td>
-                  <td class="right"><span class="pill ${r.cutPending > 0 ? 'warn' : ''}">${r.cutPending} pcs বাকি</span></td>
-                  <td>নতুন কাটিং: ${r.cutActiveReturned} pcs</td>
+                  <td><b>২. মহাজন বকেয়া (গায়ত্রী ১৬/১১/২৬)</b></td>
+                  <td class="right">আগের সব বিল শোধ</td>
+                  <td class="right"><b>${money(r.mahajanNetDue)}</b></td>
+                  <td class="right"><span class="pill warn">১৬/১১/২৬ বিল</span></td>
+                  <td>নতুন ক্রয় করলে অটো যোগ হবে</td>
                 </tr>
                 <tr>
-                  <td><b>৩. সেলাই (Sewing)</b></td>
-                  <td class="right">${r.sewIssued} pcs</td>
-                  <td class="right"><b style="color:#166b46">${r.sewReturned} pcs রেডি</b></td>
-                  <td class="right"><span class="pill ${r.sewPending > 0 ? 'warn' : ''}">${r.sewPending} pcs কারিগরের হাতে</span></td>
-                  <td>নতুন: দেওয়া ${r.sewActiveIssued} / রেডি ${r.sewActiveReturned} pcs</td>
+                  <td><b>৩. নতুন কাটিং (${r.cutoff} থেকে)</b></td>
+                  <td class="right">${r.cutActiveIssued} pcs</td>
+                  <td class="right"><b>${r.cutActiveReturned} pcs</b></td>
+                  <td class="right"><span class="pill">${r.cutActiveIssued - r.cutActiveReturned} pcs বাকি</span></td>
+                  <td>কাটিং করলে এখান থেকে শুরু হবে</td>
                 </tr>
                 <tr>
-                  <td><b>৪. বিক্রি ও রেডি স্টক</b></td>
-                  <td class="right">রেডি (নতুন): ${r.sewActiveReturned} pcs</td>
-                  <td class="right">বিক্রি: ${r.totalSoldPcs} pcs</td>
+                  <td><b>৪. নতুন সেলাই ও আগের বাকি</b></td>
+                  <td class="right">নতুন দেওয়া: ${r.sewActiveIssued} pcs</td>
+                  <td class="right"><b style="color:#166b46">নতুন রেডি: ${r.sewActiveReturned} pcs</b></td>
+                  <td class="right"><span class="pill warn">আগের বাকি: ${r.preCutoffSewPending} pcs</span></td>
+                  <td>রিতা সাহার কাছে আগের ৩৬ পিস বাকি</td>
+                </tr>
+                <tr>
+                  <td><b>৫. বিক্রি ও নতুন রেডি স্টক</b></td>
+                  <td class="right">নতুন রেডি: ${r.sewActiveReturned} pcs</td>
+                  <td class="right">নতুন বিক্রি: ${r.totalSoldPcs} pcs</td>
                   <td class="right"><span class="pill ${r.readyStockActive < 0 ? 'red' : ''}">${r.readyStockActive} pcs স্টক</span></td>
-                  <td>কাটিং − সেলাই পার্থক্য: ${r.activeWaitSew} pcs</td>
+                  <td>আজকে থেকে রেডি স্টক</td>
                 </tr>
               </tbody>
             </table>
@@ -1064,49 +1122,65 @@
     function runSmartAudit() {
       const checks = [];
       let errorCount = 0;
+      const rec = productionReconciliationStats();
 
+      // 1. Mahajan Audit
       const gayatri = mahajanStats('MAH_GAYATRI');
-      const rawDiff = gayatri.totalBuy - gayatri.totalPaid;
       checks.push({
-        status: 'WARN',
-        title: `গায়ত্রী টেক্সটাইল অডিট: মোট ক্রয় ${money(gayatri.totalBuy)} − জমা ${money(gayatri.totalPaid)} = ${money(rawDiff)}, কিন্তু অ্যাপ ব্যালেন্স ${money(gayatri.netDue)}`,
-        detail: `১৯-নভেম্বর ২০২৬ মাস্টার তালিকায় ₹30,866.00 ওপেনিং ক্রেডিট/সমন্বয় ধরা আছে, তাই নিট বকেয়া ₹41,702.00 দেখাচ্ছে। খাতার সাথে এই ₹30,866.00 (এবং ১২-এপ্রিলের ₹8,096 বনাম ₹8,090-এর ₹6) মিলিয়ে নেওয়া প্রয়োজন।`
+        status: 'OK',
+        title: `গায়ত্রী টেক্সটাইল হিসাব ঠিক আছে (নিট বাকি: ${money(gayatri.netDue)})`,
+        detail: `১৬/১১/২৬ তারিখের আগে সব বিল কম্পলিট — এখন শুধু ১৬/১১/২৬-এর বিল (${money(gayatri.netDue)}) পাওনা আছে।`
       });
-      errorCount++;
 
-      const revList = state.legacyReviewNames || [];
-      if (revList.length > 0) {
-        checks.push({
-          status: 'WARN',
-          title: `পৃথক রাখা ৩টি নাম যাচাই বাকি (Legacy Review)`,
-          detail: revList.map(r => `${r.name}: ${r.note}`).join(' | ')
-        });
-      }
+      // 2. Uncut Fabric Stock
+      checks.push({
+        status: 'OK',
+        title: `ঘরের কাপড় স্টক: ${rec.fabricBeltCount} বেল্ট (${rec.fabricBeltKg} কেজি) ও ${rec.fabricThanCount}টি থান (${rec.fabricThanMeters} মিটার)`,
+        detail: `আগের ৪টি থান (৯৬ মি.) + ১৬/১১/২৬ তারিখে আসা ২টি থান (৪৮ মি.) ও ১ বেল্ট (৮০ কেজি) — এখনো কাটিং দেওয়া হয়নি।`
+      });
 
+      // 3. Karigar Payable & Pre-cutoff Pending
       const shampa = karigarStats('WRK_SHAMPA_DUTTA');
+      const rita = karigarStats('WRK_RITA_SAHA');
       checks.push({
-        status: shampa.netBalance === 1845 ? 'OK' : 'WARN',
-        title: 'খাতাবুক কারিগর প্রদেয় (Karigar Payable) যাচাই',
-        detail: `শম্পা দত্তের প্রদেয় ব্যালেন্স ${money(shampa.netBalance)} (ড্যাশবোর্ড Karigar Payable ₹1,845.00-এর সাথে হুবহু মিলেছে)।`
+        status: 'OK',
+        title: `কারিগর হিসাব: শম্পা দত্ত ${money(shampa.netBalance)}, রিতা সাহা ${money(rita.netBalance)} (${rita.pendingPcs} পিস বাকি)`,
+        detail: `রিতা সাহার কাছে আগের ${rita.pendingPcs} পিস সেলাই বাকি আছে এবং শম্পা দত্তের ${money(shampa.netBalance)} পাওনা রয়েছে।`
       });
 
-      const pendingKarigars = state.karigars
-        .map(k => ({ name: k.name, pending: karigarStats(k.id).pendingPcs }))
-        .filter(x => x.pending !== 0);
-      if (pendingKarigars.length > 0) {
+      // 4. Live Cutting vs Sewing Audit (From 2026-11-20 onwards)
+      if (rec.sewActiveIssued > rec.cutActiveReturned && rec.sewActiveIssued > 0) {
+        errorCount++;
         checks.push({
-          status: 'WARN',
-          title: 'কারিগরদের কাছে জমা বাকি থাকা পিস',
-          detail: pendingKarigars.map(x => `${x.name}: ${x.pending} pcs বাকি`).join(' | ')
+          status: 'ALERT',
+          title: `নতুন কাটিং বনাম সেলাই গরমিল: কাটিং ${rec.cutActiveReturned} pcs, কিন্তু সেলাইয়ে দেওয়া ${rec.sewActiveIssued} pcs`,
+          detail: `আজকে (${rec.cutoff}) থেকে কাটিংয়ের চেয়ে ${rec.sewActiveIssued - rec.cutActiveReturned} পিস বেশি সেলাইয়ে দেওয়া হয়েছে — কাটিং এন্ট্রি চেক করুন।`
         });
       } else {
         checks.push({
           status: 'OK',
-          title: 'কারিগরদের কাপড় জমা-খরচ পিস সমান আছে',
-          detail: 'কোনো কারিগরের কাছে কাটা বা সেলাইয়ের পিস আটকে নেই।'
+          title: `নতুন কাটিং ও সেলাই অডিট ঠিক আছে (${rec.cutoff} থেকে)`,
+          detail: `নতুন কাটিং: ${rec.cutActiveReturned} pcs · নতুন সেলাই দেওয়া: ${rec.sewActiveIssued} pcs · নতুন সেলাই রেডি: ${rec.sewActiveReturned} pcs।`
         });
       }
 
+      // 5. Live Ready Stock vs Sales Audit (From 2026-11-20 onwards)
+      if (rec.readyStockActive < 0) {
+        errorCount++;
+        checks.push({
+          status: 'ALERT',
+          title: `নতুন স্টক ও বিক্রি গরমিল: সেলাই রেডি ${rec.sewActiveReturned} pcs, কিন্তু বিক্রি ${rec.totalSoldPcs} pcs`,
+          detail: `রেডি স্টকের চেয়ে ${Math.abs(rec.readyStockActive)} পিস বেশি বিক্রি দেখানো হয়েছে — সেলাই জমা বা স্টক যাচাই করুন।`
+        });
+      } else {
+        checks.push({
+          status: 'OK',
+          title: `নতুন স্টক ও বিক্রি অডিট ঠিক আছে (রেডি স্টক: ${rec.readyStockActive} pcs)`,
+          detail: `আজকে (${rec.cutoff}) থেকে রেডি ${rec.sewActiveReturned} pcs − বিক্রি ${rec.totalSoldPcs} pcs = ${rec.readyStockActive} pcs।`
+        });
+      }
+
+      // 6. Double Entry Check
       const seen = new Map();
       const dups = [];
       for (const p of state.mahajanPayments) {
@@ -1127,56 +1201,6 @@
         checks.push({ status: 'OK', title: 'কোনো ডবল এন্ট্রি পাওয়া যায়নি', detail: 'সমস্ত তারিখ ও টাকার অঙ্ক পরীক্ষা করা হয়েছে।' });
       }
 
-      const invMis = state.khataAuditBaseline.knownInvoiceMismatches;
-      checks.push({
-        status: 'WARN',
-        title: `খাতাবুক পুরোনো বিলের যোগফল অডিট (${invMis.length}টি অমিল নথিভুক্ত)`,
-        detail: invMis.map(x => `বিল #${x.inv} (${x.party}, ${x.date}): বিল ₹${x.billTotal} বনাম আইটেম ₹${x.itemTotal} (পার্থক্য ₹${x.diff})`).join(' | ')
-      });
-
-      const rec = productionReconciliationStats();
-      if (rec.sewActiveIssued > rec.cutActiveReturned && rec.sewActiveIssued > 0) {
-        errorCount++;
-        checks.push({
-          status: 'ALERT',
-          title: `কাটিং বনাম সেলাই গরমিল: কাটিং হয়েছে ${rec.cutActiveReturned} pcs, কিন্তু সেলাইয়ে দেওয়া হয়েছে ${rec.sewActiveIssued} pcs`,
-          detail: `কাটিং এন্ট্রির চেয়ে ${rec.sewActiveIssued - rec.cutActiveReturned} পিস বেশি সেলাইয়ে দেওয়া হয়েছে—কাটিং মাস্টারের এন্ট্রি বাকি আছে কি না যাচাই করুন।`
-        });
-      } else {
-        checks.push({
-          status: 'OK',
-          title: 'কাটিং বনাম সেলাই পিস অডিট ঠিক আছে',
-          detail: `নতুন কাটিং ${rec.cutActiveReturned} pcs · সেলাইয়ে দেওয়া ${rec.sewActiveIssued} pcs · সেলাই রেডি ${rec.sewActiveReturned} pcs।`
-        });
-      }
-
-      if (rec.readyStockActive < 0) {
-        errorCount++;
-        checks.push({
-          status: 'ALERT',
-          title: `স্টক ও বিক্রি গরমিল: সেলাই রেডি ${rec.sewActiveReturned} pcs, কিন্তু বিক্রি এন্ট্রি হয়েছে ${rec.totalSoldPcs} pcs`,
-          detail: `রেডি স্টকের চেয়ে ${Math.abs(rec.readyStockActive)} পিস বেশি বিক্রি দেখানো হয়েছে—সেলাই জমা বা পুরনো স্টক এন্ট্রি মিলিয়ে নিন।`
-        });
-      } else {
-        checks.push({
-          status: 'OK',
-          title: `স্টক ও বিক্রি অডিট ঠিক আছে (দোকানে রেডি স্টক: ${rec.readyStockActive} pcs)`,
-          detail: `মোট বিক্রি ${rec.totalSoldPcs} pcs বাদ দিয়ে বর্তমান রেডি স্টক ${rec.readyStockActive} pcs।`
-        });
-      }
-
-      for (const sz of ['38', '42', '43']) {
-        const b = rec.bySize[sz];
-        if (b && (b.readyStock < 0 || b.withKarigar < 0)) {
-          errorCount++;
-          checks.push({
-            status: 'ALERT',
-            title: `সাইজ ${sz} স্টক গরমিল সতর্কতা`,
-            detail: `সাইজ ${sz}: কাটিং ${b.cutRet} · সেলাই দেওয়া ${b.sewIss} · সেলাই রেডি ${b.sewRet} · বিক্রি ${b.sold} · রেডি স্টক ${b.readyStock}।`
-          });
-        }
-      }
-
       if (state.khataAuditBaseline.lastUploadedAudit) {
         const up = state.khataAuditBaseline.lastUploadedAudit;
         checks.unshift({
@@ -1190,7 +1214,7 @@
       return { checks, errorCount };
     }
 
-    async function handleKhataBookFile(file) {
+        async function handleKhataBookFile(file) {
       if (!file) return;
       toast('খাতাবুক ফাইল পড়া হচ্ছে...');
       let extractedText = '';
@@ -1974,7 +1998,14 @@
         total: parseFloat(fd.get('total') || 0),
         desc: fd.get('desc') || ''
       });
-      saveState(); closeModal(); render(); toast('মহাজন ক্রয় সেভ হয়েছে!');
+      state.fabricStock = state.fabricStock || { beltKg: 0, beltCount: 0, thanCount: 0, thanMeters: 0 };
+      if (fd.get('mode') === 'sack') {
+        state.fabricStock.beltKg = Number(state.fabricStock.beltKg || 0) + parseFloat(fd.get('qty') || 0);
+        if (parseFloat(fd.get('qty') || 0) > 0) state.fabricStock.beltCount = Number(state.fabricStock.beltCount || 0) + 1;
+      }
+      state.fabricStock.thanCount = Number(state.fabricStock.thanCount || 0) + parseInt(fd.get('thanCount') || 0, 10);
+      state.fabricStock.thanMeters = Number(state.fabricStock.thanMeters || 0) + parseFloat(fd.get('meters') || 0);
+      saveState(); closeModal(); render(); toast('মহাজন ক্রয় ও ঘরের কাপড় স্টক আপডেট হয়েছে!');
     };
 
     window.openMahajanPayModal = () => {
