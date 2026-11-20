@@ -672,7 +672,184 @@
       return { opening, liveWage, livePaid, netBalance, issued, returned, pendingPcs };
     }
 
-    function calcCostModel(m) {
+    function normSize(val) {
+      const s = String(val || '').trim();
+      if (s === '38' || /38/.test(s)) return '38';
+      if (s === '42' || /42/.test(s)) return '42';
+      if (s === '43' || /43/.test(s)) return '43';
+      return 'অন্যান্য';
+    }
+
+    function productionReconciliationStats() {
+      const mStat = mahajanStats('ALL');
+      const totalPurBills = state.purchases.length;
+      const totalPurQty = state.purchases.reduce((s, p) => s + Number(p.qty || 0), 0);
+      const totalThanCount = state.purchases.reduce((s, p) => s + Number(p.thanCount || 0), 0);
+      const totalMeters = state.purchases.reduce((s, p) => s + Number(p.meters || 0), 0);
+
+      let cutIssued = 0, cutReturned = 0, sewIssued = 0, sewReturned = 0;
+      let cutActiveIssued = 0, cutActiveReturned = 0, sewActiveIssued = 0, sewActiveReturned = 0;
+
+      const sizes = ['38', '42', '43', 'অন্যান্য'];
+      const bySize = {};
+      for (const sz of sizes) {
+        bySize[sz] = { cutRet: 0, sewIss: 0, sewRet: 0, sold: 0, cutStock: 0, withKarigar: 0, readyStock: 0 };
+      }
+
+      const kMap = new Map(state.karigars.map(k => [k.id, k]));
+      for (const l of state.karigarLogs) {
+        const k = kMap.get(l.karigarId);
+        const role = k ? k.role : 'Sewing';
+        const iss = Number(l.issuedPcs || 0);
+        const ret = Number(l.returnedPcs || 0);
+        const sz = normSize(l.size || l.item);
+        if (role === 'Cutting') {
+          cutIssued += iss;
+          cutReturned += ret;
+          if (!l.archived) {
+            cutActiveIssued += iss;
+            cutActiveReturned += ret;
+            bySize[sz].cutRet += ret;
+          }
+        } else {
+          sewIssued += iss;
+          sewReturned += ret;
+          if (!l.archived) {
+            sewActiveIssued += iss;
+            sewActiveReturned += ret;
+            bySize[sz].sewIss += iss;
+            bySize[sz].sewRet += ret;
+          }
+        }
+      }
+
+      let totalSoldPcs = 0;
+      for (const s of (state.salesSummary || [])) {
+        const q = Number(s.qty || 0);
+        totalSoldPcs += q;
+        const sz = normSize(s.size || s.desc);
+        bySize[sz].sold += q;
+      }
+
+      for (const sz of sizes) {
+        const b = bySize[sz];
+        b.cutStock = b.cutRet - b.sewIss;
+        b.withKarigar = b.sewIss - b.sewRet;
+        b.readyStock = b.sewRet - b.sold;
+      }
+
+      return {
+        totalPurBills,
+        totalPurQty,
+        totalThanCount,
+        totalMeters,
+        totalPurAmt: mStat.totalBuy,
+        cutIssued, cutReturned, cutPending: cutIssued - cutReturned,
+        sewIssued, sewReturned, sewPending: sewIssued - sewReturned,
+        cutActiveIssued, cutActiveReturned,
+        sewActiveIssued, sewActiveReturned,
+        totalSoldPcs,
+        readyStockActive: sewActiveReturned - totalSoldPcs,
+        uncutOrWaitSew: cutReturned - sewIssued,
+        activeWaitSew: cutActiveReturned - sewActiveIssued,
+        bySize
+      };
+    }
+
+    function renderReconciliationPanel() {
+      const r = productionReconciliationStats();
+      const sizeRows = ['38', '42', '43', 'অন্যান্য'].map(sz => {
+        const b = r.bySize[sz];
+        if (!b.cutRet && !b.sewIss && !b.sewRet && !b.sold) return '';
+        return `
+          <tr>
+            <td><b>সাইজ ${sz}</b></td>
+            <td class="right">${b.cutRet} pcs</td>
+            <td class="right">${b.sewIss} pcs</td>
+            <td class="right"><b>${b.sewRet} pcs</b></td>
+            <td class="right">${b.sold} pcs</td>
+            <td class="right"><span class="pill ${b.withKarigar > 0 ? 'warn' : ''}">${b.withKarigar} pcs</span></td>
+            <td class="right"><span class="pill ${b.readyStock < 0 ? 'red' : ''}">${b.readyStock} pcs</span></td>
+          </tr>
+        `;
+      }).join('');
+
+      return `
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <h3 style="margin:0">অটোমেটিক ফ্যাক্টরি ট্র্যাকার (মহাজন → কাটিং → সেলাই → স্টক → বিক্রি)</h3>
+            <div class="btn-group no-print">
+              <button class="btn small gold" onclick="downloadRealPDF('app','Factory_Auto_Audit.pdf')">📄 PDF</button>
+              <button class="btn small gold" onclick="downloadRealExcel()">📗 Excel</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ধাপ</th>
+                  <th class="right">মোট / দেওয়া</th>
+                  <th class="right">তৈরি / ফেরত</th>
+                  <th class="right">বাকি / স্টক</th>
+                  <th>বর্তমান নন-আর্কাইভ হিসাব</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>১. মহাজন মাল ক্রয়</b></td>
+                  <td class="right">${r.totalPurBills}টি বিল · ${r.totalThanCount} থান · ${r.totalMeters} মি.</td>
+                  <td class="right"><b>${money(r.totalPurAmt)}</b></td>
+                  <td class="right"><span class="pill">${r.totalPurQty} kg/qty</span></td>
+                  <td>সব মহাজন মিলিয়ে মোট কেনা</td>
+                </tr>
+                <tr>
+                  <td><b>২. কাটিং (Cutting)</b></td>
+                  <td class="right">${r.cutIssued} pcs</td>
+                  <td class="right"><b>${r.cutReturned} pcs</b></td>
+                  <td class="right"><span class="pill ${r.cutPending > 0 ? 'warn' : ''}">${r.cutPending} pcs বাকি</span></td>
+                  <td>নতুন কাটিং: ${r.cutActiveReturned} pcs</td>
+                </tr>
+                <tr>
+                  <td><b>৩. সেলাই (Sewing)</b></td>
+                  <td class="right">${r.sewIssued} pcs</td>
+                  <td class="right"><b style="color:#166b46">${r.sewReturned} pcs রেডি</b></td>
+                  <td class="right"><span class="pill ${r.sewPending > 0 ? 'warn' : ''}">${r.sewPending} pcs কারিগরের হাতে</span></td>
+                  <td>নতুন: দেওয়া ${r.sewActiveIssued} / রেডি ${r.sewActiveReturned} pcs</td>
+                </tr>
+                <tr>
+                  <td><b>৪. বিক্রি ও রেডি স্টক</b></td>
+                  <td class="right">রেডি (নতুন): ${r.sewActiveReturned} pcs</td>
+                  <td class="right">বিক্রি: ${r.totalSoldPcs} pcs</td>
+                  <td class="right"><span class="pill ${r.readyStockActive < 0 ? 'red' : ''}">${r.readyStockActive} pcs স্টক</span></td>
+                  <td>কাটিং − সেলাই পার্থক্য: ${r.activeWaitSew} pcs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          ${sizeRows ? `
+            <h4 style="margin:14px 0 8px;color:var(--green);font-size:14px">সাইজ অনুযায়ী অটো হিসাব (৩৮, ৪২, ৪৩ ও অন্যান্য)</h4>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>সাইজ</th>
+                    <th class="right">কাটিং রেডি</th>
+                    <th class="right">সেলাইয়ে দেওয়া</th>
+                    <th class="right">সেলাই রেডি</th>
+                    <th class="right">বিক্রি</th>
+                    <th class="right">কারিগরের হাতে</th>
+                    <th class="right">রেডি স্টক</th>
+                  </tr>
+                </thead>
+                <tbody>${sizeRows}</tbody>
+              </table>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+        function calcCostModel(m) {
       const thanCost = Number(m.thanMeters || 0) * Number(m.fabricRatePerMeter || 0);
       const pcs = Math.max(1, Number(m.pcsPerThan || 12));
       const fabricPerPc = thanCost / pcs;
@@ -866,6 +1043,15 @@
       });
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(cstRows), 'Costing_ProfitLoss');
 
+      const rec = productionReconciliationStats();
+      const recRows = [
+        { Stage: '1. Mahajan Purchases', Given_or_Bills: rec.totalPurBills + ' Bills (' + rec.totalPurQty + ' qty)', Returned_or_Amount: rec.totalPurAmt, Pending_or_Diff: 0, Note: 'Total Fabric Purchased' },
+        { Stage: '2. Cutting (Pcs)', Given_or_Bills: rec.cutIssued, Returned_or_Amount: rec.cutReturned, Pending_or_Diff: rec.cutPending, Note: 'Active New Cut: ' + rec.cutActiveReturned },
+        { Stage: '3. Sewing (Pcs)', Given_or_Bills: rec.sewIssued, Returned_or_Amount: rec.sewReturned, Pending_or_Diff: rec.sewPending, Note: 'Active New Sewn: ' + rec.sewActiveReturned },
+        { Stage: '4. Cutting vs Sewing Match', Given_or_Bills: rec.cutReturned, Returned_or_Amount: rec.sewIssued, Pending_or_Diff: rec.uncutOrWaitSew, Note: 'Cut Ready minus Given to Sewing' }
+      ];
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(recRows), 'Production_Reconciliation');
+
       const aud = runSmartAudit();
       const audRows = aud.checks.map(c => ({ Status: c.status, Title: c.title, Details: c.detail }));
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(audRows), 'Audit_Report');
@@ -947,6 +1133,49 @@
         title: `খাতাবুক পুরোনো বিলের যোগফল অডিট (${invMis.length}টি অমিল নথিভুক্ত)`,
         detail: invMis.map(x => `বিল #${x.inv} (${x.party}, ${x.date}): বিল ₹${x.billTotal} বনাম আইটেম ₹${x.itemTotal} (পার্থক্য ₹${x.diff})`).join(' | ')
       });
+
+      const rec = productionReconciliationStats();
+      if (rec.sewActiveIssued > rec.cutActiveReturned && rec.sewActiveIssued > 0) {
+        errorCount++;
+        checks.push({
+          status: 'ALERT',
+          title: `কাটিং বনাম সেলাই গরমিল: কাটিং হয়েছে ${rec.cutActiveReturned} pcs, কিন্তু সেলাইয়ে দেওয়া হয়েছে ${rec.sewActiveIssued} pcs`,
+          detail: `কাটিং এন্ট্রির চেয়ে ${rec.sewActiveIssued - rec.cutActiveReturned} পিস বেশি সেলাইয়ে দেওয়া হয়েছে—কাটিং মাস্টারের এন্ট্রি বাকি আছে কি না যাচাই করুন।`
+        });
+      } else {
+        checks.push({
+          status: 'OK',
+          title: 'কাটিং বনাম সেলাই পিস অডিট ঠিক আছে',
+          detail: `নতুন কাটিং ${rec.cutActiveReturned} pcs · সেলাইয়ে দেওয়া ${rec.sewActiveIssued} pcs · সেলাই রেডি ${rec.sewActiveReturned} pcs।`
+        });
+      }
+
+      if (rec.readyStockActive < 0) {
+        errorCount++;
+        checks.push({
+          status: 'ALERT',
+          title: `স্টক ও বিক্রি গরমিল: সেলাই রেডি ${rec.sewActiveReturned} pcs, কিন্তু বিক্রি এন্ট্রি হয়েছে ${rec.totalSoldPcs} pcs`,
+          detail: `রেডি স্টকের চেয়ে ${Math.abs(rec.readyStockActive)} পিস বেশি বিক্রি দেখানো হয়েছে—সেলাই জমা বা পুরনো স্টক এন্ট্রি মিলিয়ে নিন।`
+        });
+      } else {
+        checks.push({
+          status: 'OK',
+          title: `স্টক ও বিক্রি অডিট ঠিক আছে (দোকানে রেডি স্টক: ${rec.readyStockActive} pcs)`,
+          detail: `মোট বিক্রি ${rec.totalSoldPcs} pcs বাদ দিয়ে বর্তমান রেডি স্টক ${rec.readyStockActive} pcs।`
+        });
+      }
+
+      for (const sz of ['38', '42', '43']) {
+        const b = rec.bySize[sz];
+        if (b && (b.readyStock < 0 || b.withKarigar < 0)) {
+          errorCount++;
+          checks.push({
+            status: 'ALERT',
+            title: `সাইজ ${sz} স্টক গরমিল সতর্কতা`,
+            detail: `সাইজ ${sz}: কাটিং ${b.cutRet} · সেলাই দেওয়া ${b.sewIss} · সেলাই রেডি ${b.sewRet} · বিক্রি ${b.sold} · রেডি স্টক ${b.readyStock}।`
+          });
+        }
+      }
 
       if (state.khataAuditBaseline.lastUploadedAudit) {
         const up = state.khataAuditBaseline.lastUploadedAudit;
@@ -1192,6 +1421,7 @@
             </div>
           </div>
         </div>
+        ${renderReconciliationPanel()}
       `;
     }
 
@@ -1345,9 +1575,11 @@
           <div class="card"><div class="metric-label">নিট ব্যালেন্স</div><div class="metric ${st.netBalance > 0 ? 'red' : 'green'}">${money(st.netBalance)}</div><div class="metric-note">(+) কারিগর পাবেন / (-) অগ্রিম</div></div>
         </div>
 
+        ${renderReconciliationPanel()}
+
         <div class="panel">
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-            <h3 style="margin:0">কারিগর ভিত্তিক সারাংশ (শম্পা দত্ত বাদে আগের বাকি ₹0)</h3>
+            <h3 style="margin:0">কারিগর ভিত্তিক সারাংশ (পিস ও টাকা — শম্পা দত্ত বাদে আগের বাকি ₹0)</h3>
             <div class="btn-group no-print">
               <button class="btn small gold" onclick="downloadRealPDF('app','Karigar_Summary.pdf')">📄 PDF</button>
               <button class="btn small gold" onclick="downloadRealExcel()">📗 Excel</button>
@@ -1359,7 +1591,9 @@
                 <tr>
                   <th>কারিগরের নাম</th>
                   <th>কাজ ও দর</th>
-                  <th class="right">হাতে বাকি পিস</th>
+                  <th class="right">দেওয়া পিস</th>
+                  <th class="right">ফেরত পিস</th>
+                  <th class="right">হাতে বাকি</th>
                   <th class="right">আগের ব্যালেন্স</th>
                   <th class="right">নতুন মজুরি</th>
                   <th class="right">নতুন পেমেন্ট</th>
@@ -1373,6 +1607,8 @@
                   return `<tr>
                     <td><b>${esc(k.name)}</b></td>
                     <td>${esc(k.role)} · ₹${k.ratePerDozen}/ডজন</td>
+                    <td class="right">${ks.issued} pcs</td>
+                    <td class="right"><b>${ks.returned} pcs</b></td>
                     <td class="right"><span class="pill ${ks.pendingPcs > 0 ? 'warn' : ''}">${ks.pendingPcs} pcs</span></td>
                     <td class="right">${money(ks.opening)}</td>
                     <td class="right">${money(ks.liveWage)}</td>
@@ -1703,6 +1939,8 @@
             </div>
             <div class="field"><label>পরিমাণ (কেজি / মিটার)</label><input type="number" step="0.01" name="qty" id="purQty" oninput="calcPurPreview()" value="0"></div>
             <div class="field"><label>দর (প্রতি কেজি/মিটার ₹)</label><input type="number" step="0.01" name="rate" id="purRate" oninput="calcPurPreview()" value="0"></div>
+            <div class="field"><label>মোট থান (পিস/থান)</label><input type="number" step="1" name="thanCount" value="0" min="0"></div>
+            <div class="field"><label>মোট কাপড় (মিটার)</label><input type="number" step="0.01" name="meters" value="0" min="0"></div>
             <div class="field full"><label>মোট বিল টাকা (₹)</label><input type="number" step="0.01" name="total" id="purTotal" required></div>
             <div class="field full"><label>কাপড়ের বিবরণ (থান/কোয়ালিটি)</label><input name="desc" placeholder="যেমন: 80kg Cotton Poplin / অসম টুকরো ২,৩,৫,৮,১০,১১ মিটার"></div>
           </div>
@@ -1731,6 +1969,8 @@
         mode: fd.get('mode'),
         qty: parseFloat(fd.get('qty') || 0),
         rate: parseFloat(fd.get('rate') || 0),
+        thanCount: parseInt(fd.get('thanCount') || 0, 10),
+        meters: parseFloat(fd.get('meters') || 0),
         total: parseFloat(fd.get('total') || 0),
         desc: fd.get('desc') || ''
       });
@@ -1818,7 +2058,16 @@
             <div class="field"><label>মজুরি দর (প্রতি ডজন ₹)</label><input type="number" step="0.01" name="ratePerDozen" id="kwRate" value="${firstK ? firstK.ratePerDozen : 36}" oninput="calcKwWage()"></div>
             <div class="field"><label>মোট মজুরি (₹ অটো হিসাব)</label><input type="number" step="0.01" name="wage" id="kwWage" value="0"></div>
             <div class="field"><label>অগ্রিম / মজুরি প্রদান (Paid ₹)</label><input type="number" step="0.01" name="paid" value="0"></div>
-            <div class="field"><label>আইটেম / সাইজ নোট</label><input name="item" placeholder="যেমন: 42 / 38 Saya"></div>
+            <div class="field">
+              <label>সাইজ (Size)</label>
+              <select name="size">
+                <option value="38">৩৮ সাইজ (38)</option>
+                <option value="42">৪২ সাইজ (42)</option>
+                <option value="43">৪৩ সাইজ (43)</option>
+                <option value="অন্যান্য">অন্যান্য / সাধারণ</option>
+              </select>
+            </div>
+            <div class="field full"><label>আইটেম / নোট</label><input name="item" placeholder="যেমন: Cotton Saya / Poplin"></div>
           </div>
           <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">কারিগর হিসাব সেভ করুন</button></div>
         </form>
@@ -1844,7 +2093,8 @@
         id: 'KL_' + Date.now(),
         date: fd.get('date'),
         karigarId: fd.get('karigarId'),
-        item: fd.get('item') || 'Saya Work',
+        size: fd.get('size') || 'অন্যান্য',
+        item: (fd.get('size') ? ('সাইজ ' + fd.get('size') + ' — ') : '') + (fd.get('item') || 'Saya Work'),
         issuedPcs: parseInt(fd.get('issuedPcs') || 0, 10),
         returnedPcs: parseInt(fd.get('returnedPcs') || 0, 10),
         ratePerDozen: parseFloat(fd.get('ratePerDozen') || 0),
@@ -1949,7 +2199,16 @@
             <div class="field"><label>মজুরি দর (/ডজন ₹)</label><input type="number" step="0.01" name="ratePerDozen" id="ekwRate" value="${Number(l.ratePerDozen || 0)}" oninput="calcEkwWage()"></div>
             <div class="field"><label>মোট মজুরি (₹)</label><input type="number" step="0.01" name="wage" id="ekwWage" value="${Number(l.wage || 0)}"></div>
             <div class="field"><label>অগ্রিম / পেমেন্ট (Paid ₹)</label><input type="number" step="0.01" name="paid" value="${Number(l.paid || 0)}"></div>
-            <div class="field"><label>আইটেম / বিবরণ</label><input name="item" value="${esc(l.item || '')}"></div>
+            <div class="field">
+              <label>সাইজ (Size)</label>
+              <select name="size">
+                <option value="38" ${normSize(l.size || l.item) === '38' ? 'selected' : ''}>৩৮ সাইজ (38)</option>
+                <option value="42" ${normSize(l.size || l.item) === '42' ? 'selected' : ''}>৪২ সাইজ (42)</option>
+                <option value="43" ${normSize(l.size || l.item) === '43' ? 'selected' : ''}>৪৩ সাইজ (43)</option>
+                <option value="অন্যান্য" ${normSize(l.size || l.item) === 'অন্যান্য' ? 'selected' : ''}>অন্যান্য / সাধারণ</option>
+              </select>
+            </div>
+            <div class="field full"><label>আইটেম / বিবরণ</label><input name="item" value="${esc(l.item || '')}"></div>
             <div class="field full"><label>নোট</label><input name="note" value="${esc(l.note || '')}"></div>
           </div>
           <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">কারেকশন সেভ করুন</button></div>
@@ -1975,6 +2234,7 @@
       l.ratePerDozen = parseFloat(fd.get('ratePerDozen') || 0);
       l.wage = parseFloat(fd.get('wage') || 0);
       l.paid = parseFloat(fd.get('paid') || 0);
+      l.size = fd.get('size') || 'অন্যান্য';
       l.item = fd.get('item') || 'Saya Work';
       l.note = fd.get('note') || '';
       saveState(); closeModal(); render(); toast('এন্ট্রি কারেকশন সেভ হয়েছে!');
@@ -1986,7 +2246,16 @@
           <div class="field-grid">
             <div class="field"><label>তারিখ</label><input type="date" name="date" value="${new Date().toISOString().slice(0,10)}" required></div>
             <div class="field"><label>মোট পিস</label><input type="number" name="qty" value="12" required></div>
-            <div class="field full"><label>বিবরণ</label><input name="desc" placeholder="যেমন: ৩৮ ও ৪২ সাইজ সায়া বিক্রি" required></div>
+            <div class="field">
+              <label>সাইজ (Size)</label>
+              <select name="size">
+                <option value="38">৩৮ সাইজ (38)</option>
+                <option value="42">৪২ সাইজ (42)</option>
+                <option value="43">৪৩ সাইজ (43)</option>
+                <option value="অন্যান্য">অন্যান্য / মিশ্র</option>
+              </select>
+            </div>
+            <div class="field"><label>বিবরণ</label><input name="desc" placeholder="যেমন: কাস্টমার নাম / সায়া বিক্রি" required></div>
             <div class="field"><label>মোট বিক্রয় টাকা (₹)</label><input type="number" step="0.01" name="revenue" required></div>
             <div class="field"><label>মোট উৎপাদন খরচ (₹)</label><input type="number" step="0.01" name="estCost" required></div>
           </div>
@@ -2001,7 +2270,8 @@
         id: 'SL_' + Date.now(),
         date: fd.get('date'),
         qty: parseInt(fd.get('qty') || 0, 10),
-        desc: fd.get('desc'),
+        size: fd.get('size') || 'অন্যান্য',
+        desc: (fd.get('size') ? ('সাইজ ' + fd.get('size') + ' — ') : '') + fd.get('desc'),
         revenue: parseFloat(fd.get('revenue') || 0),
         estCost: parseFloat(fd.get('estCost') || 0)
       });
