@@ -24,14 +24,12 @@
     header {
       background: var(--primary-grad);
       color: #fff;
-      padding: 16px 18px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 15px 18px;
+      position: relative;
       box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
     }
-    header h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.3px; }
-    header p { font-size: 0.8rem; opacity: 0.94; margin-top: 3px; }
+    header h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.3px; }
+    header p { font-size: 0.79rem; opacity: 0.94; margin-top: 3px; }
     .nav-tabs {
       display: flex;
       gap: 6px;
@@ -40,8 +38,9 @@
       padding: 10px 12px;
       border-bottom: 2px solid #e2e8f0;
       position: sticky;
-      top: 66px;
-      z-index: 90;
+      top: 0;
+      z-index: 95;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
     .tab-btn {
       padding: 8px 13px;
@@ -84,7 +83,7 @@
     .stat-card.green { border-top-color: var(--success); }
     .stat-card.red { border-top-color: var(--danger); }
     .stat-card .label { font-size: 0.78rem; color: var(--muted); font-weight: 700; }
-    .stat-card .value { font-size: 1.32rem; font-weight: 800; color: var(--text); margin: 4px 0; }
+    .stat-card .value { font-size: 1.3rem; font-weight: 800; color: var(--text); margin: 4px 0; }
     .stat-card .sub { font-size: 0.76rem; color: var(--muted); }
     .card {
       background: var(--card);
@@ -277,7 +276,7 @@
               <th>কারিগরের নাম</th>
               <th>কাজ ও দর</th>
               <th>বর্তমান স্ট্যাটাস</th>
-              <th>খাতাবুক / পুরনো ব্যালেন্স</th>
+              <th>চূড়ান্ত নিট ব্যালেন্স</th>
               <th>মন্তব্য</th>
             </tr>
           </thead>
@@ -519,14 +518,14 @@
 
     <div class="card">
       <h2>
-        <span>পিন্টু সাহা (কাটিং মাস্টার) — অমীমাংসিত পুরনো হিসাব (২১/১১/২৬-এর আগে)</span>
+        <span>পিন্টু সাহা (কাটিং মাস্টার) — অমীমাংসিত পুরনো হিসাব ও চূড়ান্ত ব্যালেন্স</span>
         <button class="btn btn-warning" onclick="openOldCuttingModal()">পুরনো হিসাব আপডেট / সেটেল করুন</button>
       </h2>
       <div id="pintu-pending-box" class="alert-box alert-warn"></div>
     </div>
 
     <div class="card">
-      <h2>কারিগর ভিত্তিক সারাংশ (সব ১৩ জন কারিগর)</h2>
+      <h2>কারিগর ভিত্তিক সারাংশ (সব ১৩ জন কারিগর — চূড়ান্ত নিট ব্যালেন্স সহ)</h2>
       <div class="table-wrap">
         <table>
           <thead>
@@ -536,9 +535,10 @@
               <th>দেওয়া পিস</th>
               <th>ফেরত পিস</th>
               <th>হাতে বাকি</th>
-              <th>খাতাবুক ব্যালেন্স</th>
+              <th>ওপেনিং ব্যালেন্স</th>
               <th>নতুন মজুরি (&gt;21/11)</th>
               <th>নতুন পেমেন্ট (&gt;21/11)</th>
+              <th>চূড়ান্ত নিট ব্যালেন্স</th>
             </tr>
           </thead>
           <tbody id="karigar-summary-body"></tbody>
@@ -794,7 +794,7 @@
 
 <script>
   const CUTOFF_DATE = '2026-11-21';
-  const STORAGE_KEY = 'tanisha_dresses_erp_v5_final_2026_11_21';
+  const STORAGE_KEY = 'tanisha_dresses_erp_v6_final_2026_11_21';
 
   function getTodayStr() {
     const d = new Date();
@@ -884,7 +884,6 @@
     });
   }
 
-  // All items profit/loss
   function addAllItemTx(e) {
     e.preventDefault();
     const date = document.getElementById('ai-date').value;
@@ -918,7 +917,6 @@
     saveData();
   }
 
-  // Dhupkathi module
   function addDhupEntry(e) {
     e.preventDefault();
     const date = document.getElementById('dh-date').value;
@@ -944,7 +942,6 @@
     };
     appData.dhupEntries.unshift(newEntry);
 
-    // Mirror into combined all-items profit/loss log
     appData.allItemsTx.unshift({
       id: newEntry.id + 1,
       date,
@@ -967,7 +964,6 @@
     saveData();
   }
 
-  // Karigar entries
   function addKarigarEntry(e) {
     e.preventDefault();
     const date = document.getElementById('entry-date').value;
@@ -1058,11 +1054,16 @@
 
   function saveOldCuttingSettlement(e) {
     e.preventDefault();
+    const adv = Number(document.getElementById('oc-advance').value) || 0;
     appData.pintuOldSettlement = {
       status: document.getElementById('oc-status').value,
-      advanceReceivable: Number(document.getElementById('oc-advance').value) || 0,
+      advanceReceivable: adv,
       details: document.getElementById('oc-details').value.trim()
     };
+    const pintuArt = appData.artisans.find(a => a.name.toLowerCase().includes('pintu'));
+    if (pintuArt) {
+      pintuArt.kbBalance = adv;
+    }
     closeOldCuttingModal();
     saveData();
   }
@@ -1215,6 +1216,12 @@
     const newSewingReady = newEntries.filter(x => !x.artisan.toLowerCase().includes('pintu')).reduce((s, x) => s + x.returned, 0);
     const mahajanDue = appData.mahajanTx.reduce((s, x) => s + x.purchase - x.payment, 0);
 
+    // Pintu Saha final net balance calculation
+    const pintuNewEntries = newEntries.filter(x => x.artisan.toLowerCase().includes('pintu'));
+    const pintuNewWage = pintuNewEntries.reduce((s, x) => s + x.wage, 0);
+    const pintuNewPay = pintuNewEntries.reduce((s, x) => s + x.payment, 0);
+    const pintuNetFinal = (Number(appData.pintuOldSettlement.advanceReceivable) || 0) + pintuNewPay - pintuNewWage;
+
     // Combined profit/loss calculations
     const totalAllSales = appData.allItemsTx.reduce((s, x) => s + x.totalSales, 0);
     const totalAllCost = appData.allItemsTx.reduce((s, x) => s + x.totalCost, 0);
@@ -1236,10 +1243,12 @@
         <div class="value">₹${mahajanDue.toLocaleString('en-IN')}</div>
         <div class="sub">আগের সব বিল শোধ</div>
       </div>
-      <div class="stat-card">
-        <div class="label">নতুন কাটিং ও রেডি (&gt; ২১/১১/২৬)</div>
-        <div class="value">${newCuttingPcs} / ${newSewingReady} pcs</div>
-        <div class="sub">কাটিং: ${newCuttingPcs} | সেলাই রেডি: ${newSewingReady}</div>
+      <div class="stat-card amber">
+        <div class="label">পিন্টু সাহা (কাটিং) চূড়ান্ত হিসাব</div>
+        <div class="value" style="font-size:1.15rem; color:${pintuNetFinal >= 0 ? '#16a34a' : '#dc2626'}">
+          ${pintuNetFinal >= 0 ? 'পাবেন ₹' + pintuNetFinal.toFixed(2) : 'দিবেন ₹' + Math.abs(pintuNetFinal).toFixed(2)}
+        </div>
+        <div class="sub">${appData.pintuOldSettlement.status === 'pending' ? 'পুরনো কাটিং হিসাব বাকি (Pending)' : 'পুরনো হিসাব সম্পন্ন (Settled)'}</div>
       </div>
       <div class="stat-card green">
         <div class="label">সব মালের মোট নিট লাভ (সায়া+নাইটি+ধূপ)</div>
@@ -1390,9 +1399,16 @@
       const badge = active
         ? `<span class="badge badge-active">রানিং (Active)</span>`
         : `<span class="badge badge-paused">বন্ধ (${a.resumeDate} থেকে চালু)</span>`;
-      const balText = a.kbBalance > 0
-        ? `আপনি পাবেন ₹${a.kbBalance}`
-        : (a.kbBalance < 0 ? `আপনি দিবেন ₹${Math.abs(a.kbBalance)}` : '₹0');
+      const aNew = newEntries.filter(x => x.artisan === a.name);
+      const newW = aNew.reduce((s, x) => s + x.wage, 0);
+      const newP = aNew.reduce((s, x) => s + x.payment, 0);
+      const baseBal = a.name.toLowerCase().includes('pintu')
+        ? (Number(appData.pintuOldSettlement.advanceReceivable) || 0)
+        : (Number(a.kbBalance) || 0);
+      const finalNet = baseBal + newP - newW;
+      const balText = finalNet > 0
+        ? `<span style="color:#16a34a;font-weight:700;">পাবেন ₹${finalNet.toFixed(2)}</span>`
+        : (finalNet < 0 ? `<span style="color:#dc2626;font-weight:700;">দিবেন ₹${Math.abs(finalNet).toFixed(2)}</span>` : '<b>₹0.00</b>');
       return `
         <tr>
           <td><b>${a.name}</b></td>
@@ -1406,8 +1422,9 @@
 
     const oc = appData.pintuOldSettlement;
     document.getElementById('pintu-pending-box').innerHTML = `
-      <b>স্ট্যাটাস:</b> ${oc.status === 'pending' ? 'এখনো হিসাব করা হয়নি (Pending)' : 'হিসাব সম্পন্ন (Settled)'} |
-      <b>পাওনা / অ্যাডভান্স:</b> ₹${oc.advanceReceivable}<br/>
+      <b>স্ট্যাটাস:</b> ${oc.status === 'pending' ? 'এখনো পুরনো কাটিং হিসাব বাকি (Pending)' : 'হিসাব চূড়ান্ত সম্পন্ন (Settled)'} |
+      <b>ওপেনিং অ্যাডভান্স/প্রাপ্য:</b> ₹${Number(oc.advanceReceivable).toFixed(2)} |
+      <b>চূড়ান্ত নিট ব্যালেন্স:</b> <span style="font-weight:800; color:${pintuNetFinal >= 0 ? '#16a34a' : '#dc2626'}">${pintuNetFinal >= 0 ? 'পাবেন ₹' + pintuNetFinal.toFixed(2) : 'দিবেন ₹' + Math.abs(pintuNetFinal).toFixed(2)}</span><br/>
       <b>কাটিং ডিটেলস:</b> ${oc.details}
     `;
 
@@ -1420,7 +1437,14 @@
       const totalG = (a.oldGiven || 0) + newG;
       const totalR = (a.oldReturned || 0) + newR;
       const inHand = Math.max(0, totalG - totalR);
-      const balText = a.kbBalance > 0 ? `পাবেন ₹${a.kbBalance}` : (a.kbBalance < 0 ? `দিবেন ₹${Math.abs(a.kbBalance)}` : '₹0');
+      const baseBal = a.name.toLowerCase().includes('pintu')
+        ? (Number(appData.pintuOldSettlement.advanceReceivable) || 0)
+        : (Number(a.kbBalance) || 0);
+      const finalNet = baseBal + newP - newW;
+      const balText = baseBal > 0 ? `পাবেন ₹${baseBal.toFixed(2)}` : (baseBal < 0 ? `দিবেন ₹${Math.abs(baseBal).toFixed(2)}` : '₹0');
+      const finalText = finalNet > 0
+        ? `<span style="color:#16a34a;font-weight:700;">পাবেন ₹${finalNet.toFixed(2)}</span>`
+        : (finalNet < 0 ? `<span style="color:#dc2626;font-weight:700;">দিবেন ₹${Math.abs(finalNet).toFixed(2)}</span>` : '<b>₹0.00</b>');
       return `
         <tr>
           <td><b>${a.name}</b></td>
@@ -1431,6 +1455,7 @@
           <td>${balText}</td>
           <td>₹${newW.toFixed(2)}</td>
           <td>₹${newP.toFixed(2)}</td>
+          <td>${finalText}</td>
         </tr>
       `;
     }).join('');
