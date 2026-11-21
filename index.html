@@ -196,7 +196,6 @@
     }
     .notice.ok { background: var(--mint); border-color: #bfe0cd; color: #154734; }
     .notice.err { background: var(--red-bg); border-color: #eabdbd; color: #7c1f1f; }
-    .notice.info { background: #eff6ff; border-color: #bfdbfe; color: #1e3a8a; }
     .table-wrap {
       overflow-x: auto;
       border: 1px solid var(--line);
@@ -382,7 +381,7 @@
   (() => {
     'use strict';
 
-    const DB_KEY = 'tanisha_factory_audit_erp_v4_20261121';
+    const DB_KEY = 'tanisha_factory_audit_erp_v5_20261121';
     const CLOUD_KEY = 'tanisha_dresses_firebase_sync_v1';
     const CUTOFF_DATE = '2026-11-21';
 
@@ -840,7 +839,6 @@
       `;
     }
 
-    // VIEW MODALS ("দেখুন")
     window.viewMahajanTx = (kind, id) => {
       if (kind === 'purchase') {
         const p = state.purchases.find(x => x.id === id);
@@ -1008,7 +1006,6 @@
       saveState(); closeModal(); render(); toast('পিন্টু সাহার পুরনো হিসাব আপডেট হয়েছে!');
     };
 
-    // Dhupkathi Add / View / Edit / Delete
     window.openAddDhupModal = () => {
       openModal('নতুন ধূপকাঠি ক্রয় / বিক্রি ও লাভ এন্ট্রি', `
         <form onsubmit="saveDhupTx(event)">
@@ -1134,15 +1131,7 @@
     window.sendMahajanWA = (mId) => {
       const m = state.mahajans.find(x => x.id === mId) || state.mahajans[0];
       const st = mahajanStats(m.id);
-      const msg = `*TANISHA DRESSES — মহাজন লেজার*
-মহাজন: ${m.name}
-তারিখ: ${new Date().toLocaleDateString('en-IN')}
-------------------
-মোট কাপড় ক্রয়: ${money(st.totalBuy)}
-মোট পেমেন্ট জমা: ${money(st.totalPaid)}
-*বর্তমান নিট বকেয়া: ${money(st.netDue)}*
-------------------
-TANISHA DRESSES, বেথুয়াডহরী`;
+      const msg = `*TANISHA DRESSES — মহাজন লেজার*\nমহাজন: ${m.name}\nতারিখ: ${new Date().toLocaleDateString('en-IN')}\n------------------\nমোট কাপড় ক্রয়: ${money(st.totalBuy)}\nমোট পেমেন্ট জমা: ${money(st.totalPaid)}\n*বর্তমান নিট বকেয়া: ${money(st.netDue)}*\n------------------\nTANISHA DRESSES, বেথুয়াডহরী`;
       shareWhatsApp(m.phone, msg);
     };
 
@@ -1151,18 +1140,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
       if (!k) return;
       const st = karigarStats(k.id);
       const statusTxt = st.netBalance > 0 ? `কারিগর পাবেন: ${money(st.netBalance)}` : (st.netBalance < 0 ? `অগ্রিম / প্রাপ্য: ${money(Math.abs(st.netBalance))}` : 'হিসাব সমান (₹0)');
-      const msg = `*TANISHA DRESSES — কারিগর হিসাব*
-নাম: ${k.name} (${k.role})
-তারিখ: ${new Date().toLocaleDateString('en-IN')}
-------------------
-মোট পিস দেওয়া: ${st.issued} pcs
-মোট পিস জমা: ${st.returned} pcs
-হাতে বাকি পিস: ${st.pendingPcs} pcs
-নতুন মজুরি: ${money(st.liveWage)}
-নতুন পেমেন্ট: ${money(st.livePaid)}
-*${statusTxt}*
-------------------
-TANISHA DRESSES, বেথুয়াডহরী`;
+      const msg = `*TANISHA DRESSES — কারিগর হিসাব*\nনাম: ${k.name} (${k.role})\nতারিখ: ${new Date().toLocaleDateString('en-IN')}\n------------------\nমোট পিস দেওয়া: ${st.issued} pcs\nমোট পিস জমা: ${st.returned} pcs\nহাতে বাকি পিস: ${st.pendingPcs} pcs\nনতুন মজুরি: ${money(st.liveWage)}\nনতুন পেমেন্ট: ${money(st.livePaid)}\n*${statusTxt}*\n------------------\nTANISHA DRESSES, বেথুয়াডহরী`;
       shareWhatsApp(k.phone, msg);
     };
 
@@ -1272,8 +1250,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
           for (let i = 1; i <= pdf.numPages; i++) {
             const page = await pdf.getPage(i);
             const tc = await page.getTextContent();
-            extractedText += tc.items.map(it => it.str).join(' ') + '
-';
+            extractedText += tc.items.map(it => it.str).join(' ') + '\n';
           }
         } else {
           extractedText = await file.text();
@@ -1306,7 +1283,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
       }
       for (const k of state.karigars) {
         const shortName = k.name.split('(')[0].trim();
-        const re = new RegExp(shortName.replace(/[.*+?^${}()|[\]\]/g, '\$&'), 'i');
+        const re = new RegExp(shortName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
         if (re.test(clean)) {
           const st = karigarStats(k.id);
           findings.push(`${shortName} পাওয়া গেছে (অ্যাপের নিট ব্যালেন্স: ${money(st.netBalance)})।`);
@@ -1323,7 +1300,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
     function cloudUrl(cfg) {
       const base = String(cfg.url || '').trim().replace(/\/+$/, '');
       const pin = String(cfg.pin || '').trim().replace(/[.$#\[\]\/\s]+/g, '_') || 'default';
-      return `${base}/tanisha_dresses/${encodeURIComponent(pin)}/factory_audit_data_v4.json`;
+      return `${base}/tanisha_dresses/${encodeURIComponent(pin)}/factory_audit_data_v5.json`;
     }
     function setBadge(txt) {
       const el = document.getElementById('syncBadge');
@@ -1386,7 +1363,6 @@ TANISHA DRESSES, বেথুয়াডহরী`;
 
     function renderDashboard() {
       const mStat = mahajanStats('ALL');
-      const kStat = karigarStats('ALL');
       const pintuStat = karigarStats('WRK_PINTU_SAHA');
       const aud = runSmartAudit();
       const sb = calcSackBatch(state.sackBatchCalc);
