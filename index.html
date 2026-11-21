@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TANISHA DRESSES — ফাইনাল হিসাব (v9) ও সেরা ফিচারস ERP</title>
+  <title>TANISHA DRESSES — সম্পূর্ণ পুরনো ও নতুন হিসাব, স্টক, কারিগর, লাভ-লস ও অডিট</title>
   <style>
     :root {
       --primary: #123b32;
@@ -205,20 +205,20 @@
 <header>
   <div class="header-top">
     <div>
-      <h1>TANISHA DRESSES — ফাইনাল হিসাব (v9) ও সেরা ফিচারস</h1>
-      <p>স্টেশন পাড়া, বেথুয়াডহরী, নদীয়া - ৭৪১১২৬ | বিল খাতাবুকে; স্টক, মহাজন, কারিগর, খরচা, লাভ-লস, অডিট ও সিঙ্ক সব অটোমেটিক</p>
+      <h1>TANISHA DRESSES — সম্পূর্ণ পুরনো ও নতুন হিসাব, স্টক, কারিগর, লাভ-লস ও অডিট</h1>
+      <p>স্টেশন পাড়া, বেথুয়াডহরী, নদীয়া - ৭৪১১২৬ | ২১/১১/২০২৬ পর্যন্ত সব পুরনো হিসাব সংরক্ষিত; ২২/১১/২০২৬ থেকে কারেন্ট ডেটের নতুন হিসাব</p>
     </div>
     <div class="sync-pill" id="syncStatusPill">● অফলাইন সেভ</div>
   </div>
 </header>
 
-<div class="nav-tabs">
-  <button class="tab-btn active" onclick="switchTab('dashboard', this)">ড্যাশবোর্ড ও স্টক</button>
-  <button class="tab-btn" onclick="switchTab('mahajan', this)">মহাজন বিল ও কাপড় স্টক</button>
-  <button class="tab-btn" onclick="switchTab('karigar', this)">কারিগর পিস ও মজুরি</button>
-  <button class="tab-btn" onclick="switchTab('allprofit', this)">সব মালের লাভ-লস ও খরচা</button>
-  <button class="tab-btn" onclick="switchTab('dhupkathi', this)">ধূপকাঠি হিসাব ও লাভ</button>
-  <button class="tab-btn" onclick="switchTab('audit', this)">স্মার্ট অডিট, সিঙ্ক ও ব্যাকআপ</button>
+<div class="nav-tabs" id="mainNavTabs">
+  <button class="tab-btn active" data-tab="dashboard" onclick="switchTab('dashboard', this)">ড্যাশবোর্ড ও স্টক</button>
+  <button class="tab-btn" data-tab="mahajan" onclick="switchTab('mahajan', this)">মহাজন বিল ও কাপড় স্টক</button>
+  <button class="tab-btn" data-tab="karigar" onclick="switchTab('karigar', this)">কারিগর পিস ও মজুরি</button>
+  <button class="tab-btn" data-tab="allprofit" onclick="switchTab('allprofit', this)">সব মালের লাভ-লস ও খরচা</button>
+  <button class="tab-btn" data-tab="dhupkathi" onclick="switchTab('dhupkathi', this)">ধূপকাঠি হিসাব ও লাভ</button>
+  <button class="tab-btn" data-tab="audit" onclick="switchTab('audit', this)">স্মার্ট অডিট ও সেটিংস</button>
 </div>
 
 <div class="container">
@@ -226,7 +226,7 @@
   <!-- TAB 1: DASHBOARD & AUTOMATIC STOCK -->
   <div id="tab-dashboard" class="section active">
     <div class="alert-box alert-info">
-      <strong>v9 ফাইনাল হিসাব নিয়ম:</strong> বিলিং খাতাবুকে হয়; এখানে <b>২১/১১/২০২৬ পর্যন্ত</b> পুরনো/ওপেনিং হিসাব আলাদা রাখা হয়েছে এবং <b>২১/১১/২০২৬-এর পর থেকে (২২/১১/২০২৬ থেকে)</b> কারেন্ট ডেটের সব এন্ট্রি থেকে স্টক, মহাজন বকেয়া, কারিগর পিস/ফেরত, খরচা ও লাভ-লস অটোমেটিক আপডেট হবে।
+      <strong>আগের সব পুরনো হিসাব + নতুন হিসাব:</strong> ২১/১১/২০২৬ পর্যন্ত সব পুরনো হিসাব (খাতাবুকের লেনদেন, পিন্টু সাহার ১৩/১১/২৬-এর ১,৭১৬ পিস ও পুরনো কাটিং হিসাব, রিতা সাহার পুরনো পিস/বাকি, শম্পা দত্তের বকেয়া, গায়ত্রী টেক্সটাইলের ১৬/১১/২৬ বিল) <b>পুরনো/ওপেনিং হিসাব</b> হিসেবে অক্ষুণ্ণ রাখা হয়েছে। <b>২১/১১/২০২৬-এর পর থেকে (২২/১১/২০২৬ থেকে)</b> কারেন্ট ডেটের সব এন্ট্রি <b>নতুন হিসাব</b> হিসেবে অটোমেটিক যুক্ত হবে।
     </div>
 
     <div class="grid-cards" id="dashboard-cards"></div>
@@ -293,6 +293,60 @@
         </table>
       </div>
     </div>
+
+    <div class="card">
+      <h2>পুরনো খাতাবুক ও রেফারেন্স লগ (২১/১১/২৬ পর্যন্ত ওপেনিং রেকর্ড)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>তারিখ</th>
+              <th>খাত / পার্টি</th>
+              <th>বিবরণ ও রেফারেন্স</th>
+              <th>অবস্থা</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-11-16</td>
+              <td>GAYATRI TEXTILE</td>
+              <td>1 BELT 80 KG + 2 THAN 24MT*54 — বিল বকেয়া ₹41,702 (আগের সব বিল কম্পলিট)</td>
+              <td><span class="badge badge-old">ওপেনিং বকেয়া</span></td>
+            </tr>
+            <tr>
+              <td>2026-11-13</td>
+              <td>Pintu Saha (কাটিং মাস্টার)</td>
+              <td>1716 পিস কাটিং এন্ট্রি ও খাতাবুকে এডভান্স+মজুরি ₹8,352 / মজুরি ₹2,860 (পুরনো কাটিং হিসাব বাকি)</td>
+              <td><span class="badge badge-paused">হিসাব বাকি</span></td>
+            </tr>
+            <tr>
+              <td>2026-11-20</td>
+              <td>Rita Saha</td>
+              <td>আগের ৩৬ পিস সেলাই বাকি (রানিং Active কারিগর)</td>
+              <td><span class="badge badge-active">রানিং</span></td>
+            </tr>
+            <tr>
+              <td>2026-11-20</td>
+              <td>Moyna Bairagya</td>
+              <td>রানিং Active কারিগর ও খাতাবুক সমন্বয়</td>
+              <td><span class="badge badge-active">রানিং</span></td>
+            </tr>
+            <tr>
+              <td>2026-12-01</td>
+              <td>Dipa Roy</td>
+              <td>এখন সাময়িক বন্ধ; ০১/১২/২০২৬ তারিখ থেকে স্বয়ংক্রিয়ভাবে রানিং (Active) হবে</td>
+              <td><span class="badge badge-paused">০১/১২/২৬ চালু</span></td>
+            </tr>
+            <tr>
+              <td>2026-11-21</td>
+              <td>ধূপকাঠি ও অন্যান্য মাল</td>
+              <td>SAHELI, DREAM FLOWER, INDIA ROCK, বক্রকুন্ড, ভক্তিদাম + সায়া/নাইটি/কুর্তি/চাদর/৮০ কেজি বস্তা লাভ-লস</td>
+              <td><span class="badge badge-cat">সক্রিয় মডিউল</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <!-- TAB 2: MAHAJAN PURCHASE BILL ENTRY & CLOTH STOCK -->
@@ -310,7 +364,7 @@
         </div>
         <div class="stat-card teal">
           <div class="label">ঘরের কাঁচামাল স্টক</div>
-          <div class="value" id="raw-stock-val" style="font-size:1.05rem;">১ বেল্ট (৮০ কেজি) + ২ থান (৪৮ মি.)</div>
+          <div class="value" id="raw-stock-val" style="font-size:1.05rem;">৮০ কেজি বেল্ট + ৪৮ মি. থান</div>
           <div class="sub">নতুন বেল্ট/থান বিল এন্ট্রি করলে অটো যোগ হবে</div>
         </div>
       </div>
@@ -432,7 +486,7 @@
     </div>
 
     <div class="card">
-      <h2>কারিগর ভিত্তিক সারাংশ (দেওয়া, ফেরত, হাতে বাকি ও চূড়ান্ত নিট ব্যালেন্স)</h2>
+      <h2>কারিগর ভিত্তিক সারাংশ (পুরনো ও নতুন সহ — চূড়ান্ত নিট ব্যালেন্স)</h2>
       <div class="table-wrap">
         <table>
           <thead>
@@ -479,7 +533,7 @@
   <!-- TAB 4: ALL ITEMS PROFIT, LOSS & EXPENSES + 80KG BOSTA CALCULATOR -->
   <div id="tab-allprofit" class="section">
     <div class="alert-box alert-purple">
-      <strong>সব মালের খরচা ও লাভ-লস হিসাব:</strong> খাতাবুকের বিলিং ছাড়া এখানে আপনার সব খরচা, সায়া, নাইটি, কুর্তি, বিছানার চাদর ও ধূপকাঠি—সব মালের খরচ ও লাভ-লস একসাথে হিসাব হবে।
+      <strong>সব মালের খরচা ও লাভ-লস হিসাব:</strong> আগের পুরনো ও নতুন সব খরচা, সায়া, নাইটি, কুর্তি, বিছানার চাদর ও ধূপকাঠি—সব মালের খরচ ও লাভ-লস একসাথে হিসাব হবে।
     </div>
 
     <div class="grid-cards" id="all-profit-cards"></div>
@@ -654,7 +708,7 @@
     </div>
   </div>
 
-  <!-- TAB 6: SMART AUDIT, CLOUD SYNC & BACKUP -->
+  <!-- TAB 6: SMART AUDIT, CLOUD SYNC & BACKUP SETTINGS -->
   <div id="tab-audit" class="section">
     <div class="card">
       <h2>স্মার্ট খাতাবুক অডিট ও গরমিল যাচাই</h2>
@@ -672,7 +726,24 @@
     </div>
 
     <div class="card">
-      <h2>Firebase ক্লাউড সিঙ্ক (PIN ভিত্তিক)</h2>
+      <h2>সেটিংস: ঘরের ওপেনিং স্টক সেটিংস</h2>
+      <form onsubmit="saveStockSettings(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>ওপেনিং বেল্ট কাপড় (কেজি)</label>
+            <input type="number" id="set-belt-kg" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label>ওপেনিং থান কাপড় (মিটার)</label>
+            <input type="number" id="set-than-m" step="0.1" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">স্টক সেটিংস সেভ করুন</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>সেটিংস: Firebase ক্লাউড সিঙ্ক (PIN ভিত্তিক)</h2>
       <form onsubmit="saveCloudConfig(event)">
         <div class="form-grid">
           <div class="form-group">
@@ -692,7 +763,7 @@
     </div>
 
     <div class="card">
-      <h2>ব্যাকআপ ও রিস্টোর সেটিংস</h2>
+      <h2>সেটিংস: ব্যাকআপ, Excel/CSV ও রিস্টোর</h2>
       <div class="actions-row">
         <button class="btn btn-primary" onclick="exportBackupJSON()">সম্পূর্ণ JSON ব্যাকআপ ডাউনলোড</button>
         <button class="btn btn-accent" onclick="exportAllCSV()">Excel / CSV এক্সপোর্ট</button>
@@ -790,7 +861,7 @@
 
 <script>
   const CUTOFF_DATE = '2026-11-21';
-  const STORAGE_KEY = 'tanisha_dresses_v9_best_features_2026_11_21';
+  const STORAGE_KEY = 'tanisha_dresses_v12_complete_2026_11_21';
   const CLOUD_CFG_KEY = 'tanisha_dresses_cloud_cfg_v1';
 
   function getTodayStr() {
@@ -824,7 +895,7 @@
       details: '১৩/১১/২৬-এ ১৭১৬ পিস এন্ট্রি ও খাতাবুকে এডভান্স+মজুরি ₹8,352, মজুরি ₹2,860 (নিট ₹5,492 প্রাপ্য) রয়েছে। পুরনো কাটিংয়ের চূড়ান্ত হিসাব এখনো করা বাকি।'
     },
     entries: [
-      { id: 101, date: '2026-11-13', artisan: 'Pintu Saha (কাটিং মাস্টার)', size: '38', desc: '1716 পিস কাটিং (১৩/১১/২৬ সংশোধিত এন্ট্রি)', given: 1716, returned: 1716, wage: 2860.00, payment: 8352.00 },
+      { id: 101, date: '2026-11-13', artisan: 'Pintu Saha (কাটিং মাস্টার)', size: '38', desc: '1716 পিস কাটিং (১৩/১১/২৬ পুরনো হিসাব এন্ট্রি)', given: 1716, returned: 1716, wage: 2860.00, payment: 8352.00 },
       { id: 102, date: '2026-11-19', artisan: 'Rita Saha', size: '42', desc: '12 pcs * 3 সেলাই', given: 12, returned: 12, wage: 36.00, payment: 0 },
       { id: 103, date: '2026-11-15', artisan: 'Rita Saha', size: '42', desc: '94 pcs * 3 সেলাই', given: 94, returned: 94, wage: 282.00, payment: 0 },
       { id: 104, date: '2026-10-22', artisan: 'Moyna Bairagya', size: '42', desc: '823 pcs সায়া সেলাই', given: 823, returned: 823, wage: 2400.42, payment: 4482.00 }
@@ -840,11 +911,17 @@
     updatedAt: new Date().toISOString()
   };
 
-  let appData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultData;
+  let appData;
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    appData = saved ? { ...JSON.parse(JSON.stringify(defaultData)), ...saved } : JSON.parse(JSON.stringify(defaultData));
+  } catch (e) {
+    appData = JSON.parse(JSON.stringify(defaultData));
+  }
 
   function saveData(skipCloud = false) {
     appData.updatedAt = new Date().toISOString();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appData)); } catch (e) {}
     renderAll();
     if (!skipCloud) syncWithFirebase(true);
   }
@@ -861,6 +938,15 @@
     syncWithFirebase(false);
   }
 
+  function saveStockSettings(e) {
+    e.preventDefault();
+    const bKg = Number(document.getElementById('set-belt-kg').value) || 0;
+    const tM = Number(document.getElementById('set-than-m').value) || 0;
+    appData.rawStock = { beltKg: bKg, thanMeters: tM };
+    saveData();
+    alert('ওপেনিং কাপড়ের স্টক সেটিংস সেভ হয়েছে।');
+  }
+
   async function syncWithFirebase(silent = true) {
     const cfg = getCloudConfig();
     const pill = document.getElementById('syncStatusPill');
@@ -874,7 +960,7 @@
     }
     const base = cfg.url.replace(/\/+$/, '');
     const safePin = cfg.pin.replace(/[.$#\[\]\/\s]+/g, '_') || 'default';
-    const endpoint = `${base}/tanisha_dresses/${encodeURIComponent(safePin)}/v9_data.json`;
+    const endpoint = `${base}/tanisha_dresses/${encodeURIComponent(safePin)}/v12_data.json`;
     try {
       const res = await fetch(endpoint + '?t=' + Date.now(), { cache: 'no-store' });
       if (res.ok) {
@@ -907,11 +993,7 @@
 
   function shareGayatriWA() {
     const due = appData.mahajanTx.reduce((s, x) => s + x.purchase - x.payment, 0);
-    const msg = `*TANISHA DRESSES — মহাজন হিসাব*
-মহাজন: GAYATRI TEXTILE
-তারিখ: ${getTodayStr()}
-বর্তমান নিট বকেয়া: ₹${due.toLocaleString('en-IN')}
-ধন্যবাদ — TANISHA DRESSES, বেথুয়াডহরী`;
+    const msg = `*TANISHA DRESSES — মহাজন হিসাব*\nমহাজন: GAYATRI TEXTILE\nতারিখ: ${getTodayStr()}\nবর্তমান নিট বকেয়া: ₹${due.toLocaleString('en-IN')}\nধন্যবাদ — TANISHA DRESSES, বেথুয়াডহরী`;
     shareWhatsApp('9163407511', msg);
   }
 
@@ -925,13 +1007,7 @@
       ? (Number(appData.pintuOldSettlement.advanceReceivable) || 0)
       : (Number(a.kbBalance) || 0);
     const finalNet = baseBal + newP - newW;
-    const msg = `*TANISHA DRESSES — কারিগর হিসাব*
-নাম: ${a.name}
-তারিখ: ${getTodayStr()}
-নতুন মজুরি: ₹${newW.toFixed(2)}
-নতুন পেমেন্ট: ₹${newP.toFixed(2)}
-চূড়ান্ত ব্যালেন্স: ${finalNet >= 0 ? 'পাবেন ₹' + finalNet.toFixed(2) : 'দিবেন ₹' + Math.abs(finalNet).toFixed(2)}
-TANISHA DRESSES, বেথুয়াডহরী`;
+    const msg = `*TANISHA DRESSES — কারিগর হিসাব*\nনাম: ${a.name}\nতারিখ: ${getTodayStr()}\nনতুন মজুরি: ₹${newW.toFixed(2)}\nনতুন পেমেন্ট: ₹${newP.toFixed(2)}\nচূড়ান্ত ব্যালেন্স: ${finalNet >= 0 ? 'পাবেন ₹' + finalNet.toFixed(2) : 'দিবেন ₹' + Math.abs(finalNet).toFixed(2)}\nTANISHA DRESSES, বেথুয়াডহরী`;
     shareWhatsApp(a.phone, msg);
   }
 
@@ -954,11 +1030,17 @@ TANISHA DRESSES, বেথুয়াডহরী`;
     saveData();
   }
 
-  function switchTab(tabId, btn) {
+  function switchTab(tabId, btnEl) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tabId).classList.add('active');
-    btn.classList.add('active');
+    const targetSec = document.getElementById('tab-' + tabId);
+    if (targetSec) targetSec.classList.add('active');
+    if (btnEl) btnEl.classList.add('active');
+    else {
+      const matchedBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (matchedBtn) matchedBtn.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function populateArtisanDropdowns() {
@@ -1250,12 +1332,11 @@ TANISHA DRESSES, বেথুয়াডহরী`;
     appData.entries.forEach(e => {
       rows.push([e.date, e.date > CUTOFF_DATE ? 'NEW' : 'OLD', 'Karigar', e.artisan, e.given, e.returned, e.wage, e.payment, (e.payment - e.wage).toFixed(2)]);
     });
-    const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('
-');
-    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `TANISHA_DRESSES_v9_Report_${getTodayStr()}.csv`;
+    a.download = `TANISHA_DRESSES_Full_Report_${getTodayStr()}.csv`;
     a.click();
   }
 
@@ -1263,7 +1344,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
     const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `TANISHA_DRESSES_v9_Backup_${getTodayStr()}.json`;
+    a.download = `TANISHA_DRESSES_Full_Backup_${getTodayStr()}.json`;
     a.click();
   }
 
@@ -1285,7 +1366,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
   }
 
   function resetToDefault() {
-    if (!confirm('ডিফল্ট ডেটাতে ফিরে যেতে চান?')) return;
+    if (!confirm('ডিফল্ট পুরনো+নতুন ডেটাতে ফিরে যেতে চান?')) return;
     appData = JSON.parse(JSON.stringify(defaultData));
     saveData();
   }
@@ -1306,8 +1387,7 @@ TANISHA DRESSES, বেথুয়াডহরী`;
         for (let i = 1; i <= pdf.numPages; i++) {
           const page = await pdf.getPage(i);
           const content = await page.getTextContent();
-          fullText += content.items.map(item => item.str).join(' ') + '
-';
+          fullText += content.items.map(item => item.str).join(' ') + '\n';
         }
         textarea.value = fullText.trim();
         statusEl.textContent = `✓ PDF থেকে লেখা লোড হয়েছে (${file.name}, পৃষ্ঠা: ${pdf.numPages})। নিচে 'অডিট করুন' চাপুন।`;
@@ -1342,11 +1422,11 @@ TANISHA DRESSES, বেথুয়াডহরী`;
       if (has41702) checks.push('₹41,702 বকেয়া মিলেছে');
       if (hasPintu5492) checks.push('পিন্টু সাহার ₹5,492 ব্যালেন্স মিলেছে');
       const summaryLine = checks.length ? checks.join(' | ') : `${pasted.length} অক্ষরের রিপোর্ট লেখা যাচাই করা হয়েছে`;
-      extraNote = `<div class="alert-box alert-info"><b>খাতাবুক রিপোর্ট অডিট ফলাফল:</b> ${summaryLine}; ২১/১১/২৬-এর আগের সব এন্ট্রি ওপেনিং হিসেবে আলাদা রাখা হয়েছে।</div>`;
+      extraNote = `<div class="alert-box alert-info"><b>খাতাবুক রিপোর্ট অডিট ফলাফল:</b> ${summaryLine}; ২১/১১/২৬-এর আগের সব পুরনো এন্ট্রি ওপেনিং হিসেবে অক্ষুণ্ণ রাখা হয়েছে।</div>`;
     }
 
     document.getElementById('audit-results-container').innerHTML = `
-      <div class="alert-box alert-ok">✓ <b>কাট-অফ যাচাই (২১/১১/২০২৬):</b> ২১/১১/২৬ পর্যন্ত সব পুরনো এন্ট্রি ওপেনিংয়ে সংরক্ষিত; পিন্টু সাহার ১,৭১৬ পিস এন্ট্রি ১৩/১১/২৬ তারিখে রয়েছে।</div>
+      <div class="alert-box alert-ok">✓ <b>কাট-অফ ও পুরনো হিসাব যাচাই (২১/১১/২০২৬):</b> ২১/১১/২৬ পর্যন্ত সব পুরনো হিসাব অক্ষুণ্ণ রাখা হয়েছে; পিন্টু সাহার ১,৭১৬ পিস এন্ট্রি ১৩/১১/২৬ তারিখে সংরক্ষিত।</div>
       <div class="alert-box alert-ok">✓ <b>মহাজন হিসাব:</b> গায়ত্রী টেক্সটাইল নিট বকেয়া ₹${mahajanDue.toLocaleString('en-IN')} (১৬/১১/২৬ বিল)।</div>
       <div class="alert-box alert-ok">✓ <b>কারিগর স্ট্যাটাস:</b> রিতা সাহা (আগের ৩৬ পিস বাকি) ও ময়না বৈরাগ্য রানিং; দীপা রায় এখন বন্ধ এবং ০১/১২/২০২৬ থেকে অটো-চালু হবে।</div>
       <div class="alert-box ${mismatch ? 'alert-warn' : 'alert-ok'}">
@@ -1366,6 +1446,8 @@ TANISHA DRESSES, বেথুয়াডহরী`;
     const cfg = getCloudConfig();
     if (document.getElementById('cloud-url') && cfg.url) document.getElementById('cloud-url').value = cfg.url;
     if (document.getElementById('cloud-pin') && cfg.pin) document.getElementById('cloud-pin').value = cfg.pin;
+    if (document.getElementById('set-belt-kg')) document.getElementById('set-belt-kg').value = appData.rawStock ? appData.rawStock.beltKg : 80;
+    if (document.getElementById('set-than-m')) document.getElementById('set-than-m').value = appData.rawStock ? appData.rawStock.thanMeters : 48;
 
     const newEntries = appData.entries.filter(x => x.date > CUTOFF_DATE);
     const newCuttingPcs = newEntries.filter(x => x.artisan.toLowerCase().includes('pintu')).reduce((s, x) => s + x.returned, 0);
