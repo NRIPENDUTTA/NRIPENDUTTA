@@ -391,7 +391,7 @@
   </div>
 
   <footer class="foot">
-    TANISHA DRESSES · বেথুয়াডহরী স্টেশন পাড়া, নদীয়া · কাট-অফ নিয়ম: ২১/১১/২০২৬ পর্যন্ত পুরনো হিসাব, ২২/১১/২০২৬ থেকে নতুন হিসাব
+    TANISHA DRESSES · বেথুয়াডহরী স্টেশন পাড়া, নদীয়া · v35 ZERO-DISCREPANCY FINAL · কাট-অফ নিয়ম: ২১/১১/২০২৬ পর্যন্ত পুরনো হিসাব, ২২/১১/২০২৬ থেকে নতুন হিসাব
   </footer>
 
   <div id="modalRoot"></div>
@@ -405,8 +405,8 @@
   (() => {
     'use strict';
 
-    const DB_KEY = 'tanisha_factory_audit_erp_v33_20261123';
-    const LEGACY_DB_KEYS = ['tanisha_factory_audit_erp_v32_20261123_FINAL', 'tanisha_factory_audit_erp_v31_20261123', 'tanisha_factory_audit_erp_v30_20261123', 'tanisha_factory_audit_erp_v29_20261123', 'tanisha_factory_audit_erp_v28_20261122', 'tanisha_factory_audit_erp_v27_20261122', 'tanisha_factory_audit_erp_v26_20261122', 'tanisha_factory_audit_erp_v25_20261122', 'tanisha_factory_audit_erp_v23_20261122', 'tanisha_factory_audit_erp_v5_20261121'];
+    const DB_KEY = 'tanisha_factory_audit_erp_v35_20261123';
+    const LEGACY_DB_KEYS = ['tanisha_factory_audit_erp_v34_20261123', 'tanisha_factory_audit_erp_v33_20261123', 'tanisha_factory_audit_erp_v32_20261123_FINAL', 'tanisha_factory_audit_erp_v31_20261123', 'tanisha_factory_audit_erp_v30_20261123', 'tanisha_factory_audit_erp_v29_20261123', 'tanisha_factory_audit_erp_v28_20261122', 'tanisha_factory_audit_erp_v27_20261122', 'tanisha_factory_audit_erp_v26_20261122', 'tanisha_factory_audit_erp_v25_20261122', 'tanisha_factory_audit_erp_v23_20261122', 'tanisha_factory_audit_erp_v5_20261121'];
     const CLOUD_KEY = 'tanisha_dresses_firebase_sync_v1';
     const CUTOFF_DATE = '2026-11-21';
 
@@ -596,7 +596,43 @@
         { code: 'C48', tone: 'ডিপ', bnName: 'কালো (Deep Black)', hex: '#111827', border: '#000000' }
       ],
       colorStockEntries: [],
-      meta: { updatedAt: new Date().toISOString(), cutoffDate: CUTOFF_DATE, version: 'v33_FIXED' }
+      sewingRule: {
+        reelsPerDozen: 1,
+        ratePerReel: 7,
+        cuttingPerDozen: 22,
+        sewingPerDozen: 36,
+        extraPerDozen: 20,
+        note: 'কাটিং ₹22 + সেলাই ₹36 + সুতো ১ রিল ₹7 + অন্যান্য/ট্রান্সপোর্ট ₹20 = ₹85/ডজন'
+      },
+      wageHikeExtraDz: 0,
+      qualityCostMaster: [
+        { id: 'Q_SD42', name: 'SUPER DELUXE (8052) — 42', size: '42', stdFabricRateM: 61.00, metersPerPc: 2.00, sellPrice: 134.15, kbOpeningQty: 350, kbOpeningCostVal: 44915.50 },
+        { id: 'Q_P78_42', name: 'PREMIUM COTTON (78) — 42', size: '42', stdFabricRateM: 55.00, metersPerPc: 2.00, sellPrice: 124.25, kbOpeningQty: 204, kbOpeningCostVal: 24139.32 },
+        { id: 'Q_P78_38', name: 'PREMIUM COTTON (78) — 38', size: '38', stdFabricRateM: 55.00, metersPerPc: 1.846154, sellPrice: 115.00, kbOpeningQty: 14, kbOpeningCostVal: 1529.22 },
+        { id: 'Q_P70_42', name: 'PREMIUM COTTON (70) — 42', size: '42', stdFabricRateM: 49.00, metersPerPc: 2.00, sellPrice: 115.00, kbOpeningQty: 25, kbOpeningCostVal: 2608.25 },
+        { id: 'Q_P70_38', name: 'PREMIUM COTTON (70) / WHITE — 38', size: '38', stdFabricRateM: 49.00, metersPerPc: 1.846154, sellPrice: 110.00, kbOpeningQty: 9, kbOpeningCostVal: 945.00 }
+      ],
+      fabricBatches: [
+        { id: 'FAB_01', date: '2026-09-30', name: 'V. GOLD (আগের বিল)', kind: 'than', thans: 4, meters: 96, kg: 0, actualRate: 54.25, stdRate: 61.00, targetQuality: 'SUPER DELUXE (8052) — 42', totalCost: 5208.00, status: 'কাটিং হয়নি', note: 'ঘরে থাকা ৪ থান (৯৬ মি.) → SUPER DELUXE 42-এ যাবে' },
+        { id: 'FAB_02', date: '2026-11-16', name: '১৬/১১/২৬ গজাল থান (২ থান)', kind: 'than', thans: 2, meters: 48, kg: 0, actualRate: 54.00, stdRate: 61.00, targetQuality: 'SUPER DELUXE (8052) — 42', totalCost: 2592.00, status: 'কাটিং হয়নি', note: '১৬/১১/২৬ বিলের ২ থান (৪৮ মি.) → SUPER DELUXE 42-এ যাবে' },
+        { id: 'FAB_03', date: '2026-11-16', name: 'FRIEND কাট-পিস বেল (৮০ কেজি)', kind: 'bale', thans: 0, meters: 0, kg: 80, actualRate: 488.875, stdRate: 488.875, targetQuality: 'মিক্সড (৫ কোয়ালিটি)', totalCost: 39110.00, status: 'কাটিং হয়নি', note: '৮০ কেজি @₹487 + ₹150 খরচ = ₹39,110; ৩৮ ও ৪২ সাইজের ৫ কোয়ালিটি বের হবে' }
+      ],
+      baleQualitySplit: {
+        baleName: 'FRIEND বেল-০১ (১৬/১১/২৬ — ৮০ কেজি)',
+        baleKg: 80,
+        baleTotalCost: 39110,
+        kgPerPc38: 0.18,
+        kgPerPc42: 0.20,
+        q_sd42: 0,
+        q_p78_42: 0,
+        q_p78_38: 0,
+        q_p70_42: 0,
+        q_p70_38: 0
+      },
+      monthlyKhatabookAudits: [
+        { id: 'MA_2026_11', month: '2026-11', openingReadyPcs: 602, kbNewStockAdded: 0, kbSoldPcs: 0, kbSalesRevenue: 0, kbSoldCogs: 0, kbClosingReadyPcs: 602, note: '২৩/১১/২৬ খাতাবুক ইনভেন্টরি রিপোর্ট (৬০২ পিস রেডি সায়া, খরচ ₹74,137.29, বিক্রয় মূল্য ₹77,774.50)' }
+      ],
+      meta: { updatedAt: new Date().toISOString(), cutoffDate: CUTOFF_DATE, version: 'v35_ZERO_DISCREPANCY_FINAL' }
     };
 
     let state = loadState();
@@ -621,7 +657,12 @@
           ...parsed,
           sackBatchCalc: { ...INITIAL_DATA.sackBatchCalc, ...(parsed.sackBatchCalc || {}) },
           pintuOldSettlement: { ...INITIAL_DATA.pintuOldSettlement, ...(parsed.pintuOldSettlement || {}) },
-          meta: { ...(parsed.meta || {}), cutoffDate: CUTOFF_DATE }
+          sewingRule: { ...INITIAL_DATA.sewingRule, ...(parsed.sewingRule || {}) },
+          baleQualitySplit: { ...INITIAL_DATA.baleQualitySplit, ...(parsed.baleQualitySplit || {}) },
+          qualityCostMaster: (parsed.qualityCostMaster && parsed.qualityCostMaster.length) ? parsed.qualityCostMaster : JSON.parse(JSON.stringify(INITIAL_DATA.qualityCostMaster)),
+          fabricBatches: (parsed.fabricBatches && parsed.fabricBatches.length) ? parsed.fabricBatches : JSON.parse(JSON.stringify(INITIAL_DATA.fabricBatches)),
+          monthlyKhatabookAudits: (parsed.monthlyKhatabookAudits && parsed.monthlyKhatabookAudits.length) ? parsed.monthlyKhatabookAudits : JSON.parse(JSON.stringify(INITIAL_DATA.monthlyKhatabookAudits)),
+          meta: { ...(parsed.meta || {}), cutoffDate: CUTOFF_DATE, version: 'v35_ZERO_DISCREPANCY_FINAL' }
         };
       } catch (e) {
         return JSON.parse(JSON.stringify(INITIAL_DATA));
@@ -1577,6 +1618,8 @@
           </div>
         </div>
 
+        ${renderZeroDiscrepancyPanel()}
+
         ${renderReconciliationPanel()}
 
         ${renderAutoProductionFlowPanel()}
@@ -2037,6 +2080,10 @@
             </div>
           </form>
         </div>
+        ${renderZeroDiscrepancyPanel()}
+        ${renderQualityStandardPanel()}
+        ${renderFabricBatchesPanel()}
+        ${renderBale5QualityPanel()}
         ${renderAutoCostEnginePanel()}
         ${renderAutoProductionFlowPanel()}
       `;
@@ -2165,6 +2212,8 @@
             <button class="btn gold" onclick="downloadRealExcel()">📗 অডিট Excel</button>
           </div>
         </div>
+
+        ${renderMonthly4LockAuditPanel()}
 
         <div class="panel">
           <h3>১. খাতাবুক রিপোর্ট দিয়ে অডিট করুন (PDF / CSV / Text)</h3>
@@ -2871,13 +2920,15 @@
     };
 
     window.openUserGuideModal = () => {
-      openModal('TANISHA DRESSES (v29) — কোথায় কীভাবে কী করবেন', `
+      openModal('TANISHA DRESSES (v35 ZERO-DISCREPANCY FINAL) — কোথায় কীভাবে কী করবেন', `
         <ul class="detail-list">
           <li><b>১. ড্যাশবোর্ড:</b> মহাজনের নিট বকেয়া, পিন্টু সাহার হিসাব, সব মালের লাভ-লস, ক্যাশ/ব্যাংক/UPI নিট, কাস্টমার বকেয়া এবং 21/11/2026-এর পরের অটোমেটিক ফ্যাক্টরি হিসাব এক জায়গায় দেখা যায়।</li>
           <li><b>২. ৪৮ কালার চার্ট (ডিপ ও লাইট):</b> ড্যাশবোর্ডের নিচে 48টি রঙের নমুনা ও নাম দেওয়া আছে। <b>সব (48)</b>, <b>ডিপ (24)</b> বা <b>লাইট (24)</b> চাপুন; রঙের পাশের <b>+ পিস</b> বা <b>+ রঙের পিস এন্ট্রি করুন</b> চেপে শুধু <b>38</b> বা <b>42</b> সাইজ ও <b>কতো পিস</b> দিন। পিস ও ডজন অটোমেটিক যোগ হবে।</li>
           <li><b>৩. মহাজন ও ক্রয়:</b> নতুন কাপড় কিনলে <b>+ নতুন কাপড় ক্রয়</b> চাপুন; টাকা দিলে <b>+ পেমেন্ট জমা</b> দিন। লেজারে <b>👁 দেখুন</b>, <b>✏ কারেকশন</b> ও <b>🗑</b> ডিলিট বাটন আছে।</li>
           <li><b>৪. কারিগর ও মজুরি:</b> <b>+ পিস দেওয়া / জমা / মজুরি</b> চেপে দেওয়া পিস, ফেরত পিস ও মজুরি লিখুন। রিতা সাহা ও ময়না বৈরাগ্য রানিং; দীপা রায় 01/12/2026 থেকে অটো-চালু হবে।</li>
-          <li><b>৫. সব মালের লাভ-লস ও ধূপকাঠি:</b> সায়া, নাইটি, কুর্তি, বিছানার চাদর ও ধূপকাঠি (SAHELI, DREAM FLOWER, INDIA ROCK, বক্রকুন্ড, ভক্তিদাম)-এর কেনা ও বিক্রি লিখলে নিট লাভ-লস হিসাব হবে। নিচে 80 কেজি বস্তা ক্যালকুলেটর রয়েছে।</li>
+          <li><b>৫. ৫ কোয়ালিটি (₹61/₹55/₹49), মাল্টি-ফ্যাব্রিক ব্যাচ ও ৮০ কেজি বেল:</b> সব মালের লাভ-লস ট্যাবে ৩টি স্ট্যান্ডার্ড কাপড়ের দর, মজুরি-বৃদ্ধি সিমুলেটর (+₹6 থেকে +₹24/ডজন), যেকোনো কাপড়ের ব্যাচ ও বাফার ফান্ড এবং ৮০ কেজি FRIEND বেলের ৫-কোয়ালিটি হিসাব একসাথে পাবেন।</li>
+          <li><b>৬. মাসিক ৪-লক খাতাবুক অডিট:</b> খাতাবুক অডিট ট্যাবে প্রতি মাসের শেষে ক্লোজিং স্টক ও বিক্রি বসালেই কাটিং, সেলাই ও খাতাবুকের ৬০২ পিস ওপেনিং স্টকের সাথে অটোমেটিক মিলিয়ে দেবে।</li>
+          <li><b>৭. ধূপকাঠি ও ব্যাকআপ:</b> সায়া, নাইটি, কুর্তি, বিছানার চাদর ও ধূপকাঠি (SAHELI, DREAM FLOWER, INDIA ROCK, বক্রকুন্ড, ভক্তিদাম)-এর কেনা ও বিক্রি লিখলে নিট লাভ-লস হিসাব হবে। নিচে 80 কেজি বস্তা ক্যালকুলেটর রয়েছে।</li>
           <li><b>৬. খাতাবুক অডিট ও ব্যাকআপ:</b> খাতাবুকের রিপোর্ট ফাইল বা লেখা পেস্ট করে মিলিয়ে নিন, আর <b>সেটিংস ও ব্যাকআপ</b> থেকে নিয়মিত <b>JSON ব্যাকআপ</b> সেভ রাখুন।</li>
         </ul>
       `);
@@ -3194,6 +3245,590 @@
         note: `প্রতি ১ ডজন সেলাইয়ে ${fd.get('reelsPerDozen')} রিল সুতো লাগে`
       };
       saveState(); closeModal(); render(); toast('সুতোর অটো-নিয়ম সেভ হয়েছে (v31)!');
+    };
+
+    function getConversionCostDz(extraHike = 0) {
+      const r = state.sewingRule || { cuttingPerDozen: 22, sewingPerDozen: 36, reelsPerDozen: 1, ratePerReel: 7, extraPerDozen: 20 };
+      const cut = Number(r.cuttingPerDozen ?? 22);
+      const sew = Number(r.sewingPerDozen ?? 36);
+      const thr = Number(r.reelsPerDozen ?? 1) * Number(r.ratePerReel ?? 7);
+      const ext = Number(r.extraPerDozen ?? 20);
+      return cut + sew + thr + ext + Number(extraHike || 0);
+    }
+
+    function renderQualityStandardPanel() {
+      const hike = Number(state.wageHikeExtraDz || 0);
+      const convDz = getConversionCostDz(hike);
+      const convPc = convDz / 12;
+      const list = state.qualityCostMaster || [];
+      const kbTotalQty = list.reduce((s, q) => s + Number(q.kbOpeningQty || 0), 0);
+      const kbTotalCost = list.reduce((s, q) => s + Number(q.kbOpeningCostVal || 0), 0);
+      const kbTotalSell = list.reduce((s, q) => s + (Number(q.kbOpeningQty || 0) * Number(q.sellPrice || 0)), 0);
+      const kbTotalProf = kbTotalSell - kbTotalCost;
+
+      return `
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <div>
+              <h3 style="margin:0">৫ কোয়ালিটি স্ট্যান্ডার্ড খরচ (₹61 / ₹55 / ₹49 মিটার) ও মজুরি-বৃদ্ধি সিমুলেটর (v34)</h3>
+              <div class="sub">দোকানদারের দাম স্থির রেখে সর্বোচ্চ কাপড় দর ও ভবিষ্যৎ মজুরি বৃদ্ধি (+₹${hike}/ডজন) অনুযায়ী প্রকৃত লাভ-লস</div>
+            </div>
+            <div class="btn-group no-print">
+              <button class="btn small ${hike === 0 ? 'primary' : ''}" onclick="setWageHikeSim(0)">বর্তমান (₹85/ডজন)</button>
+              <button class="btn small ${hike === 6 ? 'primary' : ''}" onclick="setWageHikeSim(6)">+₹6/ডজন</button>
+              <button class="btn small ${hike === 12 ? 'primary' : ''}" onclick="setWageHikeSim(12)">+₹12/ডজন</button>
+              <button class="btn small ${hike === 18 ? 'primary' : ''}" onclick="setWageHikeSim(18)">+₹18/ডজন</button>
+              <button class="btn small ${hike === 24 ? 'primary' : ''}" onclick="setWageHikeSim(24)">+₹24/ডজন</button>
+            </div>
+          </div>
+
+          <div class="notice ok">
+            <b>খাতাবুক ওপেনিং রেডি স্টক (২৩/১১/২৬):</b> মোট <b>${kbTotalQty} পিস</b> · মোট খরচ <b>${money(kbTotalCost)}</b> · বিক্রয় মূল্য <b>${money(kbTotalSell)}</b> · সম্ভাব্য লাভ <b>${money(kbTotalProf)}</b> | বর্তমান রূপান্তর খরচ: <b>${money(convDz)}/ডজন (${money(convPc)}/পিস)</b>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>কোয়ালিটি ও সাইজ</th>
+                  <th class="right">স্ট্যান্ডার্ড কাপড় দর</th>
+                  <th class="right">কাপড়/পিস</th>
+                  <th class="right">মোট খরচ/পিস</th>
+                  <th class="right">বিক্রয় দর</th>
+                  <th class="right">লাভ/পিস</th>
+                  <th class="right">লাভ/ডজন</th>
+                  <th class="right">লাভের হার</th>
+                  <th class="right">খাতাবুক স্টক</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${list.map(q => {
+                  const fabPc = Number(q.stdFabricRateM || 0) * Number(q.metersPerPc || 2);
+                  const totPc = fabPc + convPc;
+                  const profPc = Number(q.sellPrice || 0) - totPc;
+                  const profDz = profPc * 12;
+                  const mkPct = totPc > 0 ? (profPc / totPc * 100) : 0;
+                  return `<tr>
+                    <td><b>${esc(q.name)}</b></td>
+                    <td class="right">₹${Number(q.stdFabricRateM || 0)}/মি.</td>
+                    <td class="right">${money(fabPc)}</td>
+                    <td class="right"><b>${money(totPc)}</b></td>
+                    <td class="right"><b>${money(q.sellPrice)}</b></td>
+                    <td class="right"><b style="color:${profPc >= 0 ? '#166b46' : '#b23232'}">${money(profPc)}</b></td>
+                    <td class="right"><span class="pill ${profDz >= 0 ? '' : 'red'}">${money(profDz)}</span></td>
+                    <td class="right">${mkPct.toFixed(1)}%</td>
+                    <td class="right">${Number(q.kbOpeningQty || 0)} pcs</td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    window.setWageHikeSim = (amt) => {
+      state.wageHikeExtraDz = Number(amt || 0);
+      saveState(); render();
+    };
+
+    function renderFabricBatchesPanel() {
+      const batches = state.fabricBatches || [];
+      let totalActualVal = 0, totalBufferFund = 0, totalThans = 0, totalMeters = 0, totalKg = 0;
+      const rowsHtml = batches.map(b => {
+        const actCost = Number(b.totalCost || 0);
+        totalActualVal += actCost;
+        let bufferAmt = 0;
+        if (b.kind === 'than') {
+          totalThans += Number(b.thans || 0);
+          totalMeters += Number(b.meters || 0);
+          const stdCost = Number(b.meters || 0) * Number(b.stdRate || b.actualRate || 0);
+          bufferAmt = Math.max(0, stdCost - actCost);
+        } else {
+          totalKg += Number(b.kg || 0);
+        }
+        totalBufferFund += bufferAmt;
+        return `<tr>
+          <td>${esc(b.date)}</td>
+          <td><b>${esc(b.name)}</b><br><span class="sub">${esc(b.note || '')}</span></td>
+          <td>${b.kind === 'than' ? (b.thans + ' থান (' + b.meters + ' মি.)') : (b.kg + ' কেজি বেল')}</td>
+          <td class="right">${b.kind === 'than' ? ('₹' + b.actualRate + '/মি.') : ('₹' + Number(b.actualRate).toFixed(2) + '/কেজি')}</td>
+          <td class="right">${b.kind === 'than' ? ('₹' + b.stdRate + '/মি.') : 'ব্যাচ ওজন'}</td>
+          <td><span class="pill purple">${esc(b.targetQuality)}</span></td>
+          <td class="right"><b>${money(actCost)}</b></td>
+          <td class="right"><span class="pill ${bufferAmt > 0 ? '' : 'old'}">+${money(bufferAmt)}</span></td>
+          <td><span class="pill ${b.status === 'কাটিং হয়নি' ? 'warn' : ''}">${esc(b.status)}</span></td>
+          <td class="no-print" style="white-space:nowrap">
+            <button class="btn small" onclick="toggleFabricBatchStatus('${b.id}')">স্ট্যাটাস</button>
+            <button class="btn small danger" onclick="deleteFabricBatch('${b.id}')">🗑</button>
+          </td>
+        </tr>`;
+      }).join('');
+
+      return `
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <div>
+              <h3 style="margin:0">মাল্টি-ফ্যাব্রিক কাঁচা কাপড় ব্যাচ ও বাফার ফান্ড (যেকোনো কাপড় — v34)</h3>
+              <div class="sub">V. GOLD, PRATIGYA, GANI, ANSHK, R. MANDIR বা যেকোনো নতুন কাপড়ের আসল বিল দর বনাম স্ট্যান্ডার্ড (₹61/₹55/₹49) বাফার রিজার্ভ</div>
+            </div>
+            <div class="btn-group no-print">
+              <button class="btn small primary" onclick="openAddFabricBatchModal()">+ নতুন কাপড় ব্যাচ যোগ করুন</button>
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="card"><div class="metric-label">মোট কাঁচা থান কাপড়</div><div class="metric">${totalThans} থান</div><div class="metric-note">${totalMeters} মিটার</div></div>
+            <div class="card"><div class="metric-label">মোট কাট-পিস বেল</div><div class="metric">${totalKg} কেজি</div><div class="metric-note">FRIEND কাট-পিস</div></div>
+            <div class="card"><div class="metric-label">কাঁচা কাপড়ের মোট মূল্য</div><div class="metric purple">${money(totalActualVal)}</div><div class="metric-note">মাসিক খরচে বাদ যাবে না</div></div>
+            <div class="card"><div class="metric-label">কাপড় ও মজুরি বাফার ফান্ড</div><div class="metric green">+${money(totalBufferFund)}</div><div class="metric-note">কম দামে কেনার অতিরিক্ত রিজার্ভ</div></div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>তারিখ</th>
+                  <th>কাপড়ের নাম / বিবরণ</th>
+                  <th>পরিমাণ</th>
+                  <th class="right">আসল বিল দর</th>
+                  <th class="right">স্ট্যান্ডার্ড দর</th>
+                  <th>টার্গেট কোয়ালিটি</th>
+                  <th class="right">মোট বিল</th>
+                  <th class="right">বাফার রিজার্ভ</th>
+                  <th>অবস্থা</th>
+                  <th class="no-print">অ্যাকশন</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHtml}</tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    window.openAddFabricBatchModal = () => {
+      openModal('নতুন কাঁচা কাপড় ব্যাচ যোগ করুন (যেকোনো ব্র্যান্ড)', `
+        <form onsubmit="saveFabricBatch(event)">
+          <div class="field-grid">
+            <div class="field"><label>তারিখ</label><input type="date" name="date" value="${getTodayStr()}" required></div>
+            <div class="field"><label>কাপড়ের নাম (V. GOLD / PRATIGYA / GANI / ইত্যাদি)</label><input name="name" placeholder="যেমন: PRATIGYA / MUSKAN 8052" required></div>
+            <div class="field"><label>কাপড়ের ধরন</label><select name="kind"><option value="than">মিটার থান (Than)</option><option value="bale">কেজি বেল (FRIEND Cut-Piece)</option></select></div>
+            <div class="field"><label>টার্গেট কোয়ালিটি</label><select name="targetQuality"><option value="SUPER DELUXE (8052) — 42">SUPER DELUXE (8052) — 42</option><option value="PREMIUM COTTON (78) — 42">PREMIUM COTTON (78) — 42</option><option value="PREMIUM COTTON (78) — 38">PREMIUM COTTON (78) — 38</option><option value="PREMIUM COTTON (70) — 42">PREMIUM COTTON (70) — 42</option><option value="মিক্সড (৫ কোয়ালিটি)">মিক্সড (৫ কোয়ালিটি)</option></select></div>
+            <div class="field"><label>থান সংখ্যা (থান হলে)</label><input type="number" name="thans" value="0" min="0"></div>
+            <div class="field"><label>মোট মিটার (থান হলে)</label><input type="number" step="0.01" name="meters" value="0" min="0"></div>
+            <div class="field"><label>মোট কেজি (বেল হলে)</label><input type="number" step="0.01" name="kg" value="0" min="0"></div>
+            <div class="field"><label>আসল বিলের দর (₹/মি. বা ₹/কেজি)</label><input type="number" step="0.01" name="actualRate" value="54" required></div>
+            <div class="field"><label>স্ট্যান্ডার্ড রেট (₹61 / ₹55 / ₹49)</label><input type="number" step="0.01" name="stdRate" value="61" required></div>
+            <div class="field"><label>মোট বিল টাকা (₹)</label><input type="number" step="0.01" name="totalCost" required></div>
+            <div class="field full"><label>নোট</label><input name="note" placeholder="ঐচ্ছিক বিবরণ"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">কাপড় ব্যাচ সেভ করুন</button></div>
+        </form>
+      `);
+    };
+
+    window.saveFabricBatch = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      state.fabricBatches = state.fabricBatches || [];
+      state.fabricBatches.push({
+        id: 'FAB_' + Date.now(),
+        date: fd.get('date'),
+        name: fd.get('name'),
+        kind: fd.get('kind'),
+        thans: parseInt(fd.get('thans') || 0, 10),
+        meters: parseFloat(fd.get('meters') || 0),
+        kg: parseFloat(fd.get('kg') || 0),
+        actualRate: parseFloat(fd.get('actualRate') || 0),
+        stdRate: parseFloat(fd.get('stdRate') || 0),
+        targetQuality: fd.get('targetQuality'),
+        totalCost: parseFloat(fd.get('totalCost') || 0),
+        status: 'কাটিং হয়নি',
+        note: fd.get('note') || ''
+      });
+      saveState(); closeModal(); render(); toast('নতুন কাপড় ব্যাচ যুক্ত হয়েছে (v34)!');
+    };
+
+    window.toggleFabricBatchStatus = (id) => {
+      const b = (state.fabricBatches || []).find(x => x.id === id);
+      if (!b) return;
+      b.status = b.status === 'কাটিং হয়নি' ? 'কাটিং চলছে / সম্পন্ন' : 'কাটিং হয়নি';
+      saveState(); render(); toast('কাপড় ব্যাচের স্ট্যাটাস আপডেট হয়েছে।');
+    };
+
+    window.deleteFabricBatch = (id) => {
+      if (!confirm('এই কাপড় ব্যাচটি মুছে ফেলবেন?')) return;
+      state.fabricBatches = (state.fabricBatches || []).filter(x => x.id !== id);
+      saveState(); render(); toast('কাপড় ব্যাচ মুছে ফেলা হয়েছে।');
+    };
+
+    function calcBale5QualitySplit(bs) {
+      const convPc = getConversionCostDz(state.wageHikeExtraDz || 0) / 12;
+      const baleKg = Math.max(0.01, Number(bs.baleKg || 80));
+      const baleCost = Number(bs.baleTotalCost || 39110);
+      const effKgRate = baleCost / baleKg;
+      const kg38 = Number(bs.kgPerPc38 || 0.18);
+      const kg42 = Number(bs.kgPerPc42 || 0.20);
+      const cost38 = (kg38 * effKgRate) + convPc;
+      const cost42 = (kg42 * effKgRate) + convPc;
+
+      const q1 = Math.max(0, Number(bs.q_sd42 || 0));
+      const q2 = Math.max(0, Number(bs.q_p78_42 || 0));
+      const q3 = Math.max(0, Number(bs.q_p78_38 || 0));
+      const q4 = Math.max(0, Number(bs.q_p70_42 || 0));
+      const q5 = Math.max(0, Number(bs.q_p70_38 || 0));
+
+      const total42 = q1 + q2 + q4;
+      const total38 = q3 + q5;
+      const totalPcs = total42 + total38;
+      const usedKg = (total42 * kg42) + (total38 * kg38);
+      const diffKg = baleKg - usedKg;
+      const totalProdCost = (total42 * cost42) + (total38 * cost38);
+      const totalSellVal = (q1 * 134.15) + (q2 * 124.25) + (q3 * 115.00) + (q4 * 115.00) + (q5 * 110.00);
+      const netProfit = totalSellVal - totalProdCost;
+      const markupPct = totalProdCost > 0 ? (netProfit / totalProdCost * 100) : 0;
+
+      return { effKgRate, cost38, cost42, total42, total38, totalPcs, usedKg, diffKg, totalProdCost, totalSellVal, netProfit, markupPct };
+    }
+
+    function renderBale5QualityPanel() {
+      const bs = state.baleQualitySplit || INITIAL_DATA.baleQualitySplit;
+      const res = calcBale5QualitySplit(bs);
+      return `
+        <div class="panel">
+          <h3>৮০ কেজি FRIEND কাট-পিস বেল — ৫ কোয়ালিটি ব্যাচ লাভ-লস (v34)</h3>
+          <div class="sub" style="margin-bottom:10px">এক বস্তা (₹${Number(bs.baleTotalCost || 39110).toLocaleString('en-IN')}) থেকে সেলাই শেষে ৫ কোয়ালিটির কতো পিস বের হলো তা লিখলেই পুরো বস্তার নিট লাভ-লস অটোমেটিক বের হবে</div>
+          <form onsubmit="saveBale5QualityForm(event)">
+            <div class="field-grid">
+              <div class="field"><label>বস্তার মোট ওজন (কেজি)</label><input type="number" step="0.1" id="b5Kg" value="${bs.baleKg}" oninput="liveBale5Preview()"></div>
+              <div class="field"><label>বস্তার মোট বিল + খরচ (₹)</label><input type="number" step="0.01" id="b5Cost" value="${bs.baleTotalCost}" oninput="liveBale5Preview()"></div>
+              <div class="field"><label>SUPER DELUXE (42) @₹134.15 পিস</label><input type="number" id="b5Q1" value="${bs.q_sd42}" min="0" oninput="liveBale5Preview()"></div>
+              <div class="field"><label>PREMIUM 78 (42) @₹124.25 পিস</label><input type="number" id="b5Q2" value="${bs.q_p78_42}" min="0" oninput="liveBale5Preview()"></div>
+              <div class="field"><label>PREMIUM 78 (38) @₹115.00 পিস</label><input type="number" id="b5Q3" value="${bs.q_p78_38}" min="0" oninput="liveBale5Preview()"></div>
+              <div class="field"><label>PREMIUM 70 (42) @₹115.00 পিস</label><input type="number" id="b5Q4" value="${bs.q_p70_42}" min="0" oninput="liveBale5Preview()"></div>
+              <div class="field"><label>FRIEND / WHITE (38) @₹110.00 পিস</label><input type="number" id="b5Q5" value="${bs.q_p70_38}" min="0" oninput="liveBale5Preview()"></div>
+            </div>
+            <div class="calc-box" id="bale5LiveBox">${renderBale5ResultHTML(res)}</div>
+            <div class="btn-group" style="margin-top:10px">
+              <button class="btn primary" type="submit">বেল ৫-কোয়ালিটি হিসাব সেভ করুন</button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    function renderBale5ResultHTML(r) {
+      return `
+        <div><b>প্রতি পিস খরচ:</b> ৩৮ সাইজ <b>${money(r.cost38)}</b> · ৪২ সাইজ <b>${money(r.cost42)}</b> | <b>মোট পিস:</b> ${r.totalPcs} pcs (${r.total42}টি 42 + ${r.total38}টি 38) | <b>কাপড় ব্যবহৃত:</b> ${r.usedKg.toFixed(2)} কেজি (বাকি: ${r.diffKg.toFixed(2)} কেজি)</div>
+        <div style="margin-top:8px"><b>ব্যাচের মোট তৈরি খরচ:</b> ${money(r.totalProdCost)} · <b>৫ কোয়ালিটির মোট বিক্রয় মূল্য:</b> <b>${money(r.totalSellVal)}</b> · <b>নিট লাভ:</b> <span class="pill ${r.netProfit >= 0 ? '' : 'red'}">${money(r.netProfit)} (${r.markupPct.toFixed(1)}%)</span></div>
+      `;
+    }
+
+    window.liveBale5Preview = () => {
+      const box = document.getElementById('bale5LiveBox');
+      if (!box) return;
+      const cur = {
+        baleKg: parseFloat(document.getElementById('b5Kg')?.value || 80),
+        baleTotalCost: parseFloat(document.getElementById('b5Cost')?.value || 39110),
+        kgPerPc38: 0.18,
+        kgPerPc42: 0.20,
+        q_sd42: parseInt(document.getElementById('b5Q1')?.value || 0, 10),
+        q_p78_42: parseInt(document.getElementById('b5Q2')?.value || 0, 10),
+        q_p78_38: parseInt(document.getElementById('b5Q3')?.value || 0, 10),
+        q_p70_42: parseInt(document.getElementById('b5Q4')?.value || 0, 10),
+        q_p70_38: parseInt(document.getElementById('b5Q5')?.value || 0, 10)
+      };
+      box.innerHTML = renderBale5ResultHTML(calcBale5QualitySplit(cur));
+    };
+
+    window.saveBale5QualityForm = (e) => {
+      e.preventDefault();
+      state.baleQualitySplit = {
+        ...(state.baleQualitySplit || INITIAL_DATA.baleQualitySplit),
+        baleKg: parseFloat(document.getElementById('b5Kg').value || 80),
+        baleTotalCost: parseFloat(document.getElementById('b5Cost').value || 39110),
+        q_sd42: parseInt(document.getElementById('b5Q1').value || 0, 10),
+        q_p78_42: parseInt(document.getElementById('b5Q2').value || 0, 10),
+        q_p78_38: parseInt(document.getElementById('b5Q3').value || 0, 10),
+        q_p70_42: parseInt(document.getElementById('b5Q4').value || 0, 10),
+        q_p70_38: parseInt(document.getElementById('b5Q5').value || 0, 10)
+      };
+      saveState(); render(); toast('৮০ কেজি বেলের ৫-কোয়ালিটি হিসাব সেভ হয়েছে!');
+    };
+
+    function renderMonthly4LockAuditPanel() {
+      const rec = productionReconciliationStats();
+      const audits = state.monthlyKhatabookAudits || [];
+      const latest = audits[audits.length - 1] || { month: getTodayStr().slice(0, 7), openingReadyPcs: 602, kbNewStockAdded: 0, kbSoldPcs: 0, kbSalesRevenue: 0, kbSoldCogs: 0, kbClosingReadyPcs: 602 };
+
+      const lock1Unsewn = rec.cutActiveReturned - rec.sewActiveIssued;
+      const lock1Ok = lock1Unsewn >= 0;
+      const lock2WithKarigar = (rec.sewActiveIssued - rec.sewActiveReturned) + rec.preCutoffSewPending;
+      const lock3Diff = rec.sewActiveReturned - Number(latest.kbNewStockAdded || 0);
+      const lock3Ok = lock3Diff === 0;
+      const expectedClosing = Number(latest.openingReadyPcs || 602) + Number(latest.kbNewStockAdded || 0) - Number(latest.kbSoldPcs || 0);
+      const lock4Diff = Number(latest.kbClosingReadyPcs || 0) - expectedClosing;
+      const lock4Ok = lock4Diff === 0;
+
+      const extraOpex = (state.expenses || []).filter(e => String(e.date || '') > CUTOFF_DATE).reduce((s, e) => s + Number(e.amount || 0), 0);
+      const trueMonthlyProfit = Number(latest.kbSalesRevenue || 0) - Number(latest.kbSoldCogs || 0) - extraOpex;
+
+      return `
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <div>
+              <h3 style="margin:0">মাসিক ৪-লক খাতাবুক বনাম তানিশা অ্যাপ অডিট (${esc(latest.month)} — v34)</h3>
+              <div class="sub">প্রতি মাসে কাটিং → সেলাই → খাতাবুক রেডি স্টক → আসল নিট লাভ এক ক্লিকে মিলিয়ে নিন</div>
+            </div>
+            <div class="btn-group no-print">
+              <button class="btn small primary" onclick="openMonthlyAuditModal()">+ মাসিক খাতাবুক ক্লোজিং এন্ট্রি</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>অডিট লক</th>
+                  <th>তানিশা অ্যাপ / ফর্মুলা</th>
+                  <th>খাতাবুক / ফলাফল</th>
+                  <th>স্ট্যাটাস</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>লক ১: কাটিং বনাম সেলাই দেওয়া</b></td>
+                  <td>কাটিং রেডি (${rec.cutActiveReturned}) − সেলাই দেওয়া (${rec.sewActiveIssued})</td>
+                  <td>ঘরে কাটা কাপড়: <b>${lock1Unsewn} pcs</b></td>
+                  <td><span class="pill ${lock1Ok ? '' : 'red'}">${lock1Ok ? '✔ ঠিক আছে' : '🚨 গরমিল'}</span></td>
+                </tr>
+                <tr>
+                  <td><b>লক ২: কারিগরের হাতে বাকি পিস</b></td>
+                  <td>নতুন বাকি (${rec.sewActiveIssued - rec.sewActiveReturned}) + আগের রিতা (${rec.preCutoffSewPending})</td>
+                  <td>মোট হাতে বাকি: <b>${lock2WithKarigar} pcs</b></td>
+                  <td><span class="pill warn">ট্র্যাকিং চালু</span></td>
+                </tr>
+                <tr>
+                  <td><b>লক ৩: সেলাই ফেরত = খাতাবুক নতুন স্টক</b></td>
+                  <td>অ্যাপ সেলাই ফেরত: <b>${rec.sewActiveReturned} pcs</b></td>
+                  <td>খাতাবুকে নতুন স্টক: <b>${Number(latest.kbNewStockAdded || 0)} pcs</b> (পার্থক্য: ${lock3Diff})</td>
+                  <td><span class="pill ${lock3Ok ? '' : 'red'}">${lock3Ok ? '✔ হুবহু মিলেছে' : '🚨 ' + Math.abs(lock3Diff) + ' পিস গরমিল'}</span></td>
+                </tr>
+                <tr>
+                  <td><b>লক ৪: ক্লোজিং স্টক ও আসল মাসিক লাভ</b></td>
+                  <td>ওপেনিং (${latest.openingReadyPcs}) + নতুন (${latest.kbNewStockAdded}) − বিক্রি (${latest.kbSoldPcs}) = <b>${expectedClosing} pcs</b></td>
+                  <td>খাতাবুক ক্লোজিং: <b>${latest.kbClosingReadyPcs} pcs</b> | আসল নিট লাভ: <b>${money(trueMonthlyProfit)}</b></td>
+                  <td><span class="pill ${lock4Ok ? '' : 'red'}">${lock4Ok ? '✔ স্টক মিলেছে' : '🚨 ' + Math.abs(lock4Diff) + ' পিস পার্থক্য'}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    window.openMonthlyAuditModal = () => {
+      const audits = state.monthlyKhatabookAudits || [];
+      const cur = audits[audits.length - 1] || { month: getTodayStr().slice(0, 7), openingReadyPcs: 602, kbNewStockAdded: 0, kbSoldPcs: 0, kbSalesRevenue: 0, kbSoldCogs: 0, kbClosingReadyPcs: 602, note: '' };
+      openModal('মাসিক খাতাবুক ক্লোজিং ও স্টক অডিট এন্ট্রি', `
+        <form onsubmit="saveMonthlyAuditEntry(event)">
+          <div class="field-grid">
+            <div class="field"><label>মাস (YYYY-MM)</label><input name="month" value="${esc(cur.month)}" required></div>
+            <div class="field"><label>মাসের শুরুতে খাতাবুক রেডি স্টক (পিস)</label><input type="number" name="openingReadyPcs" value="${Number(cur.openingReadyPcs || 602)}" required></div>
+            <div class="field"><label>এই মাসে খাতাবুকে ৫ কোয়ালিটিতে নতুন স্টক এন্ট্রি (পিস)</label><input type="number" name="kbNewStockAdded" value="${Number(cur.kbNewStockAdded || 0)}" required></div>
+            <div class="field"><label>এই মাসে খাতাবুকে মোট বিক্রি (পিস)</label><input type="number" name="kbSoldPcs" value="${Number(cur.kbSoldPcs || 0)}" required></div>
+            <div class="field"><label>মাস শেষে খাতাবুক ক্লোজিং রেডি স্টক (পিস)</label><input type="number" name="kbClosingReadyPcs" value="${Number(cur.kbClosingReadyPcs || 602)}" required></div>
+            <div class="field"><label>খাতাবুক মাসিক মোট বিক্রি টাকা (₹)</label><input type="number" step="0.01" name="kbSalesRevenue" value="${Number(cur.kbSalesRevenue || 0)}"></div>
+            <div class="field full"><label>বিক্রি হওয়া পিসের মোট তৈরি খরচ / COGS (₹)</label><input type="number" step="0.01" name="kbSoldCogs" value="${Number(cur.kbSoldCogs || 0)}"></div>
+            <div class="field full"><label>অডিট নোট</label><input name="note" value="${esc(cur.note || '')}"></div>
+          </div>
+          <div class="btn-group" style="margin-top:14px"><button class="btn primary" type="submit">মাসিক অডিট সেভ ও যাচাই করুন</button></div>
+        </form>
+      `);
+    };
+
+    window.saveMonthlyAuditEntry = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const month = fd.get('month');
+      state.monthlyKhatabookAudits = state.monthlyKhatabookAudits || [];
+      const existing = state.monthlyKhatabookAudits.find(x => x.month === month);
+      const recObj = {
+        id: existing ? existing.id : ('MA_' + Date.now()),
+        month,
+        openingReadyPcs: parseInt(fd.get('openingReadyPcs') || 0, 10),
+        kbNewStockAdded: parseInt(fd.get('kbNewStockAdded') || 0, 10),
+        kbSoldPcs: parseInt(fd.get('kbSoldPcs') || 0, 10),
+        kbClosingReadyPcs: parseInt(fd.get('kbClosingReadyPcs') || 0, 10),
+        kbSalesRevenue: parseFloat(fd.get('kbSalesRevenue') || 0),
+        kbSoldCogs: parseFloat(fd.get('kbSoldCogs') || 0),
+        note: fd.get('note') || ''
+      };
+      if (existing) Object.assign(existing, recObj);
+      else state.monthlyKhatabookAudits.push(recObj);
+      saveState(); closeModal(); render(); toast('মাসিক খাতাবুক অডিট আপডেট হয়েছে (v34)!');
+    };
+
+    function getZeroDiscrepancyReport() {
+      const hike = Number(state.wageHikeExtraDz || 0);
+      const convDz = getConversionCostDz(hike);
+      const convPc = convDz / 12;
+
+      // 1. Check every quality in qualityCostMaster for loss or low margin (< 5%)
+      const qList = state.qualityCostMaster || [];
+      const qualityAlerts = [];
+      let totalTargetValue8Pct = 0;
+      let totalTargetCost = 0;
+
+      for (const q of qList) {
+        const fabPc = Number(q.stdFabricRateM || 0) * Number(q.metersPerPc || 2);
+        const totPc = fabPc + convPc;
+        const sellPc = Number(q.sellPrice || 0);
+        const profPc = sellPc - totPc;
+        const profDz = profPc * 12;
+        const markupPct = totPc > 0 ? (profPc / totPc * 100) : 0;
+
+        const qty = Number(q.kbOpeningQty || 0);
+        const cVal = Number(q.kbOpeningCostVal || 0);
+        totalTargetCost += cVal;
+        totalTargetValue8Pct += (cVal * 1.08);
+
+        if (profPc < 0) {
+          qualityAlerts.push({
+            level: 'ERR',
+            title: `লস হচ্ছে: ${q.name} (খরচ ${money(totPc)} বনাম বিক্রি ${money(sellPc)} → প্রতি পিসে ${money(profPc)} লস)`
+          });
+        } else if (markupPct < 5.0) {
+          qualityAlerts.push({
+            level: 'WARN',
+            title: `মার্জিন ৫%-এর নিচে: ${q.name} (লাভ ${markupPct.toFixed(1)}% / ${money(profDz)}/ডজন · ৮% লাভে সঠিক দর হওয়া উচিত ${money(totPc * 1.08)}/পিস)`
+          });
+        }
+      }
+
+      // 2. Check missing pieces across karigars (issued - returned)
+      const missingKarigars = [];
+      for (const k of (state.karigars || [])) {
+        const ks = karigarStats(k.id);
+        if (ks.pendingPcs > 0) {
+          missingKarigars.push({
+            name: k.name,
+            pendingPcs: ks.pendingPcs,
+            wageEst: (ks.pendingPcs / 12) * Number(k.ratePerDozen || 36)
+          });
+        }
+      }
+
+      // 3. Check raw cloth vs finished stock separation (V. GOLD 4 thans + 16/11 2 thans + 80kg bale)
+      const batches = state.fabricBatches || [];
+      const rawTotal = batches.reduce((s, b) => s + Number(b.totalCost || 0), 0);
+
+      // 4. Check monthly Khatabook audit alignment
+      const audits = state.monthlyKhatabookAudits || [];
+      const latestAudit = audits[audits.length - 1] || { openingReadyPcs: 602, kbNewStockAdded: 0, kbSoldPcs: 0, kbClosingReadyPcs: 602, kbSalesRevenue: 0, kbSoldCogs: 0 };
+      const rec = productionReconciliationStats();
+      const expectedClosing = Number(latestAudit.openingReadyPcs || 602) + Number(latestAudit.kbNewStockAdded || 0) - Number(latestAudit.kbSoldPcs || 0);
+      const closingGap = Number(latestAudit.kbClosingReadyPcs || 0) - expectedClosing;
+      const handoverGap = rec.sewActiveReturned - Number(latestAudit.kbNewStockAdded || 0);
+
+      return {
+        convDz,
+        convPc,
+        qualityAlerts,
+        missingKarigars,
+        rawTotal,
+        closingGap,
+        handoverGap,
+        totalTargetCost,
+        totalTargetValue8Pct,
+        fair8PctGain: totalTargetValue8Pct - totalTargetCost
+      };
+    }
+
+    function renderZeroDiscrepancyPanel() {
+      const g = getZeroDiscrepancyReport();
+      return `
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <div>
+              <h3 style="margin:0">জিরো-অসঙ্গতি গার্ড: লস, হারানো পিস ও খাতাবুক মিল চেক (v35)</h3>
+              <div class="sub">কোন কোয়ালিটিতে লাভ কম/লস হচ্ছে, কার কাছে কতো পিস বাকি আছে এবং খাতাবুকে কোনো ঘাটতি আছে কি না তা এক নজরে যাচাই</div>
+            </div>
+            <div class="btn-group no-print">
+              <button class="btn small gold" onclick="openEditQualityPricesModal()">✏ কোয়ালিটি দর ও ৮% মূল্য ঠিক করুন</button>
+              <button class="btn small primary" onclick="switchTab('audit')">☑ মাসিক অডিট দেখুন</button>
+            </div>
+          </div>
+
+          <div class="notice ok">
+            <b>সঠিক মূল্য ও ৮% লক্ষ্যমাত্রা সারাংশ:</b> খাতাবুকের 602 পিস ওপেনিং রেডি স্টকের খরচ <b>${money(g.totalTargetCost)}</b> — ৮% ন্যায্য লাভে মোট বিক্রয় মূল্য হওয়া উচিত <b>${money(g.totalTargetValue8Pct)}</b> (মোট লাভ <b>+${money(g.fair8PctGain)}</b>)।
+          </div>
+
+          ${g.qualityAlerts.length ? g.qualityAlerts.map(a => `
+            <div class="notice ${a.level === 'ERR' ? 'err' : ''}">
+              <b>${a.level === 'ERR' ? '🚨' : '⚠️'} ${esc(a.title)}</b>
+            </div>
+          `).join('') : '<div class="notice ok"><b>✔ সব কোয়ালিটিতে লাভের হার সন্তোষজনক আছে।</b></div>'}
+
+          ${g.missingKarigars.length ? `
+            <div class="notice">
+              <b>📌 কারিগরের হাতে পিস বাকি / ফেরত-অপেক্ষায়:</b>
+              ${g.missingKarigars.map(m => `${esc(m.name)}: <b>${m.pendingPcs} পিস</b>`).join(' · ')}
+              (নতুন কাজ শুরু হলে কাটিং ও সেলাইয়ের পিস আলাদাভাবে মিলিয়ে নিন)।
+            </div>
+          ` : '<div class="notice ok"><b>✔ কোনো কারিগরের হাতে পিস বাকি নেই।</b></div>'}
+
+          ${(g.closingGap !== 0 || g.handoverGap !== 0) ? `
+            <div class="notice err">
+              <b>🚨 খাতাবুক ও অ্যাপের মধ্যে পিস অসঙ্গতি পাওয়া গেছে:</b>
+              ${g.handoverGap !== 0 ? `সেলাই ফেরত বনাম খাতাবুক নতুন স্টক পার্থক্য: <b>${g.handoverGap} পিস</b>। ` : ''}
+              ${g.closingGap !== 0 ? `খাতাবুক ক্লোজিং স্টক পার্থক্য: <b>${g.closingGap} পিস</b>।` : ''}
+            </div>
+          ` : '<div class="notice ok"><b>✔ মাসিক খাতাবুক ক্লোজিং ও হ্যান্ডওভার পিসে কোনো গরমিল নেই।</b></div>'}
+        </div>
+      `;
+    }
+
+    window.openEditQualityPricesModal = () => {
+      const list = state.qualityCostMaster || [];
+      openModal('৫ কোয়ালিটির স্ট্যান্ডার্ড দর ও বিক্রয় দর আপডেট (v35)', `
+        <form onsubmit="saveQualityPricesForm(event)">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>কোয়ালিটি</th>
+                  <th>কাপড় দর (₹/মি.)</th>
+                  <th>বিক্রয় দর (₹/পিস)</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${list.map((q, idx) => `
+                  <tr>
+                    <td><b>${esc(q.name)}</b></td>
+                    <td><input type="number" step="0.01" name="rate_${idx}" value="${Number(q.stdFabricRateM || 0)}" required></td>
+                    <td><input type="number" step="0.01" name="sell_${idx}" value="${Number(q.sellPrice || 0)}" required></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+          <div class="btn-group" style="margin-top:14px">
+            <button class="btn primary" type="submit">দর সেভ করুন</button>
+          </div>
+        </form>
+      `);
+    };
+
+    window.saveQualityPricesForm = (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      (state.qualityCostMaster || []).forEach((q, idx) => {
+        q.stdFabricRateM = parseFloat(fd.get('rate_' + idx) || q.stdFabricRateM || 0);
+        q.sellPrice = parseFloat(fd.get('sell_' + idx) || q.sellPrice || 0);
+      });
+      saveState(); closeModal(); render(); toast('কোয়ালিটির স্ট্যান্ডার্ড ও বিক্রয় দর আপডেট হয়েছে (v35)!');
     };
 
     function render() {
